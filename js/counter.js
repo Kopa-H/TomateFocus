@@ -13,15 +13,18 @@ class Counter {
     }
 
     showCurrentTime() {
-        this.counter.innerHTML = `${this.minutes.toString().padStart(2, '0')}:${this.seconds.toString().padStart(2, '0')}`;
+        // Se usa la función toString() para convertir los valores numéricos de this.minutes y this.seconds en cadenas de texto.
+        // Luego, se utiliza el método padStart() para asegurarse de que cada cadena tenga una longitud de dos caracteres, añadiendo un cero a la izquierda si es necesario.
+        this.counter.innerHTML = `${this.minutes.toString().padStart(2, "0")}:${this.seconds.toString().padStart(2, "0")}`;
     }
 
     updateCounter() {
+
+        // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
         if (this.seconds == 0) {
             this.minutes -= 1;
             this.seconds = 59;
         } else {
-            // Se resta un segundo al tiempo restante:
             this.seconds -= 1;
         }
 
