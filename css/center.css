@@ -33,7 +33,7 @@
 .circle-progress {
   fill: none;
   stroke: #B46060;
-  stroke-width: 10;
+  stroke-width: 16;
 
   transition: stroke-dashoffset 1s linear;
 }

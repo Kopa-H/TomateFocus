@@ -66,7 +66,6 @@ class CircleAnimation {
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
         this.circle.style.strokeDashoffset = offset;
-        this.circle.style.strokeWidth= 16;
 
         // Resta 1 segundo del tiempo restante del ciclo.
         this.timeToElapse -= 1;
