@@ -1,29 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 
-.inner-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .header {
   display: flex;
   flex-direction: column;
 }
 
-.settings-icon {
-  fill: white;
-  width: 45px;
-  height: auto;
-  margin: 0px 20px 0px 0px;
+.inner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0px 8px 0px;
 }
-
-
 
 .title {
-  margin: 0px 0px 0px 20px;
+  margin: 0;
+ 
+  //margin: 0px 0px 0px 20px;
   color: #FFF4E0;  
 }
+
+.settings-icon {
+  fill: white;
+  width: 38px;
+  height: auto;
+  //margin: 0px 20px 0px 0px;
+}
+
+
+
+
 
 /*
 .settings-button {
