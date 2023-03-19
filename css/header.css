@@ -16,21 +16,15 @@
 }
 
 .title {
-  flex: 1;
   margin: 0;
-  //min-width: 0;
-  //margin: 0px 0px 0px 20px;
   color: #FFF4E0;  
+  font-size: 30px;
 }
 
 .settings-icon {
-  flex: 1;
-
-  //min-width: 0;
-  fill: white;
-  width: 38px;
-  height: auto;
-  //margin: 0px 20px 0px 0px;
+  width: 40px;
+  max-height: 35px;
+  flex-basis: 30px;
 }
 
 
