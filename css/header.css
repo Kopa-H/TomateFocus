@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
+
+* {
+  border: solid red 1px;
+}
 .header {
   display: flex;
   flex-direction: column;
@@ -13,16 +17,14 @@
 
 .title {
   margin: 0;
- 
-  //margin: 0px 0px 0px 20px;
   color: #FFF4E0;  
+  font-size: 30px;
 }
 
 .settings-icon {
-  fill: white;
-  width: 38px;
-  height: auto;
-  //margin: 0px 20px 0px 0px;
+  width: 40px;
+  max-height: 35px;
+  flex-basis: 30px;
 }
 
 
