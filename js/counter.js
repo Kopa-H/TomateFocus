@@ -1,15 +1,30 @@
+class LogicHandler {
+    constructor() {
+        this.timeToElapse = 0;
+    }
+
+    runPomodoro() {
+        this.timeToElapse = 1500;
+    }
+
+    runShortBreak() {
+        this.timeToElapse = 300;
+    }
+
+    runLongBreak() {
+        this.timeToElapse = 900;
+    }
+}
+
 class Counter {
     constructor() {
         // Seleccionamos el elemento HTML que queremos actualizar
         this.counter = document.getElementById("counter");
 
-        // Se establece el tiempo total del ciclo:
-        this.timeToElapse = 1500;
-
         // Se extrae el número de minutos restantes (de los milisegundos restantes):
-        this.minutes = Math.floor(this.timeToElapse / 60);
+        this.minutes = Math.floor(logicHandler.timeToElapse / 60);
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
-        this.seconds = this.timeToElapse % 60;
+        this.seconds = logicHandler.timeToElapse % 60;
 
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
@@ -24,7 +39,6 @@ class Counter {
     }
 
     updateCounter() {
-
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
         if (this.seconds == 0) {
             this.minutes -= 1;
@@ -38,10 +52,14 @@ class Counter {
 
         // Si se ha completado el ciclo:
         if (this.seconds == 50) {
-            this.line.style.borderBottomColor = "blue";
-            this.circle.style.stroke = "blue";
-            this.tasksButton.style.backgroundColor = "blue";
+            this.changeCycle()
         }
+    }
+
+    changeCycle() {
+        this.line.style.borderBottomColor = "blue";
+        this.circle.style.stroke = "blue";
+        this.tasksButton.style.backgroundColor = "blue";
     }
 }
 
@@ -55,14 +73,12 @@ class CircleAnimation {
         this.radius = this.circle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.radius;
         this.circle.style.strokeDasharray = this.circumference
-
-        this.timeToElapse = counter.timeToElapse;
     }
 
     updateProgress() {
         // Calcula el tiempo que ha transcurrido desde la puesta en marcha del contador.
             // Se hace dividiendo el tiempo restante del ciclo por los minutos totales del ciclo.
-        const totalTimeElapsed = (this.timeToElapse / 60) / 25;
+        const totalTimeElapsed = (logicHandler.timeToElapse / 60) / 25;
 
         // Calcula la fracción del círculo que se ha completado, restando el tiempo transcurrido del ciclo de 1.
         const fractionOfCircleCompleted = 1 - totalTimeElapsed;
@@ -74,16 +90,20 @@ class CircleAnimation {
         this.circle.style.strokeDashoffset = offset;
 
         // Resta 1 segundo del tiempo restante del ciclo.
-        this.timeToElapse -= 1;
+        logicHandler.timeToElapse -= 1;
     }
 }
 
 // Se crea un objeto de la clase Counter:
+const logicHandler = new LogicHandler()
 const counter = new Counter()
 const circleAnimation = new CircleAnimation()
+
+logicHandler.runPomodoro();
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
 setInterval(() => {
     counter.updateCounter();
     circleAnimation.updateProgress();
+    console.log(logicHandler.timeToElapse)
   }, 1000);
