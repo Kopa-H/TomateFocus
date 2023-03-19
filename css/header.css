@@ -16,9 +16,12 @@
 .settings-button {
   margin: 20px;
   background-color: #FFF4E0;
+  color: #4D4D4D;
+  font-weight: 500;
+  font-size: 15px;
   border: 0px;
-  border-radius: 7px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 15px 25px;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
 
