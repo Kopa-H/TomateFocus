@@ -33,8 +33,26 @@ class Counter {
     }
 }
 
+class CircleAnimation {
+    constructor() {
+        this.circle = document.querySelector('.circle-progress');
+        this.radius = this.circle.r.baseVal.value;
+        this.circumference = 2 * Math.PI * this.radius;
+        this.offset = this.circumference * ((counter.timeToElapse / 60) / 25);
+    }
+
+    updateProgress() {
+        // Actualizar el valor de stroke-dashoffset
+        this.circle.style.strokeDashoffset = this.offset;
+    }
+}
+
 // Se crea un objeto de la clase Counter:
 const counter = new Counter()
+const circleAnimation = new CircleAnimation()
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
-setInterval(() => { counter.updateCounter() }, 1000);
+setInterval(() => {
+    counter.updateCounter();
+    circleAnimation.updateProgress();
+  }, 1000);
