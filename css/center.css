@@ -5,11 +5,11 @@
   flex-direction: column;
   width: 400px;
   height: 600px;
-	border-radius: 30px 0px 30px 0px;
-
+  border-radius: 30px 0px 30px 0px;
   margin: 100px auto;
   align-items: center;
   background-color: #7b7873;
+  justify-content: space-around;
 }
 
 .time-circle {
@@ -19,7 +19,7 @@
   height: 350px;
   border-radius: 100%;
   background-color: #4D4D4D;
-  margin-top: 50px;
+  margin-top: 30px;
   justify-content: center;
   align-items: center;
   box-shadow: 10px 10px 20px -15px black;
@@ -52,7 +52,6 @@
 .number-pomos {
   font-size: 20px;
   font-weight: 700;
-  margin-top: 20px;
   color: #FFF4E0;
 }
 
@@ -61,7 +60,7 @@
   padding: 10px 30px;
   border-radius: 7px;
   border: 0px;
-  margin-top: 40px;
+  margin-bottom: 70px;
   color: #FFF4E0;
   background-color: #B46060;
   cursor: pointer;

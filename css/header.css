@@ -1,37 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 
 .header {
   display: flex;
+  padding: 1em 20em;
   flex-direction: column;
 }
 
 .inner-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 4px 0px 8px 0px;
 }
 
 .title {
-  margin-left: 20px;
-  color: #FFF4E0;
+  margin: 0;
+  color: #FFF4E0;  
+  font-size: 30px;
 }
 
-.settings-button {
-  margin: 20px;
-  background-color: #FFF4E0;
-  border: 0px;
-  border-radius: 7px;
-  padding: 10px;
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-}
-
-.settings-button:hover {
-  background-color: #B46060;
+.settings-icon {
+  width:35.5px;
 }
 
 .line {
-  margin-bottom: 10px;
-  border-bottom: solid orange 3px;
+  border-bottom: solid #b46060 5px;
 }
