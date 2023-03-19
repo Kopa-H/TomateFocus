@@ -15,42 +15,42 @@
   	<header class="header">
       <div class="inner-header">
         <h1 class="title">TomateFocus</h1>
-        <img class="settings-icon" src="icons/gear1.svg">
+        <img class="settings-icon" id="settings-icon" src="icons/gear1.svg">
       </div>
       <div class="line"></div>
     </header>
 
-    <div class="toggleMenu-container">
+    <div class="toggleMenu-container" id="toggleMenu">
         <div class="upper-text">
           <div class="toggle-header pomodoro">
-            <div>Pomodoro</div>
+            <div class="menu-header">Pomodoro</div>
             <div class="time-change">
-              <button>-</button>
-              <div>25 minutes</div>
-              <button>+</button>
+              <button class="value-button button minus-button">-</button>
+              <div class="menu-text">25 minutes</div>
+              <button class="value-button button">+</button>
             </div>
             
           </div>
           <div class="toggle-header short-break">
-            <div>Short Break</div>
+            <div class="menu-header">Short Break</div>
             <div class="time-change">
-              <button>-</button>
-              <div>5 minutes</div>
-              <button>+</button>
+              <button class="value-button button minus-button">-</button>
+              <div class="menu-text">5 minutes</div>
+              <button class="value-button button">+</button>
             </div>
           </div>
           <div class="toggle-header long-break">
-            <div>Long Break</div>
+            <div class="menu-header">Long Break</div>
             <div class="time-change">
-              <button>-</button>
-              <div>15 minutes</div>
-              <button>+</button>
+              <button class="value-button button minus-button">-</button>
+              <div class="menu-text">15 minutes</div>
+              <button class="value-button button">+</button>
             </div>
           </div>
         </div>
         <div class="bottom-text">
-          <button>View Statistics</button>
-          <button>Reset Preferences</button>
+          <button  class="bottom-button button">View Statistics</button>
+          <button class="bottom-button button">Reset Preferences</button>
         </div>
     </div>
 
@@ -62,5 +62,7 @@
       <span class="number-pomos">#2</span>
       <button class="tasks-button">Tasks</button>
     </section>
+
+    <script src="js/toggleMenu.js"></script>
   </body>
 </html>
