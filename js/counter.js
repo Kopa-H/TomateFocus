@@ -10,6 +10,11 @@ class Counter {
         this.minutes = Math.floor(this.timeToElapse / 60);
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
         this.seconds = this.timeToElapse % 60;
+
+        // Se accede a los diferentes elementos HTML:
+        this.line = document.querySelector(".line");
+        this.circle = document.querySelector(".circle-progress");
+        this.tasksButton = document.querySelector(".tasks-button");
     }
 
     showCurrentTime() {
@@ -30,6 +35,13 @@ class Counter {
 
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
+
+        // Si se ha completado el ciclo:
+        if (this.seconds == 50) {
+            this.line.style.borderBottomColor = "blue";
+            this.circle.style.stroke = "blue";
+            this.tasksButton.style.backgroundColor = "blue";
+        }
     }
 }
 
@@ -41,7 +53,6 @@ class CircleAnimation {
 
         // Se calcula el radio y la circumferencia del elemento HTML:
         this.radius = this.circle.r.baseVal.value;
-        console.log(`Radio: ${this.radius}`)
         this.circumference = 2 * Math.PI * this.radius;
         this.circle.style.strokeDasharray = this.circumference
 
@@ -58,11 +69,6 @@ class CircleAnimation {
 
         // Calcula el offset necesario para completar la fracción del círculo utilizando la circunferencia del círculo y la fracción del círculo completada.
         const offset = this.circumference * fractionOfCircleCompleted;
-
-        // Se imprime el valor del offset actual:
-        console.log(`offset value: ${offset}`)
-        console.log(`totalTimeElapsed value: ${totalTimeElapsed}`)
-        console.log(`Valor de circumferencia: ${this.circumference}`)
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
         this.circle.style.strokeDashoffset = offset;
