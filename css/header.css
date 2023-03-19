@@ -1,8 +1,7 @@
-* {
-  border: solid red 0px;
-}
+
 .header {
   display: flex;
+  margin: 15px 20em;
   flex-direction: column;
 }
 
