@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 
 * {
-  border: solid red 1px;
+  border: solid red 0px;
 }
 .header {
   display: flex;
