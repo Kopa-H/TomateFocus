@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 .header {
   display: flex;
   flex-direction: column;
@@ -6,13 +7,29 @@
 .inner-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 4px 0px 8px 0px;
 }
 
 .title {
-  margin-left: 20px;
-  color: #FFF4E0;
+  margin: 0;
+ 
+  //margin: 0px 0px 0px 20px;
+  color: #FFF4E0;  
 }
 
+.settings-icon {
+  fill: white;
+  width: 38px;
+  height: auto;
+  //margin: 0px 20px 0px 0px;
+}
+
+
+
+
+
+/*
 .settings-button {
   margin: 20px;
   background-color: #FFF4E0;
@@ -32,6 +49,7 @@
   background-color: #FFBF9B;
   color: #FFF4E0;
 }
+*/
 
 .line {
   border-bottom: solid #b46060 3px;
