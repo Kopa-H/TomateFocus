@@ -1,0 +1,29 @@
+.toggleMenu-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #B46060;
+    width: 300px;
+    margin-left: auto;
+    margin-right: 20em;
+}
+
+.upper-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-change {
+    display: flex;
+}
+
+
+.bottom-text {
+
+}
