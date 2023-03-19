@@ -33,8 +33,52 @@ class Counter {
     }
 }
 
+class CircleAnimation {
+    constructor() {
+
+        // Se extrae el elemento HTML:
+        this.circle = document.querySelector(".circle-progress");
+
+        // Se calcula el radio y la circumferencia del elemento HTML:
+        this.radius = this.circle.r.baseVal.value;
+        console.log(`Radio: ${this.radius}`)
+        this.circumference = 2 * Math.PI * this.radius;
+        this.circle.style.strokeDasharray = this.circumference
+
+        this.timeToElapse = counter.timeToElapse;
+    }
+
+    updateProgress() {
+        // Calcula el tiempo que ha transcurrido desde la puesta en marcha del contador.
+            // Se hace dividiendo el tiempo restante del ciclo por los minutos totales del ciclo.
+        const totalTimeElapsed = (this.timeToElapse / 60) / 25;
+
+        // Calcula la fracción del círculo que se ha completado, restando el tiempo transcurrido del ciclo de 1.
+        const fractionOfCircleCompleted = 1 - totalTimeElapsed;
+
+        // Calcula el offset necesario para completar la fracción del círculo utilizando la circunferencia del círculo y la fracción del círculo completada.
+        const offset = this.circumference * fractionOfCircleCompleted;
+
+        // Se imprime el valor del offset actual:
+        console.log(`offset value: ${offset}`)
+        console.log(`totalTimeElapsed value: ${totalTimeElapsed}`)
+        console.log(`Valor de circumferencia: ${this.circumference}`)
+
+        // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
+        this.circle.style.strokeDashoffset = offset;
+        this.circle.style.strokeWidth= 16;
+
+        // Resta 1 segundo del tiempo restante del ciclo.
+        this.timeToElapse -= 1;
+    }
+}
+
 // Se crea un objeto de la clase Counter:
 const counter = new Counter()
+const circleAnimation = new CircleAnimation()
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
-setInterval(() => { counter.updateCounter() }, 1000);
+setInterval(() => {
+    counter.updateCounter();
+    circleAnimation.updateProgress();
+  }, 1000);
