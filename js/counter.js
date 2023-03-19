@@ -35,15 +35,41 @@ class Counter {
 
 class CircleAnimation {
     constructor() {
-        this.circle = document.querySelector('.circle-progress');
+
+        // Se extrae el elemento HTML:
+        this.circle = document.querySelector(".circle-progress");
+
+        // Se calcula el radio y la circumferencia del elemento HTML:
         this.radius = this.circle.r.baseVal.value;
+        console.log(`Radio: ${this.radius}`)
         this.circumference = 2 * Math.PI * this.radius;
-        this.offset = this.circumference * ((counter.timeToElapse / 60) / 25);
+        this.circle.style.strokeDasharray = this.circumference
+
+        this.timeToElapse = counter.timeToElapse;
     }
 
     updateProgress() {
-        // Actualizar el valor de stroke-dashoffset
-        this.circle.style.strokeDashoffset = this.offset;
+        // Calcula el tiempo que ha transcurrido desde la puesta en marcha del contador.
+            // Se hace dividiendo el tiempo restante del ciclo por los minutos totales del ciclo.
+        const totalTimeElapsed = (this.timeToElapse / 60) / 25;
+
+        // Calcula la fracción del círculo que se ha completado, restando el tiempo transcurrido del ciclo de 1.
+        const fractionOfCircleCompleted = 1 - totalTimeElapsed;
+
+        // Calcula el offset necesario para completar la fracción del círculo utilizando la circunferencia del círculo y la fracción del círculo completada.
+        const offset = this.circumference * fractionOfCircleCompleted;
+
+        // Se imprime el valor del offset actual:
+        console.log(`offset value: ${offset}`)
+        console.log(`totalTimeElapsed value: ${totalTimeElapsed}`)
+        console.log(`Valor de circumferencia: ${this.circumference}`)
+
+        // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
+        this.circle.style.strokeDashoffset = offset;
+        this.circle.style.strokeWidth= 16;
+
+        // Resta 1 segundo del tiempo restante del ciclo.
+        this.timeToElapse -= 1;
     }
 }
 

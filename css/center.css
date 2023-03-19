@@ -15,9 +15,8 @@
 .time-circle {
   display: flex;
   position: relative;
-  border: solid #B46060 5px;
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   border-radius: 100%;
   background-color: #4D4D4D;
   margin-top: 50px;
@@ -26,15 +25,16 @@
   box-shadow: 10px 10px 20px -15px black;
 }
 
-.circle-background {
+.circle {
+  width: 500px;
+  height: 500px;
 }
 
 .circle-progress {
   fill: none;
   stroke: #B46060;
-  stroke-width: 12;
-  stroke-dasharray: 565.48;
-  stroke-dashoffset: 0;
+  stroke-width: 10;
+
   transition: stroke-dashoffset 1s linear;
 }
 
