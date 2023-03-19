@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
-
-
 .header {
   display: flex;
   flex-direction: column;
@@ -35,9 +33,12 @@
 .settings-button {
   margin: 20px;
   background-color: #FFF4E0;
+  color: #4D4D4D;
+  font-weight: 500;
+  font-size: 15px;
   border: 0px;
-  border-radius: 7px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 15px 25px;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
 
@@ -45,10 +46,11 @@
 }
 
 .settings-button:hover {
-  background-color: #B46060;
+  background-color: #FFBF9B;
+  color: #FFF4E0;
 }
 */
 
 .line {
-  border-bottom: solid orange 3px;
+  border-bottom: solid #b46060 3px;
 }
