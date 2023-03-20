@@ -40,6 +40,10 @@
 
 .time-elapsed {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -47,6 +51,22 @@
   font-weight: 500;
   color: #FFF4E0;
   letter-spacing: 2px;
+}
+
+.play-button {
+  width: 200px;
+
+  cursor: pointer;
+  transition: opacity, 0.15s, transform, 0s;
+}
+
+.play-button:hover {
+  opacity: 0.8;
+}
+
+.play-button:active {
+  opacity: 0.7;
+  transform: translate(-0.5px, -0.5px);
 }
 
 .number-pomos {

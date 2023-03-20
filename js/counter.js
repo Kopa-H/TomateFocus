@@ -5,6 +5,12 @@ class LogicHandler {
         this.runningPomodoro = false;
         this.runningShortBreak = false;
         this.runningLongBreak = false;
+
+        this.playButton = document.querySelector('.play-button');
+        this.runningPomodoro = true;
+        this.playButton.addEventListener('click', () => {
+            this.changeCycle();
+          });
     }
 
     runPomodoro() {
@@ -16,6 +22,8 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         this.runningPomodoro = true;
+
+        themeColor.changeToPomodoro();
     }
 
     runShortBreak() {
@@ -27,6 +35,8 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         this.runningShortBreak = true;
+
+        themeColor.changeToShortBreak()
     }
 
     runLongBreak() {
@@ -38,12 +48,25 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         this.runningLongBreak = true;
+
+        themeColor.changeToLongBreak()
     }
 
     updateThemeColors() {
         circleAnimation.line.style.borderBottomColor = "blue";
         circleAnimation.circle.style.stroke = "blue";
         circleAnimation.tasksButton.style.backgroundColor = "blue";
+    }
+
+    changeCycle() {
+        console.log("Se ha activado el contador!")
+        // Se elimina la imagen:
+        this.playButton.style.display = 'none';
+
+        this.runningShortBreak = true;
+        this.runningPomodoro = true
+        this.runningLongBreak = true;
+        this.runShortBreak();
     }
 }
 
@@ -86,17 +109,6 @@ class Counter {
             logicHandler.runningPomodoro = false;
             logicHandler.runningShortBreak = false;
             logicHandler.runningLongBreak = false;
-
-            logicHandler.updateThemeColors()
-        }
-
-        // For the theme part:
-        if (logicHandler.runningPomodoro == true) {
-            themeColor.changeToPomodoro()
-        } else if (logicHandler.runningShortBreak == true) {
-            themeColor.changeToShortBreak()
-        } else if (logicHandler.runningLongBreak == true) {
-            themeColor.changeToLongBreak()
         }
     }
 }
@@ -160,15 +172,14 @@ class ThemeColor {
 }
 
 // Se crea un objeto de la clase Counter:
-const logicHandler = new LogicHandler()
-const counter = new Counter()
-const circleAnimation = new CircleAnimation()
-const themeColor = new ThemeColor()
-
-logicHandler.runLongBreak();
+const logicHandler = new LogicHandler();
+const counter = new Counter();
+const circleAnimation = new CircleAnimation();
+const themeColor = new ThemeColor();
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
 setInterval(() => {
+    if (logicHandler.runPomodoro == true || logicHandler.runShortBreak == true || logicHandler.runningLongBreak == true)
     counter.updateCounter();
     circleAnimation.updateProgress();
   }, 1000);
