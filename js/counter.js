@@ -1,15 +1,61 @@
+class LogicHandler {
+    constructor() {
+        this.initialTimeToElapse = 0;
+
+        this.runningPomodoro = false;
+        this.runningShortBreak = false;
+        this.runningLongBreak = false;
+    }
+
+    runPomodoro() {
+        this.initialTimeToElapse = 1500;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
+
+        this.runningPomodoro = true;
+    }
+
+    runShortBreak() {
+        this.initialTimeToElapse = 300;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
+
+        this.runningShortBreak = true;
+    }
+
+    runLongBreak() {
+        this.initialTimeToElapse = 900;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
+
+        this.runningLongBreak = true;
+    }
+
+    updateThemeColors() {
+        circleAnimation.line.style.borderBottomColor = "blue";
+        circleAnimation.circle.style.stroke = "blue";
+        circleAnimation.tasksButton.style.backgroundColor = "blue";
+    }
+}
+
 class Counter {
     constructor() {
         // Seleccionamos el elemento HTML que queremos actualizar
         this.counter = document.getElementById("counter");
 
-        // Se establece el tiempo total del ciclo:
-        this.timeToElapse = 1500;
-
         // Se extrae el número de minutos restantes (de los milisegundos restantes):
-        this.minutes = Math.floor(this.timeToElapse / 60);
+        this.minutes = Math.floor(logicHandler.timeToElapse / 60);
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
-        this.seconds = this.timeToElapse % 60;
+        this.seconds = logicHandler.timeToElapse % 60;
 
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
@@ -24,7 +70,6 @@ class Counter {
     }
 
     updateCounter() {
-
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
         if (this.seconds == 0) {
             this.minutes -= 1;
@@ -37,10 +82,21 @@ class Counter {
         this.showCurrentTime();
 
         // Si se ha completado el ciclo:
-        if (this.seconds == 50) {
-            this.line.style.borderBottomColor = "blue";
-            this.circle.style.stroke = "blue";
-            this.tasksButton.style.backgroundColor = "blue";
+        if (this.minutes == 0) {
+            logicHandler.runningPomodoro = false;
+            logicHandler.runningShortBreak = false;
+            logicHandler.runningLongBreak = false;
+
+            logicHandler.updateThemeColors()
+        }
+
+        // For the theme part:
+        if (logicHandler.runningPomodoro == true) {
+            themeColor.changeToPomodoro()
+        } else if (logicHandler.runningShortBreak == true) {
+            themeColor.changeToShortBreak()
+        } else if (logicHandler.runningLongBreak == true) {
+            themeColor.changeToLongBreak()
         }
     }
 }
@@ -55,32 +111,61 @@ class CircleAnimation {
         this.radius = this.circle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.radius;
         this.circle.style.strokeDasharray = this.circumference
-
-        this.timeToElapse = counter.timeToElapse;
     }
 
     updateProgress() {
         // Calcula el tiempo que ha transcurrido desde la puesta en marcha del contador.
             // Se hace dividiendo el tiempo restante del ciclo por los minutos totales del ciclo.
-        const totalTimeElapsed = (this.timeToElapse / 60) / 25;
+        this.totalTimeElapsed = logicHandler.timeToElapse / logicHandler.initialTimeToElapse;
 
         // Calcula la fracción del círculo que se ha completado, restando el tiempo transcurrido del ciclo de 1.
-        const fractionOfCircleCompleted = 1 - totalTimeElapsed;
+        this.fractionOfCircleCompleted = 1 - this.totalTimeElapsed;
 
         // Calcula el offset necesario para completar la fracción del círculo utilizando la circunferencia del círculo y la fracción del círculo completada.
-        const offset = this.circumference * fractionOfCircleCompleted;
+        this.offset = this.circumference * this.fractionOfCircleCompleted;
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
-        this.circle.style.strokeDashoffset = offset;
+        this.circle.style.strokeDashoffset = this.offset;
 
         // Resta 1 segundo del tiempo restante del ciclo.
-        this.timeToElapse -= 1;
+        logicHandler.timeToElapse -= 1;
+    }
+}
+
+class ThemeColor {
+    constructor() {
+        // Se accede a los diferentes elementos HTML:
+        this.line = document.querySelector(".line");
+        this.circle = document.querySelector(".circle-progress");
+        this.tasksButton = document.querySelector(".tasks-button");
+    }
+
+    changeToPomodoro() {
+        this.line.style.borderBottomColor = "red";
+        this.circle.style.stroke = "red";
+        this.tasksButton.style.backgroundColor = "red";
+    }
+
+    changeToShortBreak() {
+        this.line.style.borderBottomColor = "blue";
+        this.circle.style.stroke = "blue";
+        this.tasksButton.style.backgroundColor = "blue";
+    }
+
+    changeToLongBreak() {
+        this.line.style.borderBottomColor = "purple";
+        this.circle.style.stroke = "purple";
+        this.tasksButton.style.backgroundColor = "purple";
     }
 }
 
 // Se crea un objeto de la clase Counter:
+const logicHandler = new LogicHandler()
 const counter = new Counter()
 const circleAnimation = new CircleAnimation()
+const themeColor = new ThemeColor()
+
+logicHandler.runLongBreak();
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
 setInterval(() => {
