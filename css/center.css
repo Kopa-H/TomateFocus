@@ -51,6 +51,8 @@
   font-weight: 500;
   color: #FFF4E0;
   letter-spacing: 2px;
+
+  cursor: pointer;
 }
 
 .play-button {
@@ -67,6 +69,17 @@
 .play-button:active {
   opacity: 0.7;
   transform: translate(-0.5px, -0.5px);
+}
+
+.pause-button {
+  width: 200px;
+  position: absolute;
+  opacity: 0.3;
+
+  display: none;
+
+  cursor: pointer;
+  transition: opacity, 0.15s, transform, 0s;
 }
 
 .number-pomos {
