@@ -16,6 +16,9 @@ class LogicHandler {
         this.timeElapsed.addEventListener("mouseover", () => {
             this.showPauseButton();
         });
+        this.timeElapsed.addEventListener("mouseout", () => {
+            this.hidePauseButton();
+        });
     }
 
     runPomodoro() {
@@ -76,8 +79,13 @@ class LogicHandler {
 
     showPauseButton() {
         if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
-            this.pauseButton.style.display = "block";
-            console.log("se debería mostrar el botón de pause")
+            this.pauseButton.classList.add("visible");
+        }
+    }
+
+    hidePauseButton() {
+        if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
+            this.pauseButton.classList.remove("visible");
         }
     }
 }
