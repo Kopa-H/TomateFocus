@@ -1,8 +1,10 @@
-
 .header {
   display: flex;
-  padding: 1em 20em;
+  height: 8%;
+  padding: 1em 10em;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .inner-header {
@@ -10,19 +12,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 4px 0px 8px 0px;
+
+  width: 100%;
+  min-width: 250px;
+  max-width: 2000px;
 }
 
 .title {
   margin: 0;
-  color: #FFF4E0;  
+  color: #FFF4E0;
   font-size: 30px;
+  min-width: 183px;
 }
 
 .settings-icon {
   width:35.5px;
   cursor: pointer;
+  min-width: 40px;
 }
 
 .line {
   border-bottom: solid #b46060 5px;
+
+  width: 100%;
+  min-width: 250px;
+  max-width: 2000px;
 }
