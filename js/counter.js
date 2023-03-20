@@ -1,18 +1,43 @@
 class LogicHandler {
     constructor() {
-        this.timeToElapse = 0;
+        this.initialTimeToElapse = 0;
+
+        this.runningPomodoro = false;
+        this.runningShortBreak = false;
+        this.runningLongBreak = false;
     }
 
     runPomodoro() {
-        this.timeToElapse = 1500;
+        this.initialTimeToElapse = 1500;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
     }
 
     runShortBreak() {
-        this.timeToElapse = 300;
+        this.initialTimeToElapse = 300;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
     }
 
     runLongBreak() {
-        this.timeToElapse = 900;
+        this.initialTimeToElapse = 900;
+        this.timeToElapse = this.initialTimeToElapse;
+
+        // Se reinicia el contador:
+        counter.minutes = Math.floor(this.timeToElapse / 60);
+        counter.seconds = this.timeToElapse % 60;
+    }
+
+    updateThemeColors() {
+        circleAnimation.line.style.borderBottomColor = "blue";
+        circleAnimation.circle.style.stroke = "blue";
+        circleAnimation.tasksButton.style.backgroundColor = "blue";
     }
 }
 
@@ -52,14 +77,8 @@ class Counter {
 
         // Si se ha completado el ciclo:
         if (this.seconds == 50) {
-            this.changeCycle()
+            logicHandler.updateThemeColors()
         }
-    }
-
-    changeCycle() {
-        this.line.style.borderBottomColor = "blue";
-        this.circle.style.stroke = "blue";
-        this.tasksButton.style.backgroundColor = "blue";
     }
 }
 
@@ -78,16 +97,16 @@ class CircleAnimation {
     updateProgress() {
         // Calcula el tiempo que ha transcurrido desde la puesta en marcha del contador.
             // Se hace dividiendo el tiempo restante del ciclo por los minutos totales del ciclo.
-        const totalTimeElapsed = (logicHandler.timeToElapse / 60) / 25;
+        this.totalTimeElapsed = logicHandler.timeToElapse / logicHandler.initialTimeToElapse;
 
         // Calcula la fracción del círculo que se ha completado, restando el tiempo transcurrido del ciclo de 1.
-        const fractionOfCircleCompleted = 1 - totalTimeElapsed;
+        this.fractionOfCircleCompleted = 1 - this.totalTimeElapsed;
 
         // Calcula el offset necesario para completar la fracción del círculo utilizando la circunferencia del círculo y la fracción del círculo completada.
-        const offset = this.circumference * fractionOfCircleCompleted;
+        this.offset = this.circumference * this.fractionOfCircleCompleted;
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
-        this.circle.style.strokeDashoffset = offset;
+        this.circle.style.strokeDashoffset = this.offset;
 
         // Resta 1 segundo del tiempo restante del ciclo.
         logicHandler.timeToElapse -= 1;
@@ -99,11 +118,10 @@ const logicHandler = new LogicHandler()
 const counter = new Counter()
 const circleAnimation = new CircleAnimation()
 
-logicHandler.runPomodoro();
+logicHandler.runShortBreak();
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
 setInterval(() => {
     counter.updateCounter();
     circleAnimation.updateProgress();
-    console.log(logicHandler.timeToElapse)
   }, 1000);
