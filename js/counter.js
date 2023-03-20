@@ -14,6 +14,8 @@ class LogicHandler {
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
         counter.seconds = this.timeToElapse % 60;
+
+        this.runningPomodoro = true;
     }
 
     runShortBreak() {
@@ -23,6 +25,8 @@ class LogicHandler {
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
         counter.seconds = this.timeToElapse % 60;
+
+        this.runningShortBreak = true;
     }
 
     runLongBreak() {
@@ -32,6 +36,8 @@ class LogicHandler {
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
         counter.seconds = this.timeToElapse % 60;
+
+        this.runningLongBreak = true;
     }
 
     updateThemeColors() {
@@ -76,8 +82,21 @@ class Counter {
         this.showCurrentTime();
 
         // Si se ha completado el ciclo:
-        if (this.seconds == 50) {
+        if (this.minutes == 0) {
+            logicHandler.runningPomodoro = false;
+            logicHandler.runningShortBreak = false;
+            logicHandler.runningLongBreak = false;
+
             logicHandler.updateThemeColors()
+        }
+
+        // For the theme part:
+        if (logicHandler.runningPomodoro == true) {
+            themeColor.changeToPomodoro()
+        } else if (logicHandler.runningShortBreak == true) {
+            themeColor.changeToShortBreak()
+        } else if (logicHandler.runningLongBreak == true) {
+            themeColor.changeToLongBreak()
         }
     }
 }
@@ -113,12 +132,40 @@ class CircleAnimation {
     }
 }
 
+class ThemeColor {
+    constructor() {
+        // Se accede a los diferentes elementos HTML:
+        this.line = document.querySelector(".line");
+        this.circle = document.querySelector(".circle-progress");
+        this.tasksButton = document.querySelector(".tasks-button");
+    }
+
+    changeToPomodoro() {
+        this.line.style.borderBottomColor = "red";
+        this.circle.style.stroke = "red";
+        this.tasksButton.style.backgroundColor = "red";
+    }
+
+    changeToShortBreak() {
+        this.line.style.borderBottomColor = "blue";
+        this.circle.style.stroke = "blue";
+        this.tasksButton.style.backgroundColor = "blue";
+    }
+
+    changeToLongBreak() {
+        this.line.style.borderBottomColor = "purple";
+        this.circle.style.stroke = "purple";
+        this.tasksButton.style.backgroundColor = "purple";
+    }
+}
+
 // Se crea un objeto de la clase Counter:
 const logicHandler = new LogicHandler()
 const counter = new Counter()
 const circleAnimation = new CircleAnimation()
+const themeColor = new ThemeColor()
 
-logicHandler.runShortBreak();
+logicHandler.runLongBreak();
 
 // Se llama al método updateCounter cada segundo mediante una función flecha:
 setInterval(() => {
