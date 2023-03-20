@@ -7,10 +7,18 @@ class LogicHandler {
         this.runningLongBreak = false;
 
         this.playButton = document.querySelector('.play-button');
-        this.runningPomodoro = true;
-        this.playButton.addEventListener('click', () => {
+        this.playButton.addEventListener("click", () => {
             this.changeCycle();
           });
+
+        this.pauseButton = document.querySelector(".pause-button")
+        this.timeElapsed = document.querySelector(".time-elapsed")
+        this.timeElapsed.addEventListener("mouseover", () => {
+            this.showPauseButton();
+        });
+        this.timeElapsed.addEventListener("mouseout", () => {
+            this.hidePauseButton();
+        });
     }
 
     runPomodoro() {
@@ -67,6 +75,18 @@ class LogicHandler {
         this.runningPomodoro = true
         this.runningLongBreak = true;
         this.runShortBreak();
+    }
+
+    showPauseButton() {
+        if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
+            this.pauseButton.classList.add("visible");
+        }
+    }
+
+    hidePauseButton() {
+        if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
+            this.pauseButton.classList.remove("visible");
+        }
     }
 }
 
