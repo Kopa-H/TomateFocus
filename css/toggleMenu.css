@@ -1,15 +1,22 @@
+.toggleMenu-flex {
+    display: flex;
+    position:absolute;
+    align-items: center;
+    justify-content: center;
+}
+
 .toggleMenu-container {
     
     text-align: center;
-    display: none;
+    display: flex;
     flex-direction: column;
     background-color: #B46060;
     width: 20em;
     color: #FFF4E0;
     gap: 13em;
     border-radius: 1em;
-    position: absolute;
-    right: 320px;
+   
+    
     z-index: 1;
 }
 
