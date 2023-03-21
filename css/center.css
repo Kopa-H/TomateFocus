@@ -58,8 +58,16 @@
 .play-button {
   width: 200px;
 
+  opacity: 0;
+  pointer-events: none;
+
   cursor: pointer;
   transition: opacity, 0.15s, transform, 0s;
+}
+
+.play-button.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .play-button:hover {
