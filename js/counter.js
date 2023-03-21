@@ -144,6 +144,9 @@ class LogicHandler {
 
         this.pauseButton.addEventListener("click", this.stopCounterListener);
 
+        // Se quita el efecto de mostrar el botón de pausa solo cuando se reactiva el contador. Luego se reintroduce el event en el intervalo.
+        this.timeElapsed.removeEventListener("mouseover", this.showPauseButtonListener);
+
         console.log("En teoría se reactiva el contador")
     }
 
@@ -154,6 +157,12 @@ class LogicHandler {
                 counter.updateCounter();
                 circleAnimation.updateProgress();
             }
+
+        // Se reintroduce el eventListener de mostrar el botón de pausa:
+        if (!(this.timeElapsed && this.timeElapsed.mouseover)) {
+            this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
+        }
+
         }, 1000);
     }
 }
