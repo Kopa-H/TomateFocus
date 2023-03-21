@@ -6,19 +6,45 @@ class LogicHandler {
         this.runningShortBreak = false;
         this.runningLongBreak = false;
 
-        this.playButton = document.querySelector('.play-button');
-        this.playButton.addEventListener("click", () => {
+        // definir funciones de listener por separado
+        this.changeCycleListener = () => {
             this.changeCycle();
-          });
+        }
+
+        this.stopCounterListener = () => {
+            this.stopCounter();
+        }
+
+        this.resumeCounterListener = () => {
+            this.resumeCounter();
+        }
+
+        this.showPlayButtonListener = () => {
+            this.showPlayButton();
+        }
+
+        this.hidePlayButtonListener = () => {
+            this.hidePlayButton();
+        }
+
+        this.showPauseButtonListener = () => {
+            this.showPauseButton();
+        }
+
+        this.hidePauseButtonListener = () => {
+            this.hidePauseButton();
+        }
+
+        // agregar eventListeners usando las funciones de listener
+        this.playButton = document.querySelector('.play-button');
+        this.playButton.addEventListener("click", this.changeCycleListener);
 
         this.pauseButton = document.querySelector(".pause-button")
+        this.pauseButton.addEventListener("click", this.stopCounterListener);
+
         this.timeElapsed = document.querySelector(".time-elapsed")
-        this.timeElapsed.addEventListener("mouseover", () => {
-            this.showPauseButton();
-        });
-        this.timeElapsed.addEventListener("mouseout", () => {
-            this.hidePauseButton();
-        });
+        this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
+        this.timeElapsed.addEventListener("mouseout", this.hidePauseButtonListener);
     }
 
     runPomodoro() {
@@ -60,21 +86,22 @@ class LogicHandler {
         themeColor.changeToLongBreak()
     }
 
-    updateThemeColors() {
-        circleAnimation.line.style.borderBottomColor = "blue";
-        circleAnimation.circle.style.stroke = "blue";
-        circleAnimation.tasksButton.style.backgroundColor = "blue";
-    }
-
     changeCycle() {
         console.log("Se ha activado el contador!")
         // Se elimina la imagen:
-        this.playButton.style.display = 'none';
+        this.hidePlayButton();
 
         this.runningShortBreak = true;
-        this.runningPomodoro = true
-        this.runningLongBreak = true;
         this.runShortBreak();
+    }
+
+    showPlayButton() {
+        this.playButton.classList.add("visible");
+        this.playButton.style.display = "block"
+    }
+
+    hidePlayButton() {
+        this.playButton.classList.remove("visible");
     }
 
     showPauseButton() {
@@ -87,6 +114,47 @@ class LogicHandler {
         if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
             this.pauseButton.classList.remove("visible");
         }
+    }
+
+    stopCounter() {
+        this.runningPomodoro = false;
+        this.runningShortBreak = false;
+        this.runningLongBreak = false;
+        console.log("Se ha detenido el contador")
+
+        // agregar eventListeners usando las funciones de listener
+        this.pauseButton.removeEventListener("click", this.stopCounterListener);
+        this.pauseButton.addEventListener("click", this.resumeCounterListener);
+
+        this.pauseButton.addEventListener("mouseover", this.showPlayButtonListener);
+        this.pauseButton.addEventListener("mouseout", this.hidePlayButtonListener);
+    }
+
+    resumeCounter() {
+        this.runningPomodoro = true;
+        this.runningShortBreak = true;
+        this.runningLongBreak = true;
+
+        this.hidePauseButton()
+        this.hidePlayButton()
+
+        this.pauseButton.removeEventListener("click", this.resumeCounterListener);
+        this.pauseButton.removeEventListener("mouseover", this.showPlayButtonListener);
+        this.pauseButton.removeEventListener("mouseout", this.hidePlayButtonListener);
+
+        this.pauseButton.addEventListener("click", this.stopCounterListener);
+
+        console.log("En teoría se reactiva el contador")
+    }
+
+    runApp() {
+        this.showPlayButton()
+        this.intervalId = setInterval(() => {
+            if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
+                counter.updateCounter();
+                circleAnimation.updateProgress();
+            }
+        }, 1000);
     }
 }
 
@@ -197,9 +265,4 @@ const counter = new Counter();
 const circleAnimation = new CircleAnimation();
 const themeColor = new ThemeColor();
 
-// Se llama al método updateCounter cada segundo mediante una función flecha:
-setInterval(() => {
-    if (logicHandler.runPomodoro == true || logicHandler.runShortBreak == true || logicHandler.runningLongBreak == true)
-    counter.updateCounter();
-    circleAnimation.updateProgress();
-  }, 1000);
+logicHandler.runApp();
