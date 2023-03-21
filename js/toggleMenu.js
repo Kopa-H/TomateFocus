@@ -1,5 +1,3 @@
-
-
 function toggleMenu() {
     var element = document.getElementById("toggleMenu");
     var elementStyles = window.getComputedStyle(element)
@@ -13,7 +11,6 @@ function toggleMenu() {
         element.style.display = "none"
     }    
 }
-
 
 
 // This function works perfectly. It's very simple too.
