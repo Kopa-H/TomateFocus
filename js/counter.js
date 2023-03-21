@@ -15,8 +15,16 @@ class LogicHandler {
             this.stopCounter();
         }
 
+        this.resumeCounterListener = () => {
+            this.resumeCounter();
+        }
+
         this.showPlayButtonListener = () => {
             this.showPlayButton();
+        }
+
+        this.hidePlayButtonListener = () => {
+            this.hidePlayButton();
         }
 
         this.showPauseButtonListener = () => {
@@ -81,7 +89,7 @@ class LogicHandler {
     changeCycle() {
         console.log("Se ha activado el contador!")
         // Se elimina la imagen:
-        this.playButton.style.display = 'none';
+        this.hidePlayButton();
 
         this.runningShortBreak = true;
         this.runShortBreak();
@@ -89,12 +97,11 @@ class LogicHandler {
 
     showPlayButton() {
         this.playButton.classList.add("visible");
+        this.playButton.style.display = "block"
     }
 
     hidePlayButton() {
-        if (this.runningPomodoro == true || this.runningShortBreak == true || this.runningLongBreak == true) {
-            this.playButton.classList.remove("visible");
-        }
+        this.playButton.classList.remove("visible");
     }
 
     showPauseButton() {
@@ -117,13 +124,26 @@ class LogicHandler {
 
         // agregar eventListeners usando las funciones de listener
         this.pauseButton.removeEventListener("click", this.stopCounterListener);
+        this.pauseButton.addEventListener("click", this.resumeCounterListener);
+
         this.pauseButton.addEventListener("mouseover", this.showPlayButtonListener);
+        this.pauseButton.addEventListener("mouseout", this.hidePlayButtonListener);
     }
 
-    reanudeCounter() {
+    resumeCounter() {
         this.runningPomodoro = true;
         this.runningShortBreak = true;
         this.runningLongBreak = true;
+
+        this.hidePauseButton()
+        this.hidePlayButton()
+
+        this.pauseButton.removeEventListener("click", this.resumeCounterListener);
+        this.pauseButton.removeEventListener("mouseover", this.showPlayButtonListener);
+        this.pauseButton.removeEventListener("mouseout", this.hidePlayButtonListener);
+
+        this.pauseButton.addEventListener("click", this.stopCounterListener);
+
         console.log("En teoría se reactiva el contador")
     }
 

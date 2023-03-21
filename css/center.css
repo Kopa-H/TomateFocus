@@ -56,13 +56,14 @@
 }
 
 .play-button {
+  position: absolute;
   width: 200px;
 
   opacity: 0;
   pointer-events: none;
 
   cursor: pointer;
-  transition: opacity, 0.15s, transform, 0s;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .play-button.visible {
