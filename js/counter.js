@@ -164,8 +164,11 @@ class LogicHandler {
                 counter.updateCounter();
                 circleAnimation.updateProgress();
 
-                if (this.runDefaultItenerary == true) {
-                    if (counter.timeToElapse == 0) {
+                // If the time of the counter ends:
+                // I have to do that timeToElapse starts being 0:
+                console.log(counter.timeToElapse)
+                if (counter.timeToElapse == 0) {
+                    if (this.runDefaultItenerary == true) {
                         this.runNextCycle()
                     }
                 }
