@@ -2,6 +2,16 @@ class LogicHandler {
     constructor() {
         this.initialTimeToElapse = 0;
 
+        this.runPomodoroFunction = () => {
+            this.runPomodoro();
+        }
+        this.runShortBreakFunction = () => {
+            this.runShortBreak();
+        }
+        this.runLongBreakFunction = () => {
+            this.runLongBreak();
+        }
+
         // definir funciones de listener por separado
         this.changeCycleListener = () => {
             this.changeCycle();
@@ -153,20 +163,19 @@ class LogicHandler {
     runDefaultItenerary() {
         this.isRunningDefaultItenerary = true;
         this.itineraryList = [
-            this.runPomodoro,
-            this.runShortBreak,
-            this.runPomodoro,
-            this.runShortBreak,
-            this.runPomodoro,
-            this.runLongBreak,
-            this.runPomodoro
+            this.runPomodoroFunction,
+            this.runShortBreakFunction,
+            this.runPomodoroFunction,
+            this.runShortBreakFunction,
+            this.runPomodoroFunction,
+            this.runLongBreakFunction,
+            this.runPomodoroFunction
         ];
     }
 
     runNextCycle() {
         // The following cycle is executed:
         let currentFunction = this.itineraryList[this.itineraryListIndex];
-        console.log(currentFunction)
         currentFunction();
 
         // The itinerary list index is updated:
