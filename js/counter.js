@@ -42,14 +42,20 @@ class LogicHandler {
         this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
         this.timeElapsed.addEventListener("mouseout", this.hidePauseButtonListener);
 
+        this.isRunningDefaultItenerary = false;
+
         // This variable will be used to register which is the following cycle to execute:
         this.itineraryListIndex = 0;
+
+        // This variable will control if the counter is running:
+        this.appIsRunning = false;
     }
 
     runPomodoro() {
         // this.initialTimeToElapse = 1500;
         this.initialTimeToElapse = 10;
         this.timeToElapse = this.initialTimeToElapse;
+        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
@@ -62,6 +68,7 @@ class LogicHandler {
         // this.initialTimeToElapse = 300;
         this.initialTimeToElapse = 10;
         this.timeToElapse = this.initialTimeToElapse;
+        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
@@ -74,6 +81,7 @@ class LogicHandler {
         // this.initialTimeToElapse = 900;
         this.initialTimeToElapse = 10;
         this.timeToElapse = this.initialTimeToElapse;
+        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
         counter.minutes = Math.floor(this.timeToElapse / 60);
@@ -143,13 +151,23 @@ class LogicHandler {
     }
 
     runDefaultItenerary() {
-        this.runDefaultItenerary = true
-        this.itineraryList = [this.runPomodoro(), this.runShortBreak(), this.runPomodoro(), this.runShortBreak(), this.runPomodoro(), this.runLongBreak(), this.runPomodoro()]
+        this.isRunningDefaultItenerary = true;
+        this.itineraryList = [
+            this.runPomodoro,
+            this.runShortBreak,
+            this.runPomodoro,
+            this.runShortBreak,
+            this.runPomodoro,
+            this.runLongBreak,
+            this.runPomodoro
+        ];
     }
 
     runNextCycle() {
         // The following cycle is executed:
-        this.itineraryList[this.itineraryListIndex]
+        let currentFunction = this.itineraryList[this.itineraryListIndex];
+        console.log(currentFunction)
+        currentFunction();
 
         // The itinerary list index is updated:
         this.itineraryListIndex ++
@@ -159,16 +177,14 @@ class LogicHandler {
         // When the web is opened, the playButton is shown.
         this.showPlayButton()
 
-        if (this.appIsRunning == true) {
-            setInterval(() => {
-                counter.updateCounter();
-                circleAnimation.updateProgress();
+        setInterval(() => {
 
+            if (this.appIsRunning == true) {
                 // If the time of the counter ends:
                 // I have to do that timeToElapse starts being 0:
-                console.log(counter.timeToElapse)
-                if (counter.timeToElapse == 0) {
-                    if (this.runDefaultItenerary == true) {
+                if (counter.totalTimeLeft == 0) {
+                    console.log("The cycle changes!")
+                    if (this.isRunningDefaultItenerary == true) {
                         this.runNextCycle()
                     }
                 }
@@ -176,8 +192,11 @@ class LogicHandler {
                 if (!(this.timeElapsed && this.timeElapsed.mouseover)) {
                     this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
                 }
-            }, 1000);
-        }
+
+                counter.updateCounter();
+                circleAnimation.updateProgress();
+            }
+        }, 1000);
     }
 }
 
@@ -187,14 +206,16 @@ class Counter {
         this.counter = document.getElementById("counter");
 
         // Se extrae el número de minutos restantes (de los milisegundos restantes):
-        this.minutes = Math.floor(logicHandler.timeToElapse / 60);
+        this.minutes = 0;
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
-        this.seconds = logicHandler.timeToElapse % 60;
+        this.seconds = 0;
 
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
         this.tasksButton = document.querySelector(".tasks-button");
+
+        this.totalTimeLeft = 0;
     }
 
     showCurrentTime() {
@@ -211,6 +232,9 @@ class Counter {
         } else {
             this.seconds -= 1;
         }
+
+        // Se disminuye el tiempo restante:
+        this.totalTimeLeft --
 
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
