@@ -62,8 +62,7 @@ class LogicHandler {
     }
 
     runPomodoro() {
-        // this.initialTimeToElapse = 1500;
-        this.initialTimeToElapse = 10;
+        this.initialTimeToElapse = 1500;
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -75,8 +74,7 @@ class LogicHandler {
     }
 
     runShortBreak() {
-        // this.initialTimeToElapse = 300;
-        this.initialTimeToElapse = 10;
+        this.initialTimeToElapse = 300;
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -88,8 +86,7 @@ class LogicHandler {
     }
 
     runLongBreak() {
-        // this.initialTimeToElapse = 900;
-        this.initialTimeToElapse = 10;
+        this.initialTimeToElapse = 900;
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
