@@ -1,0 +1,11 @@
+.spotify-player-container {
+    position: absolute;
+    left: 0;
+    border: 6px solid red;
+}
+
+.spotify-player {
+
+    width: 400px;
+    height: 700px;
+}
