@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/center.css">
     <link rel="stylesheet" type="text/css" href="css/toggleMenu.css">
-    <link rel="stylesheet" type="text/css" href="css/spotifyPlayer.css">
+    <link rel="stylesheet" type="text/css" href="css/musicPlayer.css">
   </head>
   <body>
   	<header class="header">
@@ -21,10 +21,13 @@
     </header>
 
     <!-- For the spotify player -->
-    <div class="spotify-player-container" style="display: flex; align-content: center; justify-content: center;">
-      <iframe class="spotify-player" src="https://open.spotify.com/embed/playlist/41usYFYBEM6uTvMl3K10Ft?utm_source=oembed" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <div class="spotify-cover"></div>
-    </div>
+    <snap class="music-player-container">
+      <div class="music-player-toolbar">
+        <img class="music-player-play-button" src="icons/playButton.png">
+        <img class="music-player-pause-button" src="icons/pauseButton.png">
+        <button class="music-next-song-button">Next Song</button>
+      </div>
+    </snap>
 
     <div class="toggleMenu-flex">
       <div class="toggleMenu-container" id="toggleMenu">

@@ -1,18 +1,9 @@
-.toggleMenu-flex {
-    display: flex;
-    position:absolute;
-    align-items: center;
-    justify-content: end;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 2000px;
-    padding: 0.2em 20em 1em 20em;
-}
-
 .toggleMenu-container {
-    
+    position: absolute;
+
+    top: 50%;
+    left: 70%;
+
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -21,9 +12,21 @@
     color: #FFF4E0;
     gap: 13em;
     border-radius: 1em;
-   
-    
+
     z-index: 1;
+}
+
+.toggleMenu-flex {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: end;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2000px;
+    padding: 0.2em 20em 1em 20em;
 }
 
 .upper-text {
@@ -100,9 +103,3 @@
       padding: 0.2em 0.5em 1em 0.5em; /* updated padding value for even smaller screens */
     }
   }
-  
-  
-  
-  
-  
-  

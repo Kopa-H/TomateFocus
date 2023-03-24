@@ -1,0 +1,64 @@
+.music-player-container {
+    display: flex;
+
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    width: 20vw;
+    height: 75vh;
+
+    border: 1px solid white;
+}
+
+.music-player-toolbar {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 10%;
+
+    border: 1px solid white;
+}
+
+.music-player-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 20%;
+    height: 100%;
+
+    border-radius: 100%;
+
+    cursor: pointer;
+}
+
+.music-player-pause-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 20%;
+    height: 100%;
+
+    border-radius: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+.music-next-song-button {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+
+    width: 20%;
+    height: 100%;
+}
