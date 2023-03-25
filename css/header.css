@@ -4,7 +4,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%
+  width: 100%;
+  max-width: 55em;
+  margin: 0 auto;
 }
 
 .header-wrapper {
@@ -13,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 2000px;
+  width: 100%;
 }
 
 .inner-header {
@@ -22,8 +24,6 @@
   align-items: center;
   padding: 4px 0px 8px 0px;
   width: 100%;
-  min-width: 250px;
-  max-width: 2000px;
 }
 
 .title {
@@ -43,8 +43,7 @@
   border-bottom: solid #b46060 5px;
 
   width: 100%;
-  min-width: 250px;
-  max-width: 2000px;
+  max-width: 55em;
 }
 
 @media screen and (max-width: 1700px) {
