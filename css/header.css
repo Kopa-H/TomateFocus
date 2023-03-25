@@ -6,7 +6,7 @@
   justify-content: center;
   max-width: 80em;
   margin: 0 auto;
-  padding: 0em calc(5% + 10px);
+  padding: 0em 10em;
 }
 
 .line {
@@ -43,13 +43,7 @@
   min-width: 40px;
 }
 
-.spacer {
-  flex-grow: 1;
-}
-
-
-
-@media screen and (max-width: 1045px) {
+@media screen and (max-width: 1375px) {
   .header-wrapper {
     padding: 0;
   }
