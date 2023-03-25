@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/spotifyPlayer.css">
   </head>
   <body>
+    <!-- Header -->
   	<header class="header">
       <div class="header-wrapper">
         <div class="inner-header">
@@ -22,6 +23,7 @@
       </div>
     </header>
 
+    <!-- Menu -->
     <div class="toggleMenu-flex">
       <div class="toggleMenu-container" id="toggleMenu">
         <div class="upper-text">
@@ -58,21 +60,27 @@
       </div>
     </div>
 
-    <section class="central-zone">
-      <div class="time-circle">
-        <svg class="circle">
-          <circle class="circle-progress" cx="50%" cy="50%" r="163"></circle>
-        </svg>
-      	<span class="time-elapsed">
-          <div id="counter"></div>
-          <img class="play-button" src="icons/playButton.png">
-          <img class="pause-button" src="icons/pauseButton.png">
-        </span>
-      </div>
-      <span class="number-pomos">#2</span>
-      <button class="tasks-button">Tasks</button>
-    </section>
+    <!-- Central Zone -->
+    <div class="central-zone-wrapper">
+      <section class="central-zone">
+        <div class="time-circle">
+          <svg class="circle">
+            <circle class="circle-progress" cx="50%" cy="50%" r="163"></circle>
+          </svg>
+          <span class="time-elapsed">
+            <div id="counter"></div>
+            <img class="play-button" src="icons/playButton.png">
+            <img class="pause-button" src="icons/pauseButton.png">
+          </span>
+        </div>
+        <span class="number-pomos">#2</span>
+        <button class="tasks-button">Tasks</button>
+      </section>  
+    </div>
+
+    <!-- Scripts -->
     <script src="js/counter.js"></script>
     <script src="js/toggleMenu.js"></script>
+
   </body>
 </html>
