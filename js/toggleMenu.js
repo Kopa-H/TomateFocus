@@ -12,7 +12,6 @@ function toggleMenu() {
     }    
 }
 
-
 // This function works perfectly. It's very simple too.
 let gear = document.getElementById("settings-icon")
 gear.onclick = function() {

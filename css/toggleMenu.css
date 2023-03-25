@@ -85,15 +85,13 @@
     padding-bottom: 0.2em;
 }
 
-
-@media screen and (max-width: 900px) {
-    .header, .toggleMenu-flex {
-      padding: 0.2em 0.6em 1em 0.6em; /* updated padding value for smaller screens */
+@media screen and (max-width: 1700px) {
+    .toggleMenu-flex {
+        justify-content: center;
     }
 }
-  
-  @media screen and (max-width: 480px) {
-    .header, .toggleMenu-flex {
-      padding: 0.2em 0.5em 1em 0.5em; /* updated padding value for even smaller screens */
+@media screen and (max-width: 1700px) {
+    .toggleMenu-container {
+        width: 25em;
     }
 }
