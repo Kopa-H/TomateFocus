@@ -5,9 +5,9 @@
     justify-content: end;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 0 auto ;
     max-width: 80em;
+    padding: 0em 10em;
 }
 
 .toggleMenu-container {
@@ -84,7 +84,7 @@
     padding-bottom: 0.2em;
 }
 
-@media screen and (max-width: 1045px) {
+@media screen and (max-width: 1375px) {
     .toggleMenu-flex {
         justify-content: center;
         padding: 0;
