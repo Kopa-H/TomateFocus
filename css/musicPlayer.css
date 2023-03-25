@@ -3,16 +3,23 @@
 
     position: absolute;
     top: 13%;
-    left: 15%;
+    left: 12%;
     width: 20vw;
     height: 75vh;
 
     border: 1px solid white;
+
+    background-color: #B46060;
+    border-radius: 30px;
 }
 
 .music-player-toolbar {
     display: flex;
     position: absolute;
+
+    justify-content: space-between;
+    align-items: center;
+
     bottom: 50px;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -23,42 +30,37 @@
     border: 1px solid white;
 }
 
-.music-player-play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+.music-player-play-and-pause-button {
     width: 20%;
     height: 100%;
 
     border-radius: 100%;
 
     cursor: pointer;
-}
 
-.music-player-pause-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 20%;
-    height: 100%;
-
-    border-radius: 100%;
-
-    opacity: 0;
-
-    cursor: pointer;
+    border: 1px solid white;
 }
 
 .music-next-song-button {
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-
     width: 20%;
     height: 100%;
+
+    border-radius: 100%;
+    cursor: pointer;
+
+    font-size: 30px;
+    color: #B46060;
+
+    margin: 0;
+
+    border: 3px solid white;
+    background-color: black;
+}
+
+.volume-slider {
+    width: 70px;
+
+    margin: 0;
+
+    border: 1px solid white;
 }
