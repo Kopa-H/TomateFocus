@@ -4,6 +4,45 @@
 
 // Debería agregar un botón también para tirar atrás, y así que el slider esté en otra parte!
 
+class VolumeSlider {
+  constructor() {
+    this.sliderThumb = document.querySelector('.slider-thumb');
+    this.sliderTrack = document.querySelector('.slider-track');
+    this.sliderContainer = document.querySelector('.slider-container');
+
+    this.isDragging = false;
+
+    // Evento para cuando se pulsa el thumb.
+    this.sliderThumb.addEventListener('mousedown', function() {
+      this.isDragging = true;
+    }.bind(this));
+
+    // Evento para cuando se mueve el mouse mientras el thumb está siendo presionado:
+    this.sliderContainer.addEventListener('mousemove', function(event) {
+      // Si se está pulsando el thumb:
+      if (this.isDragging) {
+        this.updateSlider(event);
+      }
+    }.bind(this));
+
+    // Evento para cuando se levanta el thumb.
+    this.sliderContainer.addEventListener('mouseup', function() {
+      this.isDragging = false;
+    }.bind(this));
+  }
+
+  updateSlider(event) {
+    if (this.isDragging) {
+      let trackWidth = event.clientX - this.sliderContainer.getBoundingClientRect().left;
+      let maxWidth = this.sliderContainer.offsetWidth - this.sliderThumb.offsetWidth;
+      if (trackWidth >= 0 && trackWidth <= maxWidth) {
+        this.sliderTrack.style.width = trackWidth + 'px';
+        this.sliderThumb.style.left = trackWidth - 5 + 'px';
+      }
+    }
+  }
+}
+
 class MusicPlayer {
     constructor() {
         this.song1 = document.querySelector(".music-player-song-1");
@@ -18,7 +57,6 @@ class MusicPlayer {
         this.playButton = document.querySelector(".music-player-play-and-pause-button");
         this.nextSongButton = document.querySelector(".music-next-song-button")
         this.previousSongButton = document.querySelector(".music-previous-song-button")
-        this.volumeSlider = document.querySelector(".volume-slider")
 
         this.playButton.addEventListener('click', () => {
             if (!this.songIsPlaying) {
@@ -40,9 +78,10 @@ class MusicPlayer {
           this.changeToPreviousSong()
         });
 
-        this.volumeSlider.addEventListener('input', () => {
-          this.songBeingPlayed.volume = this.volumeSlider.value;
-        });
+        // Esto hay que adaptarlo al slider personalizado!
+        //this.volumeSlider.addEventListener('input', () => {
+          //this.songBeingPlayed.volume = this.volumeSlider.value;
+        //});
     }
 
     changeToNextSong() {
@@ -102,4 +141,5 @@ class MusicPlayer {
     }
 }
 
+const volumeSlider = new VolumeSlider()
 const musicPlayer = new MusicPlayer()
