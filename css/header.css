@@ -4,10 +4,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   max-width: 80em;
   margin: 0 auto;
-  padding: 0em 10em;
+  padding: 0em calc(5% + 10px);
 }
 
 .line {
@@ -36,13 +35,16 @@
   margin: 0;
   color: #FFF4E0;
   font-size: 30px;
-  min-width: 183px;
 }
 
 .settings-icon {
   width:35.5px;
   cursor: pointer;
   min-width: 40px;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 

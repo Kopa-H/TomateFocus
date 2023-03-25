@@ -1,3 +1,7 @@
+.central-zone-wrapper {
+  width: 100%;
+}
+
 .central-zone {
   display: flex;
   flex-direction: column;
