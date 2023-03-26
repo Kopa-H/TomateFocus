@@ -1,29 +1,36 @@
 .slider-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
 
     height: 250px;
     width: 20px;
-    background-color: #8f1ca9;
+
     border-radius: 5px;
 
     position: absolute;
     right: 10%;
     top: 6%;
+
+    border: 1px solid white;
+    background-color: rgb(27, 27, 27);
   }
 
   .slider-track {
-    width: 0;
-    height: 100%;
-    background-color: #1a30bc;
+    height: 250px;
+    width: 20px;
+    background-color: #8f1ca9;
     border-radius: 5px;
   }
 
   .slider-thumb {
     width: 20px;
-    height: 20px;
+    height: 50px;
+
     background-color: #1a30bc;
-    border-radius: 50%;
+    border-radius: 20%;
     cursor: pointer;
+
+    position: absolute;
+    top: 40%;
+
+    z-index: 1;
 }

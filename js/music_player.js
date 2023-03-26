@@ -8,8 +8,9 @@ class VolumeSlider {
   constructor() {
     this.sliderThumb = document.querySelector('.slider-thumb');
     this.sliderTrack = document.querySelector('.slider-track');
-    this.sliderContainer = document.querySelector('.slider-container');
+    this.sliderContainer = document.querySelector('.slider-container')
 
+    // This variable will be used to know if the slider-thumb is being pressed:
     this.isDragging = false;
 
     // Evento para cuando se pulsa el thumb.
@@ -32,13 +33,15 @@ class VolumeSlider {
   }
 
   updateSlider(event) {
-    if (this.isDragging) {
-      let trackWidth = event.clientX - this.sliderContainer.getBoundingClientRect().left;
-      let maxWidth = this.sliderContainer.offsetWidth - this.sliderThumb.offsetWidth;
-      if (trackWidth >= 0 && trackWidth <= maxWidth) {
-        this.sliderTrack.style.width = trackWidth + 'px';
-        this.sliderThumb.style.left = trackWidth - 5 + 'px';
-      }
+    // Se calcula la altura del slider track a partir de la del contenedor:
+    let trackHeight = event.clientY - this.sliderContainer.getBoundingClientRect().top;
+
+    // Si la altura del track es igual a mayor o igual a cero y es menor o igual a la altura del contenedor:
+    if (trackHeight >= 23 && trackHeight <= this.sliderContainer.offsetHeight - 25) {
+      // Se establece la altura del track:
+      this.sliderTrack.style.height = trackHeight + 'px';
+      // Se establece la posición del thumb:
+      this.sliderThumb.style.top = trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
     }
   }
 }
