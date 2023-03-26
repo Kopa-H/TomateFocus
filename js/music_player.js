@@ -1,42 +1,47 @@
-// Errores:
-// - No se está reproduciendo la primera canción cuando se ha llegado al final de la lista.
-// - No se está parando las canciones iniciadas con el botón de nextSong
-
-// Debería agregar un botón también para tirar atrás, y así que el slider esté en otra parte!
-
 class VolumeSlider {
   constructor() {
     this.sliderThumb = document.querySelector('.slider-thumb');
     this.sliderTrack = document.querySelector('.slider-track');
-    this.sliderContainer = document.querySelector('.slider-container')
-    this.sliderBoundaries = document.querySelector('.slider-boundaries')
+    this.sliderContainer = document.querySelector('.slider-container');
+    this.sliderBoundaries = document.querySelector('.slider-boundaries');
 
     // This variable will be used to know if the slider-thumb is being pressed:
     this.isDragging = false;
 
-    // Evento para cuando se pulsa en algún lugar del contenedor del slider:
-    this.sliderBoundaries.addEventListener('mousedown', function(event) {
-      this.updateSlider(event);
-      this.isDragging = true;
-    }.bind(this));
-
-    // Evento para cuando se pulsa el thumb.
-    this.sliderThumb.addEventListener('mousedown', function() {
-      this.isDragging = true;
-    }.bind(this));
-
-    this.sliderBoundaries.addEventListener('mouseleave', function() {
-      this.isDragging = false;
-    }.bind(this));
-
-    // Evento para cuando se mueve el mouse mientras el thumb está siendo presionado:
+    // Si el movimiento está habilitado, se mueve mientras esté dentro de los límites:
     this.sliderBoundaries.addEventListener('mousemove', function(event) {
       // Si se está pulsando el thumb:
       if (this.isDragging) {
         this.updateSlider(event);
       }
     }.bind(this));
+    // Evento para cuando se levanta el thumb.
+    this.sliderBoundaries.addEventListener('mouseup', function() {
+      this.isDragging = false;
+    }.bind(this));
+    // Si el mouse abandona los límites del slider se deja de poder mover:
+    this.sliderBoundaries.addEventListener('mouseleave', function() {
+      this.isDragging = false;
+    }.bind(this));
 
+    // Evento para cuando se pulsa en algún lugar del contenedor del slider:
+    this.sliderContainer.addEventListener('mousedown', function(event) {
+      this.updateSlider(event);
+      this.isDragging = true;
+    }.bind(this));
+    // Si el movimiento está habilitado, se mueve mientras esté dentro de los límites:
+    this.sliderContainer.addEventListener('mousemove', function(event) {
+      // Si se está pulsando el thumb:
+      if (this.isDragging) {
+        this.updateSlider(event);
+      }
+    }.bind(this));
+
+    // Evento para cuando se pulsa el thumb.
+    this.sliderThumb.addEventListener('mousedown', function() {
+      console.log("Se pulsa el thumb!")
+      this.isDragging = true;
+    }.bind(this));
     // Evento para cuando se levanta el thumb.
     this.sliderThumb.addEventListener('mouseup', function() {
       this.isDragging = false;
@@ -54,7 +59,7 @@ class VolumeSlider {
       // Se establece la posición del thumb:
       this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
 
-      this.changeVolume()
+      this.changeVolume();
     }
   }
 
@@ -65,7 +70,7 @@ class VolumeSlider {
     let volumePercentage = 1 - (thumbPosition / this.trackHeight);
     volumePercentage = Math.max(0, Math.min(1, volumePercentage));
 
-    musicPlayer.songBeingPlayed.volume = volumePercentage
+    musicPlayer.songBeingPlayed.volume = volumePercentage;
   }
 }
 
@@ -81,8 +86,8 @@ class MusicPlayer {
         this.songIsPlaying = false;
 
         this.playButton = document.querySelector(".music-player-play-and-pause-button");
-        this.nextSongButton = document.querySelector(".music-next-song-button")
-        this.previousSongButton = document.querySelector(".music-previous-song-button")
+        this.nextSongButton = document.querySelector(".music-next-song-button");
+        this.previousSongButton = document.querySelector(".music-previous-song-button");
 
         this.playButton.addEventListener('click', () => {
             if (!this.songIsPlaying) {
@@ -97,45 +102,46 @@ class MusicPlayer {
         });
 
         this.nextSongButton.addEventListener('click', () => {
-          this.changeToNextSong()
+          this.changeToNextSong();
         });
 
         this.previousSongButton.addEventListener('click', () => {
-          this.changeToPreviousSong()
+          this.changeToPreviousSong();
         });
     }
 
     changeToNextSong() {
       // Se detiene la canción que sonaba hasta ahora:
       this.songBeingPlayed.pause();
+      this.songBeingPlayed.currentTime = 0;
 
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
 
       // Si el índice es igual o mayor al número de canciones existentes, se pone en marcha la primera:
-      if (index >= this.songsList.length) {
+      if (index >= this.songsList.length - 1) {
         this.songBeingPlayed = this.songsList[0];
         this.songBeingPlayed.play();
-        console.log("Se reproduce la primera canción de la lista!")
+        console.log("Se cambia a la primera canción!")
 
         if (this.songIsPlaying) {
-          this.songBeingPlayed.play()
+          this.songBeingPlayed.play();
         };
       } else {
         this.songBeingPlayed = this.songsList[index + 1];
 
         // Si estaba sonando otra canción:
         if (this.songIsPlaying) {
-          this.songBeingPlayed.play()
+          this.songBeingPlayed.play();
         };
-
-        console.log("Empieza a sonar la siguiente canción!")
+        console.log("Se cambia a la siguiente canción!")
       }
     }
 
     changeToPreviousSong() {
       // Se detiene la canción que sonaba hasta ahora:
       this.songBeingPlayed.pause();
+      this.songBeingPlayed.currentTime = 0;
 
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
@@ -143,10 +149,10 @@ class MusicPlayer {
       // Si el índice es igual o menor a 0, se pone en marcha la última:
       if (index <= 0) {
         this.songBeingPlayed = this.songsList.pop();
-        console.log("Se reproduce la última canción de la lista!")
+        console.log("Se cambia a la última canción!")
 
         if (this.songIsPlaying) {
-          this.songBeingPlayed.play()
+          this.songBeingPlayed.play();
         };
 
       } else {
@@ -154,10 +160,9 @@ class MusicPlayer {
 
         // Si estaba sonando otra canción:
         if (this.songIsPlaying) {
-          this.songBeingPlayed.play()
+          this.songBeingPlayed.play();
         };
-
-        console.log("Empieza a sonar la siguiente canción!")
+        console.log("Se cambia a la anterior canción!")
       }
     }
 }
