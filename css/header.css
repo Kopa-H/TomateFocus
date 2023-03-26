@@ -31,6 +31,12 @@
   box-sizing: border-box;
 }
 
+.music-icon {
+  width:35.5px;
+  cursor: pointer;
+  min-width: 40px;
+}
+
 .title {
   margin: 0;
   color: #FFF4E0;
