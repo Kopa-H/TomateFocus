@@ -59,10 +59,17 @@ class LogicHandler {
 
         // This variable will control if the counter is running:
         this.appIsRunning = false;
+
+        // Create and pre define time variables for each type of timer
+        this.pomodoroTimeToElapse = 1500
+        this.shortbreakTimeToElapse = 300
+        this.longbreakTimeToElapse = 900
+
     }
 
     runPomodoro() {
-        this.initialTimeToElapse = 1500;
+        this.initialTimeToElapse = this.pomodoroTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -74,7 +81,8 @@ class LogicHandler {
     }
 
     runShortBreak() {
-        this.initialTimeToElapse = 300;
+        this.initialTimeToElapse = this.shortbreakTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -86,7 +94,8 @@ class LogicHandler {
     }
 
     runLongBreak() {
-        this.initialTimeToElapse = 900;
+        this.initialTimeToElapse = this.longbreakTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
