@@ -1,10 +1,25 @@
 .header {
   display: flex;
   height: 8%;
-  padding: 0.2em 20em 1em 20em;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 80em;
+  margin: 0 auto;
+  padding: 0em 10em;
+}
+
+.line {
+  border-bottom: solid #b46060 5px;
+  width: 100%;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .inner-header {
@@ -12,17 +27,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 4px 0px 8px 0px;
-
   width: 100%;
-  min-width: 250px;
-  max-width: 2000px;
+  box-sizing: border-box;
 }
 
 .title {
   margin: 0;
   color: #FFF4E0;
   font-size: 30px;
-  min-width: 183px;
 }
 
 .settings-icon {
@@ -31,10 +43,17 @@
   min-width: 40px;
 }
 
-.line {
-  border-bottom: solid #b46060 5px;
+@media screen and (max-width: 1375px) {
+  .header-wrapper {
+    padding: 0;
+  }
 
-  width: 100%;
-  min-width: 250px;
-  max-width: 2000px;
+  .header {
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    left: 0;
+    width: 25em;
+    padding: 0;
+  }
 }

@@ -1,11 +1,19 @@
-.toggleMenu-container {
-    position: absolute;
-
-    top: 50%;
-    left: 70%;
-
-    text-align: center;
+.toggleMenu-flex {
     display: flex;
+    position:absolute;
+    align-items: center;
+    justify-content: end;
+    left: 0;
+    right: 0;
+    top:  calc(7% + 1em);
+    margin: 0 auto 0 auto ;
+    max-width: 80em;
+    padding: 0em 10em;
+}
+
+.toggleMenu-container {
+    text-align: center;
+    display: none;
     flex-direction: column;
     background-color: #B46060;
     width: 20em;
@@ -91,15 +99,15 @@
     padding-bottom: 0.2em;
 }
 
+@media screen and (max-width: 1375px) {
+    .toggleMenu-flex {
+        justify-content: center;
+        padding: 0;
+        min-width: 25em;
+        top:  calc(8% + 1.5em);
+    }
 
-@media screen and (max-width: 900px) {
-    .header, .toggleMenu-flex {
-      padding: 0.2em 0.6em 1em 0.6em; /* updated padding value for smaller screens */
+    .toggleMenu-container {
+        width: 25em;
     }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .header, .toggleMenu-flex {
-      padding: 0.2em 0.5em 1em 0.5em; /* updated padding value for even smaller screens */
-    }
-  }
+}
