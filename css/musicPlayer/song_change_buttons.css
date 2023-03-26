@@ -1,6 +1,6 @@
-.music-next-song-button {
-    width: 20%;
-    height: 100%;
+.music-previous-song-button {
+    width: 13%;
+    height: 66%;
 
     border-radius: 100%;
     cursor: pointer;
@@ -8,43 +8,43 @@
     font-size: 30px;
     color: #B46060;
 
-    margin: 0;
+    margin-left: 5%;
 
-    border: 3px solid white;
     background-color: black;
 
-    font-size: 270%;
+    font-size: 200%;
+
+    transform: rotate(180deg);
+}
+.music-previous-song-button:hover {
+    background-color: #161616;
+}
+.music-previous-song-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
+
+.music-next-song-button {
+    width: 13%;
+    height: 66%;
+
+    border-radius: 100%;
+    cursor: pointer;
+
+    font-size: 30px;
+    color: #B46060;
+
+    margin-right: 5%;
+
+    background-color: black;
+
+    font-size: 200%;
     transition: opacity 0.2s ease-in-out;
 }
 .music-next-song-button:hover {
     background-color: #161616;
 }
 .music-next-song-button:active {
-    background-color: #2a2a2a;
-    transform: translate(-0.5px, -0.5px);
-}
-
-.music-previous-song-button {
-    width: 20%;
-    height: 100%;
-
-    border-radius: 100%;
-    cursor: pointer;
-
-    font-size: 30px;
-    color: #B46060;
-
-    margin-right: 1px;
-
-    border: 3px solid white;
-    background-color: black;
-
-    font-size: 270%;
-}
-.music-previous-song-button:hover {
-    background-color: #161616;
-}
-.music-previous-song-button:active {
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
 }
