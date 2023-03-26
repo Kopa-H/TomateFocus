@@ -1,8 +1,8 @@
 .slider-container {
     display: flex;
 
-    width: 25px;
-    height: 250px;
+    width: 10%;
+    height: 40%;
 
     border-radius: 50px;
 
@@ -18,8 +18,8 @@
   }
 
   .slider-track {
-    width: 25px;
-    height: 250px;
+    width: 100%;
+    height: 100%;
 
     background-color: #141414;
     border-radius: 50px;
@@ -27,8 +27,8 @@
   }
 
   .slider-thumb {
-    width: 25px;
-    height: 50px;
+    width: 100%;
+    height: 20%;
 
     background-color: #B46060;
     border-radius: 50px;
