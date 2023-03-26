@@ -8,40 +8,38 @@ class VolumeSlider {
     // This variable will be used to know if the slider-thumb is being pressed:
     this.isDragging = false;
 
-    // Si el movimiento está habilitado, se mueve mientras esté dentro de los límites:
+    // When the mouse changes it's positions, if movement is enabled, it calls the updateSlider() method:
     this.sliderBoundaries.addEventListener('mousemove', function(event) {
-      // Si se está pulsando el thumb:
       if (this.isDragging) {
         this.updateSlider(event);
       }
     }.bind(this));
-    // Evento para cuando se levanta el thumb.
+    // When the mouse stops pressing, the movement is disabled:
     this.sliderBoundaries.addEventListener('mouseup', function() {
       this.isDragging = false;
     }.bind(this));
-    // Si el mouse abandona los límites del slider se deja de poder mover:
+    // When the mouse leaves the slider boundaries, the movement is disabled:
     this.sliderBoundaries.addEventListener('mouseleave', function() {
       this.isDragging = false;
     }.bind(this));
 
-    // Evento para cuando se pulsa en algún lugar del contenedor del slider:
+    // When the slider container is pressed, it calls the updateSlider() method and the movement is enabled:
     this.sliderContainer.addEventListener('mousedown', function(event) {
       this.updateSlider(event);
       this.isDragging = true;
     }.bind(this));
-    // Si el movimiento está habilitado, se mueve mientras esté dentro de los límites:
+    // When the mouse is moved, if the movement is enabled, it calls the updateSlider() method:
     this.sliderContainer.addEventListener('mousemove', function(event) {
-      // Si se está pulsando el thumb:
       if (this.isDragging) {
         this.updateSlider(event);
       }
     }.bind(this));
 
-    // Evento para cuando se pulsa el thumb.
+    // When the thumb is pressed, the movement is enabled:
     this.sliderThumb.addEventListener('mousedown', function() {
       this.isDragging = true;
     }.bind(this));
-    // Evento para cuando se levanta el thumb.
+    // When the thumb stops being pressed, the movement is disabled:
     this.sliderThumb.addEventListener('mouseup', function() {
       this.isDragging = false;
     }.bind(this));
@@ -63,7 +61,7 @@ class VolumeSlider {
   }
 
   changeVolume() {
-    // thumbPosition tiene valores de entre -1 y 200.
+    // The thumb position is used in order to calculate the volume of the music player.
     let thumbPosition = parseInt(this.sliderThumb.style.top);
     let volumePercentage = 1 - (thumbPosition / this.trackHeight);
     volumePercentage = Math.max(0, Math.min(1, volumePercentage));
