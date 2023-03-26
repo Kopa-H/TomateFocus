@@ -39,7 +39,6 @@ class VolumeSlider {
 
     // Evento para cuando se pulsa el thumb.
     this.sliderThumb.addEventListener('mousedown', function() {
-      console.log("Se pulsa el thumb!")
       this.isDragging = true;
     }.bind(this));
     // Evento para cuando se levanta el thumb.
@@ -66,7 +65,6 @@ class VolumeSlider {
   changeVolume() {
     // thumbPosition tiene valores de entre -1 y 200.
     let thumbPosition = parseInt(this.sliderThumb.style.top);
-    console.log(this.trackHeight)
     let volumePercentage = 1 - (thumbPosition / this.trackHeight);
     volumePercentage = Math.max(0, Math.min(1, volumePercentage));
 
