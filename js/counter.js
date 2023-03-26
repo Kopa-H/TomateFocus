@@ -214,8 +214,19 @@ class LogicHandler {
         }, 1000);
     }
 
-    changeTimeElapse(timer) {
-        this.pomodoroTimeToElapse = timer
+    changeTimeElapse(timerType, time) {
+        if (timerType === "pomodoro") {
+            console.log("pomo time changed")
+            this.pomodoroTimeToElapse = time
+        }
+        else if (timerType === "shortbreak") {
+            console.log("sb time changed")
+            this.shortbreakTimeToElapse = time
+        }
+        else {
+            console.log("lb time changed")
+            this.longbreakTimeToElapse = time
+        }
     }
 }
 

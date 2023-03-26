@@ -14,6 +14,6 @@ gear.onclick = () => {
     toggleMenu()
 }
 
-function testFunction() {
-    logicHandler.changeTimeElapse(10)
+function testFunction(timerType, time) {
+    logicHandler.changeTimeElapse(timerType, time)
 }
