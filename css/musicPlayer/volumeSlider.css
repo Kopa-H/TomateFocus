@@ -1,41 +1,28 @@
-.slider-boundaries {
-  height: 300px;
-  width: 60px;
-
-  position: absolute;
-  right: 5%;
-  top: 3%;
-
-  border: 1px solid white;
-  background-color: #737373;
-
-  cursor: pointer;
-}
-
 .slider-container {
     display: flex;
 
     width: 25px;
     height: 250px;
 
-    border-radius: 5px;
+    border-radius: 50px;
 
     position: absolute;
     right: 10%;
     top: 6%;
 
-    border: 1px solid white;
-    background-color: rgb(27, 27, 27);
+    background-color: rgb(125, 45, 126);
 
     cursor: pointer;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .slider-track {
     width: 25px;
     height: 250px;
 
-    background-color: #8f1ca9;
-    border-radius: 5px;
+    background-color: #141414;
+    border-radius: 50px;
 
   }
 
@@ -43,11 +30,9 @@
     width: 25px;
     height: 50px;
 
-    background-color: #1a30bc;
-    border-radius: 20%;
+    background-color: #B46060;
+    border-radius: 50px;
 
     position: absolute;
     top: 40%;
-
-    z-index: 99;
 }

@@ -3,24 +3,13 @@ class VolumeSlider {
     this.sliderThumb = document.querySelector('.slider-thumb');
     this.sliderTrack = document.querySelector('.slider-track');
     this.sliderContainer = document.querySelector('.slider-container');
-    this.sliderBoundaries = document.querySelector('.slider-boundaries');
 
     // This variable will be used to know if the slider-thumb is being pressed:
     this.isDragging = false;
 
-    // When the mouse changes it's positions, if movement is enabled, it calls the updateSlider() method:
-    this.sliderBoundaries.addEventListener('mousemove', function(event) {
-      if (this.isDragging) {
-        this.updateSlider(event);
-      }
-    }.bind(this));
-    // When the mouse stops pressing, the movement is disabled:
-    this.sliderBoundaries.addEventListener('mouseup', function() {
-      this.isDragging = false;
-    }.bind(this));
-    // When the mouse leaves the slider boundaries, the movement is disabled:
-    this.sliderBoundaries.addEventListener('mouseleave', function() {
-      this.isDragging = false;
+    // When the thumb is pressed, the movement is enabled:
+    this.sliderThumb.addEventListener('mousedown', function() {
+      this.isDragging = true;
     }.bind(this));
 
     // When the slider container is pressed, it calls the updateSlider() method and the movement is enabled:
@@ -28,19 +17,15 @@ class VolumeSlider {
       this.updateSlider(event);
       this.isDragging = true;
     }.bind(this));
-    // When the mouse is moved, if the movement is enabled, it calls the updateSlider() method:
-    this.sliderContainer.addEventListener('mousemove', function(event) {
+
+    // When the mouse is moved (across all the page), if the movement is enabled, it calls the updateSlider() method:
+    document.addEventListener('mousemove', function(event) {
       if (this.isDragging) {
         this.updateSlider(event);
       }
     }.bind(this));
-
-    // When the thumb is pressed, the movement is enabled:
-    this.sliderThumb.addEventListener('mousedown', function() {
-      this.isDragging = true;
-    }.bind(this));
     // When the thumb stops being pressed, the movement is disabled:
-    this.sliderThumb.addEventListener('mouseup', function() {
+    document.addEventListener('mouseup', function() {
       this.isDragging = false;
     }.bind(this));
   }

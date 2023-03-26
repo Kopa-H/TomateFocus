@@ -13,7 +13,7 @@
     border: 3px solid white;
     background-color: black;
 
-    font-size: 270%;
+    font-size: 200%;
     transition: opacity 0.2s ease-in-out;
 }
 .music-next-song-button:hover {
@@ -39,7 +39,7 @@
     border: 3px solid white;
     background-color: black;
 
-    font-size: 270%;
+    font-size: 200%;
 }
 .music-previous-song-button:hover {
     background-color: #161616;
