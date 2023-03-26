@@ -213,6 +213,10 @@ class LogicHandler {
             }
         }, 1000);
     }
+
+    changeTimeElapse(timer) {
+        this.pomodoroTimeToElapse = timer
+    }
 }
 
 class Counter {

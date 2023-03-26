@@ -13,3 +13,7 @@ const gear = document.getElementById("settings-icon")
 gear.onclick = () => {
     toggleMenu()
 }
+
+function testFunction() {
+    logicHandler.changeTimeElapse(10)
+}
