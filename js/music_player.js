@@ -9,17 +9,28 @@ class VolumeSlider {
     this.sliderThumb = document.querySelector('.slider-thumb');
     this.sliderTrack = document.querySelector('.slider-track');
     this.sliderContainer = document.querySelector('.slider-container')
+    this.sliderBoundaries = document.querySelector('.slider-boundaries')
 
     // This variable will be used to know if the slider-thumb is being pressed:
     this.isDragging = false;
+
+    // Evento para cuando se pulsa en algún lugar del contenedor del slider:
+    this.sliderBoundaries.addEventListener('mousedown', function(event) {
+      this.updateSlider(event);
+      this.isDragging = true;
+    }.bind(this));
 
     // Evento para cuando se pulsa el thumb.
     this.sliderThumb.addEventListener('mousedown', function() {
       this.isDragging = true;
     }.bind(this));
 
+    this.sliderBoundaries.addEventListener('mouseleave', function() {
+      this.isDragging = false;
+    }.bind(this));
+
     // Evento para cuando se mueve el mouse mientras el thumb está siendo presionado:
-    this.sliderContainer.addEventListener('mousemove', function(event) {
+    this.sliderBoundaries.addEventListener('mousemove', function(event) {
       // Si se está pulsando el thumb:
       if (this.isDragging) {
         this.updateSlider(event);
@@ -27,22 +38,34 @@ class VolumeSlider {
     }.bind(this));
 
     // Evento para cuando se levanta el thumb.
-    this.sliderContainer.addEventListener('mouseup', function() {
+    this.sliderThumb.addEventListener('mouseup', function() {
       this.isDragging = false;
     }.bind(this));
   }
 
   updateSlider(event) {
     // Se calcula la altura del slider track a partir de la del contenedor:
-    let trackHeight = event.clientY - this.sliderContainer.getBoundingClientRect().top;
+    this.trackHeight = event.clientY - this.sliderContainer.getBoundingClientRect().top;
 
     // Si la altura del track es igual a mayor o igual a cero y es menor o igual a la altura del contenedor:
-    if (trackHeight >= 23 && trackHeight <= this.sliderContainer.offsetHeight - 25) {
+    if (this.trackHeight >= 24 &&  this.trackHeight <= this.sliderContainer.offsetHeight - 25) {
       // Se establece la altura del track:
-      this.sliderTrack.style.height = trackHeight + 'px';
+      this.sliderTrack.style.height = this.trackHeight + 'px';
       // Se establece la posición del thumb:
-      this.sliderThumb.style.top = trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
+      this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
+
+      this.changeVolume()
     }
+  }
+
+  changeVolume() {
+    // thumbPosition tiene valores de entre -1 y 200.
+    let thumbPosition = parseInt(this.sliderThumb.style.top);
+    console.log(this.trackHeight)
+    let volumePercentage = 1 - (thumbPosition / this.trackHeight);
+    volumePercentage = Math.max(0, Math.min(1, volumePercentage));
+
+    musicPlayer.songBeingPlayed.volume = volumePercentage
   }
 }
 
@@ -80,11 +103,6 @@ class MusicPlayer {
         this.previousSongButton.addEventListener('click', () => {
           this.changeToPreviousSong()
         });
-
-        // Esto hay que adaptarlo al slider personalizado!
-        //this.volumeSlider.addEventListener('input', () => {
-          //this.songBeingPlayed.volume = this.volumeSlider.value;
-        //});
     }
 
     changeToNextSong() {
