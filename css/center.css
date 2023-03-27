@@ -45,7 +45,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -53,17 +52,14 @@
   font-weight: 500;
   color: #FFF4E0;
   letter-spacing: 2px;
-
   cursor: pointer;
 }
 
 .play-button {
   position: absolute;
   width: 200px;
-
   opacity: 0;
   pointer-events: none;
-
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 }
@@ -87,7 +83,6 @@
   position: absolute;
   opacity: 0;
   pointer-events: none;
-
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 }
