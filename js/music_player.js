@@ -1,3 +1,28 @@
+class MusicButton {
+  constructor() {
+    this.musicPlayerButton = document.querySelector(".music-icon");
+    this.musicPlayerContainer = document.querySelector(".music-player-container");
+
+    this.musicPlayerButton.addEventListener('click', () => {
+      this.showMusicPlayer();
+    });
+  }
+
+  showMusicPlayer() {
+    this.musicPlayerContainer.style.display = "flex";
+    this.musicPlayerButton.addEventListener('click', () => {
+      this.hideMusicPlayer();
+    });
+  }
+
+  hideMusicPlayer() {
+    this.musicPlayerContainer.style.display = "none";
+    this.musicPlayerButton.addEventListener('click', () => {
+      this.showMusicPlayer();
+    });
+  }
+}
+
 class VolumeSlider {
   constructor() {
     this.sliderThumb = document.querySelector('.slider-thumb');
@@ -148,5 +173,6 @@ class MusicPlayer {
     }
 }
 
+const musicButton = new MusicButton()
 const volumeSlider = new VolumeSlider()
 const musicPlayer = new MusicPlayer()
