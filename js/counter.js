@@ -63,7 +63,7 @@ class LogicHandler {
         // Create and pre define time variables for each type of timer
         this.pomodoroTimeToElapse = 1500
         this.shortbreakTimeToElapse = 300
-        this.longbreakTimeToElapse = 900
+        this.longbreakTimeToElapse = 600
 
     }
 
@@ -174,18 +174,25 @@ class LogicHandler {
             this.runPomodoroFunction,
             this.runShortBreakFunction,
             this.runPomodoroFunction,
-            this.runLongBreakFunction,
-            this.runPomodoroFunction
+            this.runLongBreakFunction
         ];
     }
 
     runNextCycle() {
-        // The following cycle is executed:
-        let currentFunction = this.itineraryList[this.itineraryListIndex];
-        currentFunction();
-
-        // The itinerary list index is updated:
-        this.itineraryListIndex ++
+        if (this.itineraryListIndex < this.itineraryList.length) {
+            // The following cycle is executed:
+            let currentFunction = this.itineraryList[this.itineraryListIndex];
+            currentFunction();
+            console.log("CHANGING?")
+            // The itinerary list index is updated:
+            this.itineraryListIndex ++
+        }
+        else {
+            // Reset count?
+            this.itineraryListIndex = 0
+            this.runNextCycle()
+        }
+        
     }
 
     runApp() {
