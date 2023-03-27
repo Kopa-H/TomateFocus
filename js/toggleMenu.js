@@ -18,18 +18,21 @@ gear.onclick = () => {
 const pomoMinus = document.querySelector(".pomodoro .minus-button")
 const pomoPlus = document.querySelector(".pomodoro .plus-button")
 pomoMinus.addEventListener('click', function () {
-    console.log("The minus button of the pomo is being pressed")
     let textMinutes = document.querySelector(".pomodoro .menu-text")
+    // the match(/\d+/g) is a regex. It matches numbers
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    console.log("text minutes value" + textMinutesValue)
-    --textMinutesValue
-    textMinutes.textContent = `${textMinutesValue} minutes`
-    
+    textMinutes.textContent = `${--textMinutesValue} minutes`
+
+    // Call the function that is inside counter.js
     callChangeDuration("pomodoro", textMinutesValue*60)
     console.log(textMinutesValue)
 })
 pomoPlus.addEventListener('click', function () {
-    console.log("The plus button of the pomo is being pressed")
+    let textMinutes = document.querySelector(".pomodoro .menu-text")
+    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
+    textMinutes.textContent = `${++textMinutesValue} minutes`
+
+    callChangeDuration("pomodoro", textMinutesValue*60)
 })
 
 
