@@ -26,7 +26,10 @@ pomoMinus.addEventListener('click', function () {
     let textMinutes = document.querySelector(".pomodoro .menu-text")
     // the match(/\d+/g) is a regex. It matches numbers
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    textMinutes.textContent = `${--textMinutesValue} minutes`
+    if (textMinutesValue != 0) {
+        textMinutes.textContent = `${--textMinutesValue} minutes`
+    }
+    
 
     // Call the function that is inside counter.js
     callChangeDuration("pomodoro", textMinutesValue*60)
@@ -66,11 +69,6 @@ longPlus.addEventListener("click", function () {
 
     callChangeDuration("longbreak", textMinutesValue*60)
 })
-
-
-
-
-
 
 function callChangeDuration(timerType, time) {
     logicHandler.changeTimeElapse(timerType, time)

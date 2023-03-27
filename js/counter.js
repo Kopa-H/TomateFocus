@@ -215,6 +215,7 @@ class LogicHandler {
     }
 
     changeTimeElapse(timerType, time) {
+        console.log(`timerType: ${timerType}, time: ${time}`)
         if (timerType === "pomodoro") {
             console.log("pomo time changed")
             this.pomodoroTimeToElapse = time
@@ -256,15 +257,17 @@ class Counter {
 
     updateCounter() {
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
-        if (this.seconds == 0) {
+        if (this.seconds == 0 && this.minutes != 0) {
             this.minutes -= 1;
             this.seconds = 59;
-        } else {
+            this.totalTimeLeft --
+        } else if (this.seconds != 0) {
             this.seconds -= 1;
+            this.totalTimeLeft --
         }
 
         // Se disminuye el tiempo restante:
-        this.totalTimeLeft --
+        
 
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
