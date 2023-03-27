@@ -9,6 +9,8 @@
     margin: 0 auto 0 auto ;
     max-width: 80em;
     padding: 0em 10em;
+
+    border: 1px solid white;
 }
 
 .toggleMenu-container {
