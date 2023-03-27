@@ -98,13 +98,27 @@
   color: #FFF4E0;
 }
 
-.tasks-button {
-  font-size: 20px;
+.delay-pause-button {
+  position: relative;
+  bottom: 5%;
+
+  font-size: 24px;
   padding: 10px 30px;
   border-radius: 7px;
   border: 0px;
-  margin-bottom: 70px;
   color: #FFF4E0;
   background-color: #B46060;
   cursor: pointer;
+
+  transition: background-color 0.5s;
+}
+
+/* Estilo del botón cuando se le pasa el ratón por encima */
+.delay-pause-button:hover {
+  background-color: #3e8e41;
+}
+
+/* Estilo del botón cuando se le pasa el ratón por encima */
+.delay-pause-button-description {
+  display: none;
 }
