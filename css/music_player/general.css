@@ -1,21 +1,26 @@
 .music-player-flex {
     display: flex;
     position: absolute;
+    right: 15%;
+    left: 15%;
+
     align-items: center;
     justify-content: start;
     top:  calc(7% + 1em);
-
-    margin-left: 17%;
 
     border: 1px solid white;
 }
 
 .music-player-container {
+    position: absolute;
+    top: 20%;
+
+
     display: none;
     text-align: center;
 
     justify-content: start;
-    width: 20em;
+    width: 27em;
     height: 70vh;
     background-color: #B46060;
     border-radius: 1vw;
@@ -38,10 +43,14 @@
 }
 
 @media screen and (max-width: 1375px) {
-    .toggleMenu-flex {
+    .music-player-flex {
         justify-content: center;
         padding: 0;
         min-width: 25em;
         top:  calc(8% + 1.5em);
+    }
+
+    .music-player-container {
+        width: 25em;
     }
 }
