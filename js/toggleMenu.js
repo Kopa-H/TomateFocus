@@ -23,7 +23,7 @@ pomoMinus.addEventListener('click', function () {
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
     console.log("text minutes value" + textMinutesValue)
     --textMinutesValue
-    textMinutes.textContent = textMinutesValue
+    textMinutes.textContent = `${textMinutesValue} minutes`
     
     callChangeDuration("pomodoro", textMinutesValue*60)
     console.log(textMinutesValue)
