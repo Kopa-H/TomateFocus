@@ -1,19 +1,13 @@
 .music-previous-song-button {
     width: 13%;
     height: 66%;
-
     border-radius: 100%;
     cursor: pointer;
-
     font-size: 30px;
     color: #B46060;
-
     margin-left: 5%;
-
     background-color: black;
-
     font-size: 200%;
-
     transform: rotate(180deg);
 }
 .music-previous-song-button:hover {
