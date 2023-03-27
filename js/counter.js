@@ -59,10 +59,17 @@ class LogicHandler {
 
         // This variable will control if the counter is running:
         this.appIsRunning = false;
+
+        // Create and pre define time variables for each type of timer
+        this.pomodoroTimeToElapse = 1500
+        this.shortbreakTimeToElapse = 300
+        this.longbreakTimeToElapse = 900
+
     }
 
     runPomodoro() {
-        this.initialTimeToElapse = 1500;
+        this.initialTimeToElapse = this.pomodoroTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -74,7 +81,8 @@ class LogicHandler {
     }
 
     runShortBreak() {
-        this.initialTimeToElapse = 300;
+        this.initialTimeToElapse = this.shortbreakTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -86,7 +94,8 @@ class LogicHandler {
     }
 
     runLongBreak() {
-        this.initialTimeToElapse = 900;
+        this.initialTimeToElapse = this.longbreakTimeToElapse;
+        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -204,6 +213,22 @@ class LogicHandler {
             }
         }, 1000);
     }
+
+    changeTimeElapse(timerType, time) {
+        console.log(`timerType: ${timerType}, time: ${time}`)
+        if (timerType === "pomodoro") {
+            console.log("pomo time changed")
+            this.pomodoroTimeToElapse = time
+        }
+        else if (timerType === "shortbreak") {
+            console.log("sb time changed")
+            this.shortbreakTimeToElapse = time
+        }
+        else {
+            console.log("lb time changed")
+            this.longbreakTimeToElapse = time
+        }
+    }
 }
 
 class Counter {
@@ -232,15 +257,17 @@ class Counter {
 
     updateCounter() {
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
-        if (this.seconds == 0) {
+        if (this.seconds == 0 && this.minutes != 0) {
             this.minutes -= 1;
             this.seconds = 59;
-        } else {
+            this.totalTimeLeft --
+        } else if (this.seconds != 0) {
             this.seconds -= 1;
+            this.totalTimeLeft --
         }
 
         // Se disminuye el tiempo restante:
-        this.totalTimeLeft --
+        
 
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
