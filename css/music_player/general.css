@@ -1,41 +1,26 @@
 .music-player-flex {
     display: flex;
-    position:absolute;
+    position: absolute;
     align-items: center;
-    justify-content: end;
-    left: 0;
-    right: 0;
+    justify-content: start;
     top:  calc(7% + 1em);
-    margin: 0 auto 0 auto ;
-    max-width: 80em;
-    padding: 0em 10em;
+
+    margin-left: 17%;
+
+    border: 1px solid white;
 }
 
 .music-player-container {
     display: none;
-    position: absolute;
-    top: calc(7% + 1em);
-    justify-content: end;
-    left: 16%;
-    right: 0;
-    width: 20vw;
-    height: 75vh;
+    text-align: center;
+
+    justify-content: start;
+    width: 20em;
+    height: 70vh;
     background-color: #B46060;
     border-radius: 1vw;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
-    /*
-    text-align: center;
-    display: none;
-    flex-direction: column;
-    background-color: #B46060;
-    width: 20em;
-    color: #FFF4E0;
-    gap: 13em;
-    border-radius: 1em;
-    z-index: 1;
-    */
 }
 
 .music-player-toolbar {
