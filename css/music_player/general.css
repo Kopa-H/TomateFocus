@@ -7,8 +7,6 @@
     align-items: center;
     justify-content: start;
     top:  calc(7% + 1em);
-
-    border: 1px solid white;
 }
 
 .music-player-container {
