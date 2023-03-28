@@ -76,6 +76,16 @@
 
 .value-button {
     font-size: 4em;
+    cursor: pointer;
+
+    transition: color 0.2s;
+}
+.value-button:hover {
+    opacity: 0.8;
+}
+.value-button:active {
+    opacity: 0.6;
+    transform: translate(-0.3px, -0.3px);
 }
 
 .bottom-button {
