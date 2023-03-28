@@ -98,7 +98,7 @@
   color: #FFF4E0;
 }
 
-.delay-pause-button {
+.delay-cycle-change-button {
   position: relative;
   bottom: 0%;
 
@@ -112,14 +112,14 @@
 
   transition: background-color 0.2s;
 }
-.delay-pause-button:hover {
+.delay-cycle-change-button:hover {
   background-color: #bc6161;
 }
-.delay-pause-button:active {
+.delay-cycle-change-button:active {
   background-color: #d66f6f;
 }
 
-.delay-pause-button-description {
+.delay-cycle-change-description {
   position: relative;
   bottom: 7%;
   left: 20%;

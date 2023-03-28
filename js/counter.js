@@ -65,6 +65,9 @@ class LogicHandler {
         this.shortbreakTimeToElapse = 300
         this.longbreakTimeToElapse = 600
 
+        // This variable will save which type of cycle is being executed:
+        this.currentCycleRunning = "pomodoro";
+
     }
 
     runPomodoro() {
@@ -78,6 +81,8 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         themeColor.changeToPomodoro();
+
+        this.currentCycleRunning = "pomodoro";
     }
 
     runShortBreak() {
@@ -91,6 +96,8 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         themeColor.changeToShortBreak()
+
+        this.currentCycleRunning = "shortbreak";
     }
 
     runLongBreak() {
@@ -104,6 +111,8 @@ class LogicHandler {
         counter.seconds = this.timeToElapse % 60;
 
         themeColor.changeToLongBreak()
+
+        this.currentCycleRunning = "longbreak";
     }
 
     changeCycle() {
