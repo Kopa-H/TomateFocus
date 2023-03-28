@@ -100,7 +100,7 @@
 
 .delay-pause-button {
   position: relative;
-  bottom: 5%;
+  bottom: 0%;
 
   font-size: 24px;
   padding: 10px 30px;
@@ -110,15 +110,26 @@
   background-color: #B46060;
   cursor: pointer;
 
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
 }
-
-/* Estilo del botón cuando se le pasa el ratón por encima */
 .delay-pause-button:hover {
-  background-color: #3e8e41;
+  background-color: #bc6161;
+}
+.delay-pause-button:active {
+  background-color: #d66f6f;
 }
 
-/* Estilo del botón cuando se le pasa el ratón por encima */
 .delay-pause-button-description {
-  display: none;
+  position: relative;
+  bottom: 7%;
+  left: 20%;
+  padding: 10px 20px;
+
+  background-color: #4D4D4D;
+  border-radius: 10vw;
+
+  font-family: 'Lucida Sans';
+
+  opacity: 0;
+  transition: opacity 0.2s;
 }
