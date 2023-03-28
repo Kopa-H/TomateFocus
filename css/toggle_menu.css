@@ -78,7 +78,7 @@
     font-size: 4em;
     cursor: pointer;
 
-    transition: color 0.2s;
+    transition: opacity 0.2s;
 }
 .value-button:hover {
     opacity: 0.8;
