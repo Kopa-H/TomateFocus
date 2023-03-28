@@ -13,8 +13,8 @@ class LogicHandler {
         };
 
         // definir funciones de listener por separado
-        this.changeCycleListener = () => {
-            this.changeCycle();
+        this.startCounterListener = () => {
+            this.startCounter();
         };
 
         this.stopCounterListener = () => {
@@ -43,7 +43,7 @@ class LogicHandler {
 
         // agregar eventListeners usando las funciones de listener
         this.playButton = document.querySelector('.play-button');
-        this.playButton.addEventListener("click", this.changeCycleListener);
+        this.playButton.addEventListener("click", this.startCounterListener);
 
         this.pauseButton = document.querySelector(".pause-button");
         this.pauseButton.addEventListener("click", this.stopCounterListener);
@@ -66,9 +66,16 @@ class LogicHandler {
         this.longbreakTimeToElapse = 600;
     }
 
+    startCounter() {
+        // Play button image is hidden:
+        this.hidePlayButton();
+
+        // The execution of the counter starts:
+        this.appIsRunning = true;
+    }
+
     runPomodoro() {
         this.initialTimeToElapse = this.pomodoroTimeToElapse;
-        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -85,7 +92,6 @@ class LogicHandler {
 
     runShortBreak() {
         this.initialTimeToElapse = this.shortbreakTimeToElapse;
-        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -102,7 +108,6 @@ class LogicHandler {
 
     runLongBreak() {
         this.initialTimeToElapse = this.longbreakTimeToElapse;
-        console.log(`initialTimeToElapse ${this.initialTimeToElapse}`)
         this.timeToElapse = this.initialTimeToElapse;
         counter.totalTimeLeft = this.initialTimeToElapse;
 
@@ -116,15 +121,6 @@ class LogicHandler {
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
         counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
 
-    }
-
-    changeCycle() {
-        console.log("Se ha activado el contador!")
-        // Se elimina la imagen:
-        this.hidePlayButton();
-
-        // Se da inicio a la ejecución de la aplicación:
-        this.appIsRunning = true;
     }
 
     showPlayButton() {
@@ -150,7 +146,7 @@ class LogicHandler {
 
     stopCounter() {
         this.appIsRunning = false;
-        console.log("Se ha detenido el contador")
+        console.log("The counter stops!")
 
         // agregar eventListeners usando las funciones de listener
         this.pauseButton.removeEventListener("click", this.stopCounterListener);
@@ -175,7 +171,7 @@ class LogicHandler {
         // Se quita el efecto de mostrar el botón de pausa solo cuando se reactiva el contador. Luego se reintroduce el event en el intervalo.
         this.timeElapsed.removeEventListener("mouseover", this.showPauseButtonListener);
 
-        console.log("En teoría se reactiva el contador")
+        console.log("The counter starts again!")
     }
 
     runDefaultItinerary() {
