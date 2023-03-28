@@ -4,55 +4,55 @@ class LogicHandler {
 
         this.runPomodoroFunction = () => {
             this.runPomodoro();
-        }
+        };
         this.runShortBreakFunction = () => {
             this.runShortBreak();
-        }
+        };
         this.runLongBreakFunction = () => {
             this.runLongBreak();
-        }
+        };
 
         // definir funciones de listener por separado
         this.changeCycleListener = () => {
             this.changeCycle();
-        }
+        };
 
         this.stopCounterListener = () => {
             this.stopCounter();
-        }
+        };
 
         this.resumeCounterListener = () => {
             this.resumeCounter();
-        }
+        };
 
         this.showPlayButtonListener = () => {
             this.showPlayButton();
-        }
+        };
 
         this.hidePlayButtonListener = () => {
             this.hidePlayButton();
-        }
+        };
 
         this.showPauseButtonListener = () => {
             this.showPauseButton();
-        }
+        };
 
         this.hidePauseButtonListener = () => {
             this.hidePauseButton();
-        }
+        };
 
         // agregar eventListeners usando las funciones de listener
         this.playButton = document.querySelector('.play-button');
         this.playButton.addEventListener("click", this.changeCycleListener);
 
-        this.pauseButton = document.querySelector(".pause-button")
+        this.pauseButton = document.querySelector(".pause-button");
         this.pauseButton.addEventListener("click", this.stopCounterListener);
 
-        this.timeElapsed = document.querySelector(".time-elapsed")
+        this.timeElapsed = document.querySelector(".time-elapsed");
         this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
         this.timeElapsed.addEventListener("mouseout", this.hidePauseButtonListener);
 
-        this.isRunningDefaultItenerary = false;
+        this.isRunningDefaultItinerary = false;
 
         // This variable will be used to register which is the following cycle to execute:
         this.itineraryListIndex = 0;
@@ -61,13 +61,9 @@ class LogicHandler {
         this.appIsRunning = false;
 
         // Create and pre define time variables for each type of timer
-        this.pomodoroTimeToElapse = 1500
-        this.shortbreakTimeToElapse = 300
-        this.longbreakTimeToElapse = 600
-
-        // This variable will save which type of cycle is being executed:
-        this.currentCycleRunning = "pomodoro";
-
+        this.pomodoroTimeToElapse = 1500;
+        this.shortbreakTimeToElapse = 300;
+        this.longbreakTimeToElapse = 600;
     }
 
     runPomodoro() {
@@ -82,7 +78,9 @@ class LogicHandler {
 
         themeColor.changeToPomodoro();
 
-        this.currentCycleRunning = "pomodoro";
+        // The text of the delay cycle button changes:
+        counter.delayCycleChangeButton.innerHTML = "Delay Break";
+        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra work!"
     }
 
     runShortBreak() {
@@ -95,9 +93,11 @@ class LogicHandler {
         counter.minutes = Math.floor(this.timeToElapse / 60);
         counter.seconds = this.timeToElapse % 60;
 
-        themeColor.changeToShortBreak()
+        themeColor.changeToShortBreak();
 
-        this.currentCycleRunning = "shortbreak";
+        // The text of the delay cycle button changes:
+        counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
+        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
     }
 
     runLongBreak() {
@@ -110,9 +110,12 @@ class LogicHandler {
         counter.minutes = Math.floor(this.timeToElapse / 60);
         counter.seconds = this.timeToElapse % 60;
 
-        themeColor.changeToLongBreak()
+        themeColor.changeToLongBreak();
 
-        this.currentCycleRunning = "longbreak";
+        // The text of the delay cycle button changes:
+        counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
+        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
+
     }
 
     changeCycle() {
@@ -175,8 +178,8 @@ class LogicHandler {
         console.log("En teoría se reactiva el contador")
     }
 
-    runDefaultItenerary() {
-        this.isRunningDefaultItenerary = true;
+    runDefaultItinerary() {
+        this.isRunningDefaultItinerary = true;
         this.itineraryList = [
             this.runPomodoroFunction,
             this.runShortBreakFunction,
@@ -188,20 +191,19 @@ class LogicHandler {
     }
 
     runNextCycle() {
-        if (this.itineraryListIndex < this.itineraryList.length) {
+        // If the itinerary has not been finished:
+        if (this.itineraryListIndex < this.itineraryList.length - 1) {
             // The following cycle is executed:
             let currentFunction = this.itineraryList[this.itineraryListIndex];
             currentFunction();
-            console.log("CHANGING?")
+
             // The itinerary list index is updated:
             this.itineraryListIndex ++
-        }
-        else {
+        } else {
             // Reset count?
             this.itineraryListIndex = 0
             this.runNextCycle()
         }
-        
     }
 
     runApp() {
@@ -212,10 +214,10 @@ class LogicHandler {
 
             if (this.appIsRunning == true) {
                 // If the time of the counter ends:
-                // I have to do that timeToElapse starts being 0:
                 if (counter.totalTimeLeft == 0) {
-                    console.log("The cycle changes!")
-                    if (this.isRunningDefaultItenerary == true) {
+
+                    // If the default itinerary is running, the next cycle is executed:
+                    if (this.isRunningDefaultItinerary == true) {
                         this.runNextCycle()
                     }
                 }
@@ -260,7 +262,13 @@ class Counter {
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
-        this.tasksButton = document.querySelector(".tasks-button");
+
+        this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
+        this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
+        this.delayCycleChangeButton.addEventListener('click', () => {
+            this.minutes += 5;
+            this.updateCounter();
+        });
 
         this.totalTimeLeft = 0;
     }
@@ -281,10 +289,6 @@ class Counter {
             this.seconds -= 1;
             this.totalTimeLeft --
         }
-
-        // Se disminuye el tiempo restante:
-        
-
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
     }
@@ -326,25 +330,25 @@ class ThemeColor {
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
-        this.tasksButton = document.querySelector(".tasks-button");
+        this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
     }
 
     changeToPomodoro() {
         this.line.style.borderBottomColor = "red";
         this.circle.style.stroke = "red";
-        this.tasksButton.style.backgroundColor = "red";
+        this.delayCycleChangeButton.style.backgroundColor = "red";
     }
 
     changeToShortBreak() {
         this.line.style.borderBottomColor = "blue";
         this.circle.style.stroke = "blue";
-        this.tasksButton.style.backgroundColor = "blue";
+        this.delayCycleChangeButton.style.backgroundColor = "blue";
     }
 
     changeToLongBreak() {
         this.line.style.borderBottomColor = "purple";
         this.circle.style.stroke = "purple";
-        this.tasksButton.style.backgroundColor = "purple";
+        this.delayCycleChangeButton.style.backgroundColor = "purple";
     }
 }
 
@@ -354,5 +358,5 @@ const counter = new Counter();
 const circleAnimation = new CircleAnimation();
 const themeColor = new ThemeColor();
 
-logicHandler.runDefaultItenerary();
+logicHandler.runDefaultItinerary();
 logicHandler.runApp();
