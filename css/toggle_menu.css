@@ -1,4 +1,5 @@
 .toggleMenu-flex {
+    overflow: hidden;
     display: flex;
     position:absolute;
     align-items: center;
