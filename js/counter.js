@@ -266,8 +266,10 @@ class Counter {
         this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
-            this.minutes += 5;
-            this.updateCounter();
+            if (this.seconds != 0 && this.minutes != 0) {
+                this.minutes += 5;
+                this.updateCounter();
+            }
         });
 
         this.totalTimeLeft = 0;
