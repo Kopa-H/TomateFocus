@@ -1,12 +1,22 @@
 function toggleMenu() {
     const element = document.getElementById("toggleMenu");
-    const elementStyles = window.getComputedStyle(element)
-    const displayType = elementStyles.display
-    console.log(displayType)
-    
-    // Ternary Operator
-    element.style.display = displayType === "none" ? "flex" : "none"
+    const elementStyles = window.getComputedStyle(element);
+    const displayType = elementStyles.display;
+
+    if (displayType == "none") {
+        element.classList.remove("slideOut");
+        element.classList.add("slideIn");       
+        element.style.display = "flex";
+
+    } else {
+        element.classList.remove("slideIn");
+        element.classList.add("slideOut");
+        element.addEventListener("animationend", () => {
+            element.style.display = "none"
+        }, { once: true })
+    }
 }
+
 
 // This function works perfectly. It's very simple too.
 const gear = document.getElementById("settings-icon")

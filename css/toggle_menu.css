@@ -1,4 +1,5 @@
 .toggleMenu-flex {
+    overflow: hidden;
     display: flex;
     position:absolute;
     align-items: center;
@@ -9,8 +10,6 @@
     margin: 0 auto 0 auto ;
     max-width: 80em;
     padding: 0em 10em;
-
-    border: 1px solid white;
 }
 
 .toggleMenu-container {
@@ -77,6 +76,16 @@
 
 .value-button {
     font-size: 4em;
+    cursor: pointer;
+
+    transition: opacity 0.2s;
+}
+.value-button:hover {
+    opacity: 0.8;
+}
+.value-button:active {
+    opacity: 0.6;
+    transform: translate(-0.3px, -0.3px);
 }
 
 .bottom-button {
@@ -97,5 +106,30 @@
 
     .toggleMenu-container {
         width: 25em;
+    }
+}
+
+.slideIn {
+    animation: slideIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+.slideOut {
+    animation: slideOut 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-125%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-125%);
     }
 }
