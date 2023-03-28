@@ -4,13 +4,13 @@ function toggleMenu() {
     const displayType = elementStyles.display;
 
     if (displayType == "none") {
-        element.classList.remove("fadeOut");
-        element.classList.add("fadeIn");       
+        element.classList.remove("slideOut");
+        element.classList.add("slideIn");       
         element.style.display = "flex";
 
     } else {
-        element.classList.remove("fadeIn");
-        element.classList.add("fadeOut");
+        element.classList.remove("slideIn");
+        element.classList.add("slideOut");
         element.addEventListener("animationend", () => {
             element.style.display = "none"
         }, { once: true })
