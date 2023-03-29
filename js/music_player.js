@@ -60,12 +60,11 @@ class VolumeSlider {
     this.trackHeight = event.clientY - this.sliderContainer.getBoundingClientRect().top;
 
     // Si la altura del track es igual a mayor o igual a cero y es menor o igual a la altura del contenedor:
-    if (this.trackHeight >= 24 &&  this.trackHeight <= this.sliderContainer.offsetHeight - 25) {
+    if (this.trackHeight >= 20 && this.trackHeight <= this.sliderContainer.offsetHeight - 25) {
       // Se establece la altura del track:
       this.sliderTrack.style.height = this.trackHeight + 'px';
       // Se establece la posición del thumb:
       this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
-
       this.changeVolume();
     }
   }
@@ -76,7 +75,8 @@ class VolumeSlider {
     let volumePercentage = 1 - (thumbPosition / this.trackHeight);
     volumePercentage = Math.max(0, Math.min(1, volumePercentage));
 
-    musicPlayer.songBeingPlayed.volume = volumePercentage;
+    // It's not the best resolution, but it works.
+    musicPlayer.songBeingPlayed.volume = volumePercentage - 0.11105499084538162;
   }
 }
 
