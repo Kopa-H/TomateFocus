@@ -5,7 +5,7 @@ function toggleMenu() {
 
     if (displayType == "none") {
         element.classList.remove("slideOut");
-        element.classList.add("slideIn");       
+        element.classList.add("slideIn");
         element.style.display = "flex";
 
     } else {
@@ -17,13 +17,11 @@ function toggleMenu() {
     }
 }
 
-
 // This function works perfectly. It's very simple too.
 const gear = document.getElementById("settings-icon")
 gear.onclick = () => {
-    toggleMenu()
-}
-
+    toggleMenu();
+};
 
 const pomoMinus = document.querySelector(".pomodoro .minus-button")
 const pomoPlus = document.querySelector(".pomodoro .plus-button")
@@ -38,7 +36,7 @@ pomoMinus.addEventListener('click', function () {
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
     if (textMinutesValue != 0) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
-        callChangeDuration("pomodoro", textMinutesValue*60) 
+        callChangeDuration("pomodoro", textMinutesValue*60)
     }
 })
 pomoPlus.addEventListener('click', function () {
@@ -85,3 +83,19 @@ longPlus.addEventListener("click", function () {
 function callChangeDuration(timerType, time) {
     logicHandler.changeTimeElapse(timerType, time)
 }
+
+
+// Reset Preferences Button
+const resetPreferencesButton = document.querySelector(".reset-preferences-button")
+resetPreferencesButton.addEventListener('click', () => {
+    resetPreferences();
+});
+function resetPreferences() {
+    let pomodoroMinutes = document.querySelector(".pomodoro .menu-text");
+    let shortMinutes = document.querySelector(".short-break .menu-text");
+    let longMinutes = document.querySelector(".long-break .menu-text");
+
+    pomodoroMinutes.textContent = `${25} minutes`;
+    shortMinutes.textContent = `${5} minutes`;
+    longMinutes.textContent = `${15} minutes`;
+};
