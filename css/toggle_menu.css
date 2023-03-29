@@ -89,7 +89,16 @@
 }
 
 .bottom-button {
+    cursor: pointer;
     font-size: 1em;
+    transition: opacity 0.2s;
+}
+.bottom-button:hover {
+    opacity: 0.8;
+}
+.bottom-button:active {
+    opacity: 0.6;
+    transform: translate(-0.3px, -0.3px);
 }
 
 .minus-button {
