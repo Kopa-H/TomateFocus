@@ -1,0 +1,70 @@
+.climate-states-toolbar {
+    display: flex;
+    position: absolute;
+    top: 85%;
+
+    width: 100%;
+    height: 10%;
+
+    border: 1px solid white;
+
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0px 8px 0px;
+}
+
+.fire-state-button {
+    width: 13%;
+    cursor: pointer;
+
+    margin-left: 100px;
+    padding: 5px;
+
+    border: 10px solid #2a2a2a;
+    background-color: aqua;
+    border-radius: 100%;
+}
+.fire-state-button:hover {
+    background-color: #161616;
+}
+.fire-state-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
+
+.waterdrop-state-button {
+    width: 13%;
+    cursor: pointer;
+
+    padding: 5px;
+
+    border: 10px solid #2a2a2a;
+    background-color: aqua;
+    border-radius: 100%;
+}
+.waterdrop-state-button:hover {
+    background-color: #161616;
+}
+.waterdrop-state-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
+
+.birds-state-button {
+    width: 13%;
+    cursor: pointer;
+
+    margin-right: 100px;
+    padding: 5px;
+
+    border: 10px solid #2a2a2a;
+    background-color: aqua;
+    border-radius: 100%;
+}
+.birds-state-button:hover {
+    background-color: #161616;
+}
+.birds-state-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
