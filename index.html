@@ -13,9 +13,9 @@
 
     <!-- Music Player CSS -->
     <link rel="stylesheet" type="text/css" href="css/music_player/general.css">
-    <link rel="stylesheet" type="text/css" href="css/music_player/play_and_pause_button.css">
-    <link rel="stylesheet" type="text/css" href="css/music_player/song_change_buttons.css">
+    <link rel="stylesheet" type="text/css" href="css/music_player/toolbar.css">
     <link rel="stylesheet" type="text/css" href="css/music_player/volume_slider.css">
+    <link rel="stylesheet" type="text/css" href="css/music_player/climate-states.css">
   </head>
   <body>
     <!-- Header -->
@@ -33,6 +33,10 @@
     <!-- For the music player -->
     <div class="music-player-flex">
       <snap class="music-player-container">
+        <div class="slider-container">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
         <div class="music-player-toolbar">
           <img class="music-previous-song-button" src="icons/play_icon.png">
           <img class="music-player-play-and-pause-button" src="icons/play_icon.png">
@@ -43,9 +47,10 @@
           <audio class="music-player-song-3"><source src="audio/song_3.mp3" type="audio/mp3"></audio>
           <audio class="music-player-song-4"><source src="audio/song_4.mp3" type="audio/mp3"></audio>
         </div>
-        <div class="slider-container">
-          <div class="slider-track"></div>
-          <div class="slider-thumb"></div>
+        <div class="climate-states-toolbar">
+          <img class="fire-state-button" src="icons/fire_icon.png">
+          <img class="waterdrop-state-button" src="icons/waterdrop_icon.png">
+          <img class="birds-state-button" src="icons/bird_icon.png">
         </div>
       </snap>
     </div>
