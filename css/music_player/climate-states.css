@@ -13,7 +13,7 @@
     padding: 4px 0px 8px 0px;
 }
 
-.fire-state-button {
+.fireplace-state-button {
     width: 13%;
     cursor: pointer;
 
@@ -24,15 +24,15 @@
     background-color: aqua;
     border-radius: 100%;
 }
-.fire-state-button:hover {
+.fireplace-state-button:hover {
     background-color: #161616;
 }
-.fire-state-button:active {
+.fireplace-state-button:active {
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
 }
 
-.waterdrop-state-button {
+.rain-state-button {
     width: 13%;
     cursor: pointer;
 
@@ -42,15 +42,15 @@
     background-color: aqua;
     border-radius: 100%;
 }
-.waterdrop-state-button:hover {
+.rain-state-button:hover {
     background-color: #161616;
 }
-.waterdrop-state-button:active {
+.rain-state-button:active {
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
 }
 
-.birds-state-button {
+.forest-state-button {
     width: 13%;
     cursor: pointer;
 
@@ -61,10 +61,10 @@
     background-color: aqua;
     border-radius: 100%;
 }
-.birds-state-button:hover {
+.forest-state-button:hover {
     background-color: #161616;
 }
-.birds-state-button:active {
+.forest-state-button:active {
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
 }
