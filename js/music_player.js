@@ -86,10 +86,19 @@ class MusicPlayer {
         this.song2 = document.querySelector(".music-player-song-2");
         this.song3 = document.querySelector(".music-player-song-3");
         this.song4 = document.querySelector(".music-player-song-4");
-
         this.songsList = [this.song1, this.song2, this.song3, this.song4];
         this.songBeingPlayed = this.songsList[0];
         this.songIsPlaying = false;
+
+        this.image1 = document.querySelector(".airballon-background-image");
+        this.image2 = document.querySelector(".colors-background-image");
+        this.image3 = document.querySelector(".colors2-background-image");
+        this.image4 = document.querySelector(".colors3-background-image");
+        this.image3 = document.querySelector(".dragon-background-image");
+        this.image4 = document.querySelector(".temple-background-image");
+        this.imagesList = [this.image1, this.image2, this.image3, this.image4];
+        this.imageBeingDisplayed = this.imagesList[0];
+
 
         this.playButton = document.querySelector(".music-player-play-and-pause-button");
         this.nextSongButton = document.querySelector(".music-next-song-button");
@@ -121,6 +130,9 @@ class MusicPlayer {
       this.songBeingPlayed.pause();
       this.songBeingPlayed.currentTime = 0;
 
+      // Se deja de mostrar la imagen de la canción anterior:
+      this.imageBeingDisplayed.style.display = "none";
+
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
 
@@ -128,6 +140,9 @@ class MusicPlayer {
       if (index >= this.songsList.length - 1) {
         this.songBeingPlayed = this.songsList[0];
         this.songBeingPlayed.play();
+
+        this.imageBeingDisplayed = this.imagesList[0];
+        this.imageBeingDisplayed.style.display = "block";
         console.log("Se cambia a la primera canción!")
 
         if (this.songIsPlaying) {
@@ -135,6 +150,8 @@ class MusicPlayer {
         };
       } else {
         this.songBeingPlayed = this.songsList[index + 1];
+        this.imageBeingDisplayed = this.imagesList[index + 1];
+        this.imageBeingDisplayed.style.display = "block";
 
         // Si estaba sonando otra canción:
         if (this.songIsPlaying) {

@@ -1,0 +1,13 @@
+.background-image {
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 3.5%;
+
+    width: 400px;
+    border-radius: 10vw;
+}
+
+.airballon-background-image {
+    display: block;
+}
