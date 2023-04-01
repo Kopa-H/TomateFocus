@@ -9,7 +9,6 @@ class ClimateStates {
       this.fireplaceSound.volume = 0.5;
       this.fireplaceSound2.volume = 0.5;
 
-
       this.rainSound = document.querySelector(".rain-sound");
       this.rainSound2 = document.querySelector(".rain-sound-2");
       this.rainSound.volume = 0.05;
@@ -26,7 +25,7 @@ class ClimateStates {
 
       this.fireplaceButton.addEventListener('click', () => {
         if (this.fireplaceSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.fireplaceSound, this.fireplaceSound2);
+          this.playSoundInLoop(this.fireplaceSound, this.fireplaceSound2, this.fireplaceSoundBeingPlayed);
           this.fireplaceButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.fireplaceSoundBeingPlayed = true;
         } else {
@@ -39,7 +38,7 @@ class ClimateStates {
 
       this.rainButton.addEventListener('click', () => {
         if (this.rainSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.rainSound, this.rainSound2);
+          this.playSoundInLoop(this.rainSound, this.rainSound2, this.rainSoundBeingPlayed);
           this.rainButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.rainSoundBeingPlayed = true;
         } else {
@@ -52,7 +51,7 @@ class ClimateStates {
 
       this.forestButton.addEventListener('click', () => {
         if (this.forestSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.forestSound, this.forestSound2);
+          this.playSoundInLoop(this.forestSound, this.forestSound2, this.forestSoundBeingPlayed);
           this.forestButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.forestSoundBeingPlayed = true;
         } else {
@@ -64,23 +63,25 @@ class ClimateStates {
       });
     };
 
-    playSoundInLoop(sound, sound2) {
+    playSoundInLoop(sound, sound2, isSoundBeingPlayed) {
       let soundBeingPlayed = sound;
 
       soundBeingPlayed.play();
 
       setInterval(function() {
-        // Se va calculando el tiempo restante del sonido que se está reproduciendo:
-        const remainingTime = soundBeingPlayed.duration - soundBeingPlayed.currentTime;
-        if (remainingTime < 5 && soundBeingPlayed == sound) {
-          console.log("Comienza a sonar el segundo audio!");
-          soundBeingPlayed = sound2;
-          soundBeingPlayed.play();
-        } else if (remainingTime < 5 && soundBeingPlayed == sound2) {
-          console.log("Comienza a sonar el primer audio!");
-          soundBeingPlayed = sound;
-          soundBeingPlayed.play();
-        }
+        if (isSoundBeingPlayed == true) {
+          // Se va calculando el tiempo restante del sonido que se está reproduciendo:
+          const remainingTime = soundBeingPlayed.duration - soundBeingPlayed.currentTime;
+          if (remainingTime < 5 && soundBeingPlayed == sound) {
+            console.log("Comienza a sonar el segundo audio!");
+            soundBeingPlayed = sound2;
+            soundBeingPlayed.play();
+          } else if (remainingTime < 5 && soundBeingPlayed == sound2) {
+            console.log("Comienza a sonar el primer audio!");
+            soundBeingPlayed = sound;
+            soundBeingPlayed.play();
+          };
+        };
       }, 1000);
     }
 };

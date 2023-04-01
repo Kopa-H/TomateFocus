@@ -94,11 +94,10 @@ class MusicPlayer {
         this.image2 = document.querySelector(".colors-background-image");
         this.image3 = document.querySelector(".colors2-background-image");
         this.image4 = document.querySelector(".colors3-background-image");
-        this.image3 = document.querySelector(".dragon-background-image");
-        this.image4 = document.querySelector(".temple-background-image");
+        this.image5 = document.querySelector(".dragon-background-image");
+        this.image6 = document.querySelector(".temple-background-image");
         this.imagesList = [this.image1, this.image2, this.image3, this.image4];
         this.imageBeingDisplayed = this.imagesList[0];
-
 
         this.playButton = document.querySelector(".music-player-play-and-pause-button");
         this.nextSongButton = document.querySelector(".music-next-song-button");
@@ -116,6 +115,11 @@ class MusicPlayer {
             }
         });
 
+        // Para que al terminarse una canción suene la siguiente: (habrá que ver si esto se mantiene más allá de la primera)
+        this.songBeingPlayed.addEventListener('ended', () => {
+          this.changeToNextSong();
+        });
+
         this.nextSongButton.addEventListener('click', () => {
           this.changeToNextSong();
         });
@@ -123,69 +127,111 @@ class MusicPlayer {
         this.previousSongButton.addEventListener('click', () => {
           this.changeToPreviousSong();
         });
+
+        // Para las transiciones entre canciones:
+        this.transitionTime = 5000; // Duración total de la transición en milisegundos
+        this.intervalTime = 50; // Intervalo de tiempo entre cada iteración en milisegundos
+        this.steps = this.transitionTime / this.intervalTime; // Número de iteraciones necesarias para completar la transición
+        this.opacityStep = 0.6 / this.steps; // Cambio en la opacidad en cada iteración
+        this.volumeStep = 0.6 / this.steps; // Cambio en el volumen en cada iteración
     }
 
     changeToNextSong() {
-      // Se detiene la canción que sonaba hasta ahora:
-      this.songBeingPlayed.pause();
-      this.songBeingPlayed.currentTime = 0;
-
-      // Se deja de mostrar la imagen de la canción anterior:
-      this.imageBeingDisplayed.style.display = "none";
+      this.lastImageBeingDisplayed = this.imageBeingDisplayed;
+      this.lastSongBeingPlayed = this.songBeingPlayed;
 
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
 
-      // Si el índice es igual o mayor al número de canciones existentes, se pone en marcha la primera:
+      // Se verifica si es la última canción de la lista para asignar la canción y la imagen actual:
       if (index >= this.songsList.length - 1) {
         this.songBeingPlayed = this.songsList[0];
-        this.songBeingPlayed.play();
-
         this.imageBeingDisplayed = this.imagesList[0];
-        this.imageBeingDisplayed.style.display = "block";
-        console.log("Se cambia a la primera canción!")
-
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
+        console.log("Se cambia a la primera canción!");
       } else {
         this.songBeingPlayed = this.songsList[index + 1];
         this.imageBeingDisplayed = this.imagesList[index + 1];
-        this.imageBeingDisplayed.style.display = "block";
+        console.log("Se cambia a la siguiente canción!");
+      }
 
-        // Si estaba sonando otra canción:
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
-        console.log("Se cambia a la siguiente canción!")
+      // Se muestra la imagen de la nueva canción:
+      this.imageBeingDisplayed.style.display = "block";
+      this.imageBeingDisplayed.style.opacity = "0.4";
+
+      // Se reproduce la nueva canción:
+      if (this.songIsPlaying) {
+        this.songBeingPlayed.play();
+      }
+      this.songBeingPlayed.volume = 0.2;
+
+      // Inicio de la transición:
+      for (let i = 1; i <= this.steps; i++) {
+          setTimeout(() => {
+              // Viejo
+              this.lastImageBeingDisplayed.style.opacity = `${0.5 - i * this.opacityStep}`;
+              this.lastSongBeingPlayed.volume = 0.4 - i * this.volumeStep;
+
+              // Nuevo
+              this.imageBeingDisplayed.style.opacity = `${0.5 + i * this.opacityStep}`;
+              this.songBeingPlayed.volume = 0.5 + i * this.volumeStep;
+
+              if (i === this.steps) {
+                  // Se detiene la canción que sonaba hasta ahora:
+                  this.lastSongBeingPlayed.volume = 1;
+                  this.lastSongBeingPlayed.pause();
+                  this.lastSongBeingPlayed.currentTime = 0;
+                  // Se deja de mostrar la imagen de la canción anterior:
+                  this.lastImageBeingDisplayed.style.display = "none";
+              }
+          }, i * this.intervalTime);
       }
     }
 
     changeToPreviousSong() {
-      // Se detiene la canción que sonaba hasta ahora:
-      this.songBeingPlayed.pause();
-      this.songBeingPlayed.currentTime = 0;
-
+      this.lastImageBeingDisplayed = this.imageBeingDisplayed;
+      this.lastSongBeingPlayed = this.songBeingPlayed;
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
 
       // Si el índice es igual o menor a 0, se pone en marcha la última:
       if (index <= 0) {
         this.songBeingPlayed = this.songsList.pop();
-        console.log("Se cambia a la última canción!")
-
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
-
+        this.imageBeingDisplayed = this.imagesList.pop();
       } else {
         this.songBeingPlayed = this.songsList[index - 1];
+        this.imageBeingDisplayed = this.imagesList[index - 1];
+      };
 
-        // Si estaba sonando otra canción:
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
-        console.log("Se cambia a la anterior canción!")
+      // Se muestra la imagen de la nueva canción:
+      this.imageBeingDisplayed.style.display = "block";
+      this.imageBeingDisplayed.style.opacity = "0.4";
+
+      // Se reproduce la nueva canción:
+      if (this.songIsPlaying) {
+        this.songBeingPlayed.play();
+      }
+      this.songBeingPlayed.volume = 0.2;
+
+      // Inicio de la transición:
+      for (let i = 1; i <= this.steps; i++) {
+          setTimeout(() => {
+              // Viejo
+              this.lastImageBeingDisplayed.style.opacity = `${0.5 - i * this.opacityStep}`;
+              this.lastSongBeingPlayed.volume = 0.4 - i * this.volumeStep;
+
+              // Nuevo
+              this.imageBeingDisplayed.style.opacity = `${0.5 + i * this.opacityStep}`;
+              this.songBeingPlayed.volume = 0.5 + i * this.volumeStep;
+
+              if (i === this.steps) {
+                  // Se detiene la canción que sonaba hasta ahora:
+                  this.lastSongBeingPlayed.volume = 1;
+                  this.lastSongBeingPlayed.pause();
+                  this.lastSongBeingPlayed.currentTime = 0;
+                  // Se deja de mostrar la imagen de la canción anterior:
+                  this.lastImageBeingDisplayed.style.display = "none";
+              }
+          }, i * this.intervalTime);
       }
     }
 }
