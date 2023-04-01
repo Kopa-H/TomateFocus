@@ -126,39 +126,69 @@ class MusicPlayer {
     }
 
     changeToNextSong() {
-      // Se detiene la canción que sonaba hasta ahora:
-      this.songBeingPlayed.pause();
-      this.songBeingPlayed.currentTime = 0;
 
-      // Se deja de mostrar la imagen de la canción anterior:
-      this.imageBeingDisplayed.style.display = "none";
+      this.lastImageBeingDisplayed = this.imageBeingDisplayed;
+      this.lastSongBeingPlayed = this.songBeingPlayed;
+
+      // Se resta opacidad a la portada actual y se disminuye su volumen:
+      this.lastImageBeingDisplayed.style.opacity = "0.5";
+      this.lastSongBeingPlayed.volume = 0.5;
 
       // Se obtiene el índice de la siguiente canción:
       const index = this.songsList.indexOf(this.songBeingPlayed);
 
-      // Si el índice es igual o mayor al número de canciones existentes, se pone en marcha la primera:
+      // Se verifica si es la última canción de la lista para asignar la canción y la imagen actual:
       if (index >= this.songsList.length - 1) {
         this.songBeingPlayed = this.songsList[0];
-        this.songBeingPlayed.play();
-
         this.imageBeingDisplayed = this.imagesList[0];
-        this.imageBeingDisplayed.style.display = "block";
-        console.log("Se cambia a la primera canción!")
-
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
+        console.log("Se cambia a la primera canción!");
       } else {
         this.songBeingPlayed = this.songsList[index + 1];
         this.imageBeingDisplayed = this.imagesList[index + 1];
-        this.imageBeingDisplayed.style.display = "block";
-
-        // Si estaba sonando otra canción:
-        if (this.songIsPlaying) {
-          this.songBeingPlayed.play();
-        };
-        console.log("Se cambia a la siguiente canción!")
+        console.log("Se cambia a la siguiente canción!");
       }
+
+      // Se muestra la imagen de la nueva canción:
+      this.imageBeingDisplayed.style.display = "block";
+      this.imageBeingDisplayed.style.opacity = "0.4";
+
+      // Se reproduce la nueva canción:
+      this.songBeingPlayed.play();
+      this.songBeingPlayed.volume = 0.2;
+
+      // Inicio de la transición:
+      setTimeout(() => {
+        // Viejo
+        this.lastImageBeingDisplayed.style.opacity = "0.5";
+        this.lastSongBeingPlayed.volume = 0.4;
+
+        // Nuevo
+        this.imageBeingDisplayed.style.opacity = "0.5";
+        this.songBeingPlayed.volume = 0.5;
+      }, 1000);
+
+      // Mitad de la transición:
+      setTimeout(() => {
+        // Viejo
+        this.lastImageBeingDisplayed.style.opacity = "0.2";
+        this.lastSongBeingPlayed.volume = 0.2;
+
+        // Nuevo
+        this.imageBeingDisplayed.style.opacity = "0.8";
+        this.songBeingPlayed.volume = 0.8;
+      }, 1000);
+
+      // Final de la transición:
+      setTimeout(() => {
+
+        // Se detiene la canción que sonaba hasta ahora:
+        this.lastSongBeingPlayed.volume = 1;
+        this.lastSongBeingPlayed.pause();
+        this.lastSongBeingPlayed.currentTime = 0;
+
+        // Se deja de mostrar la imagen de la canción anterior:
+        this.lastImageBeingDisplayed.style.display = "none";
+      }, 3000);
     }
 
     changeToPreviousSong() {
@@ -172,7 +202,7 @@ class MusicPlayer {
       // Si el índice es igual o menor a 0, se pone en marcha la última:
       if (index <= 0) {
         this.songBeingPlayed = this.songsList.pop();
-        console.log("Se cambia a la última canción!")
+        console.log("Se cambia a la última canción!");
 
         if (this.songIsPlaying) {
           this.songBeingPlayed.play();
@@ -185,8 +215,16 @@ class MusicPlayer {
         if (this.songIsPlaying) {
           this.songBeingPlayed.play();
         };
-        console.log("Se cambia a la anterior canción!")
-      }
+        console.log("Se cambia a la anterior canción!");
+      };
+    }
+
+    manageSongsEnd() {
+      setInterval(function() {
+        if (songBeingPlayed.currentTime = 0) {
+          this.changeToNextSong();
+        }
+      }, 1000);
     }
 }
 
