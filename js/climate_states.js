@@ -6,18 +6,12 @@ class ClimateStates {
 
       this.fireplaceSound = document.querySelector(".fireplace-sound");
       this.fireplaceSound2 = document.querySelector(".fireplace-sound-2");
-      this.fireplaceSound.volume = 0.5;
-      this.fireplaceSound2.volume = 0.5;
 
       this.rainSound = document.querySelector(".rain-sound");
       this.rainSound2 = document.querySelector(".rain-sound-2");
-      this.rainSound.volume = 0.05;
-      this.rainSound2.volume = 0.05;
 
       this.forestSound = document.querySelector(".forest-sound");
       this.forestSound2 = document.querySelector(".forest-sound-2");
-      this.forestSound.volume = 0.05;
-      this.forestSound2.volume = 0.05;
 
       this.fireplaceSoundBeingPlayed = false
       this.rainSoundBeingPlayed = false
@@ -25,63 +19,65 @@ class ClimateStates {
 
       this.fireplaceButton.addEventListener('click', () => {
         if (this.fireplaceSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.fireplaceSound, this.fireplaceSound2, this.fireplaceSoundBeingPlayed);
-          this.fireplaceButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.fireplaceSoundBeingPlayed = true;
+          this.playSoundInLoop(this.fireplaceSound, this.fireplaceSound2);
+          this.fireplaceButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
+          this.fireplaceSoundBeingPlayed = false;
           this.fireplaceSound.pause();
           this.fireplaceSound2.pause();
           this.fireplaceButton.style.backgroundColor = "gray";
-          this.fireplaceSoundBeingPlayed = false;
         }
       });
 
       this.rainButton.addEventListener('click', () => {
         if (this.rainSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.rainSound, this.rainSound2, this.rainSoundBeingPlayed);
-          this.rainButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.rainSoundBeingPlayed = true;
+          this.playSoundInLoop(this.rainSound, this.rainSound2);
+          this.rainButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
+          this.rainSoundBeingPlayed = false;
           this.rainSound.pause();
           this.rainSound2.pause();
           this.rainButton.style.backgroundColor = "gray";
-          this.rainSoundBeingPlayed = false;
         }
       });
 
       this.forestButton.addEventListener('click', () => {
         if (this.forestSoundBeingPlayed == false) {
-          this.playSoundInLoop(this.forestSound, this.forestSound2, this.forestSoundBeingPlayed);
-          this.forestButton.style.backgroundColor = "rgb(125, 45, 126)";
           this.forestSoundBeingPlayed = true;
+          this.playSoundInLoop(this.forestSound, this.forestSound2);
+          this.forestButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
+          this.forestSoundBeingPlayed = false;
           this.forestSound.pause();
           this.forestSound2.pause();
           this.forestButton.style.backgroundColor = "gray";
-          this.forestSoundBeingPlayed = false;
         }
       });
     };
 
-    playSoundInLoop(sound, sound2, isSoundBeingPlayed) {
+    playSoundInLoop(sound, sound2) {
       let soundBeingPlayed = sound;
 
       // Entrada del efecto suave:
       soundBeingPlayed.volume = 0;
       const volumeIncreaseInterval = setInterval(() => {
-        soundBeingPlayed.volume += 0.1;
-        soundBeingPlayed.volume = parseFloat(soundBeingPlayed.volume.toFixed(1)); // Redondea a 1 decimal
-        if (soundBeingPlayed.volume >= 1) {
-          clearInterval(volumeIncreaseInterval);
+        if ((this.fireplaceSoundBeingPlayed || this.rainSoundBeingPlayed || this.forestSoundBeingPlayed) && soundBeingPlayed.volume <= 0.9) {
+            soundBeingPlayed.volume += 0.1;
+            soundBeingPlayed.volume = parseFloat(soundBeingPlayed.volume.toFixed(1)); // Redondea a 1 decimal
+            console.log(soundBeingPlayed.volume)
+          if (soundBeingPlayed.volume >= 1) {
+            clearInterval(volumeIncreaseInterval);
+          }
         }
-        console.log(soundBeingPlayed.volume)
       }, 250);
 
       soundBeingPlayed.play();
 
       // Intervalo para intercalar el mismo audio de 5 segundos constantemente:
       setInterval(() => {
-        if (isSoundBeingPlayed == true) {
+        if (this.fireplaceSoundBeingPlayed || this.rainSoundBeingPlayed || this.forestSoundBeingPlayed) {
           // Se va calculando el tiempo restante del sonido que se está reproduciendo:
           const remainingTime = soundBeingPlayed.duration - soundBeingPlayed.currentTime;
           if (remainingTime < 5 && soundBeingPlayed == sound) {
