@@ -264,6 +264,10 @@ class Counter {
         this.delayCycleChangeButton.addEventListener('click', () => {
             if (this.seconds != 0 && this.minutes != 0) {
                 this.minutes += 5;
+                if (this.minutes >= 60) {
+                    this.minutes = 60;
+                    this.seconds = 1;
+                }
                 this.updateCounter();
             }
         });

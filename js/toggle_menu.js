@@ -34,7 +34,7 @@ pomoMinus.addEventListener('click', function () {
     let textMinutes = document.querySelector(".pomodoro .menu-text")
     // the match(/\d+/g) is a regex. It matches numbers
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0 && textMinutesValue < 60) {
+    if (textMinutesValue > 0) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
         callChangeDuration("pomodoro", textMinutesValue*60)
     }
@@ -42,15 +42,15 @@ pomoMinus.addEventListener('click', function () {
 pomoPlus.addEventListener('click', function () {
     let textMinutes = document.querySelector(".pomodoro .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0 && textMinutesValue < 60) {
+    if (textMinutesValue < 60) {
         textMinutes.textContent = `${++textMinutesValue} minutes`
         callChangeDuration("pomodoro", textMinutesValue*60)
-    }
+    };
 })
 shortMinus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".short-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0 && textMinutesValue < 60) {
+    if (textMinutesValue > 0) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
         callChangeDuration("shortbreak", textMinutesValue*60)
     }
@@ -58,26 +58,26 @@ shortMinus.addEventListener("click", function () {
 shortPlus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".short-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0) {
+    if (textMinutesValue < 60) {
         textMinutes.textContent = `${++textMinutesValue} minutes`
         callChangeDuration("shortbreak", textMinutesValue*60)
-    }
+    };
 })
 longMinus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".long-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0) {
+    if (textMinutesValue > 0) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
         callChangeDuration("longbreak", textMinutesValue*60)
-    }
+    };
 })
 longPlus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".long-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue != 0) {
+    if (textMinutesValue < 60) {
         textMinutes.textContent = `${++textMinutesValue} minutes`
         callChangeDuration("longbreak", textMinutesValue*60)
-    }
+    };
 })
 
 function callChangeDuration(timerType, time) {
