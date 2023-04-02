@@ -139,11 +139,13 @@ class MusicPlayer {
     }
 
     changeToNextSong() {
-      // Para evitar que se solapen las transiciones:
+      // Para evitar que se solapen las transiciones [Primer paso]:
       if (this.transitionIsExecuting) {
-        console.log("Esperando a que termine la transición actual...");
-        return;
-      }
+        // Se quita lo de la canción anterior:
+        this.lastSongBeingPlayed.pause();
+        this.lastSongBeingPlayed.currentTime = 0;
+        this.lastImageBeingDisplayed.style.display = "none";
+      };
 
       this.lastImageBeingDisplayed = this.imageBeingDisplayed;
       this.lastSongBeingPlayed = this.songBeingPlayed;
@@ -160,6 +162,16 @@ class MusicPlayer {
         this.songBeingPlayed = this.songsList[index + 1];
         this.imageBeingDisplayed = this.imagesList[index + 1];
         console.log("Se cambia a la siguiente canción!");
+      }
+
+      // Para evitar que se solapen las transiciones [Segundo paso]:
+      if (this.transitionIsExecuting) {
+        // Se muestra la imagen de la nueva canción:
+        this.imageBeingDisplayed.style.display = "block";
+        this.imageBeingDisplayed.style.opacity = "1";
+        this.songBeingPlayed.play();
+        console.log("Se realiza una transición forzada!")
+        return;
       }
 
       // Se muestra la imagen de la nueva canción:

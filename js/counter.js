@@ -249,6 +249,8 @@ class LogicHandler {
         else {
             console.log("db time changed");
             this.timeToDelay = time;
+            // Se muestra el tiempo de delay en la descripción del botón:
+            counter.delayCycleChangeDescription.innerHTML = `Add ${this.timeToDelay}' of extra break!`;
         }
     }
 }
@@ -281,17 +283,6 @@ class Counter {
         });
 
         this.totalTimeLeft = 0;
-
-        // The toggleMenu buttons for the change of the timeToDelay:
-        this.delayMinus = document.querySelector(".delay-break .minus-button");
-        this.delayPlus = document.querySelector(".delay-break .plus-button");
-
-        this.delayMinus.addEventListener('click', () => {
-            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
-        });
-        this.delayPlus.addEventListener('click', () => {
-            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
-        });
     }
 
     showCurrentTime() {
