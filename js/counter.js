@@ -271,7 +271,7 @@ class Counter {
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
             if (this.seconds != 0 && this.minutes != 0) {
-                this.minutes += this.timeToDelay;
+                this.minutes += logicHandler.timeToDelay;
                 if (this.minutes >= 60) {
                     this.minutes = 60;
                     this.seconds = 1;
