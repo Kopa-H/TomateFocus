@@ -23,12 +23,14 @@ gear.onclick = () => {
     toggleMenu();
 };
 
-const pomoMinus = document.querySelector(".pomodoro .minus-button")
-const pomoPlus = document.querySelector(".pomodoro .plus-button")
-const shortMinus = document.querySelector(".short-break .minus-button")
-const shortPlus = document.querySelector(".short-break .plus-button")
-const longMinus = document.querySelector(".long-break .minus-button")
-const longPlus = document.querySelector(".long-break .plus-button")
+const pomoMinus = document.querySelector(".pomodoro .minus-button");
+const pomoPlus = document.querySelector(".pomodoro .plus-button");
+const shortMinus = document.querySelector(".short-break .minus-button");
+const shortPlus = document.querySelector(".short-break .plus-button");
+const longMinus = document.querySelector(".long-break .minus-button");
+const longPlus = document.querySelector(".long-break .plus-button");
+const delayMinus = document.querySelector(".delay-break .minus-button");
+const delayPlus = document.querySelector(".delay-break .plus-button");
 
 pomoMinus.addEventListener('click', function () {
     let textMinutes = document.querySelector(".pomodoro .menu-text")
@@ -79,11 +81,26 @@ longPlus.addEventListener("click", function () {
         callChangeDuration("longbreak", textMinutesValue*60)
     };
 })
+delayMinus.addEventListener("click", function () {
+    let textMinutes = document.querySelector(".delay-break .menu-text")
+    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
+    if (textMinutesValue > 0) {
+        textMinutes.textContent = `${--textMinutesValue} minutes`
+        callChangeDuration("delaybreak", textMinutesValue*60)
+    };
+})
+delayPlus.addEventListener("click", function () {
+    let textMinutes = document.querySelector(".delay-break .menu-text")
+    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
+    if (textMinutesValue < 60) {
+        textMinutes.textContent = `${++textMinutesValue} minutes`
+        callChangeDuration("delaybreak", textMinutesValue*60)
+    };
+})
 
 function callChangeDuration(timerType, time) {
     logicHandler.changeTimeElapse(timerType, time)
 }
-
 
 // Reset Preferences Button
 const resetPreferencesButton = document.querySelector(".reset-preferences-button")
@@ -94,8 +111,10 @@ function resetPreferences() {
     let pomodoroMinutes = document.querySelector(".pomodoro .menu-text");
     let shortMinutes = document.querySelector(".short-break .menu-text");
     let longMinutes = document.querySelector(".long-break .menu-text");
+    let delayMinutes = document.querySelector(".delay-break .menu-text");
 
     pomodoroMinutes.textContent = `${25} minutes`;
     shortMinutes.textContent = `${5} minutes`;
     longMinutes.textContent = `${15} minutes`;
+    delayMinutes.textContent = `${5} minutes`;
 };

@@ -64,6 +64,10 @@ class LogicHandler {
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
         this.longbreakTimeToElapse = 600;
+        this.delaybreakTimeToElapse = 300;
+
+        // Minutos que se aplicarán de Delay:
+        this.timeToDelay = 5;
     }
 
     startCounter() {
@@ -231,16 +235,20 @@ class LogicHandler {
     changeTimeElapse(timerType, time) {
         console.log(`timerType: ${timerType}, time: ${time}`)
         if (timerType === "pomodoro") {
-            console.log("pomo time changed")
-            this.pomodoroTimeToElapse = time
+            console.log("pomo time changed");
+            this.pomodoroTimeToElapse = time;
         }
         else if (timerType === "shortbreak") {
-            console.log("sb time changed")
-            this.shortbreakTimeToElapse = time
+            console.log("sb time changed");
+            this.shortbreakTimeToElapse = time;
+        }
+        else if (timerType === "longbreak") {
+            console.log("lb time changed");
+            this.longbreakTimeToElapse = time;
         }
         else {
-            console.log("lb time changed")
-            this.longbreakTimeToElapse = time
+            console.log("db time changed");
+            this.timeToDelay = time;
         }
     }
 }
@@ -263,7 +271,7 @@ class Counter {
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
             if (this.seconds != 0 && this.minutes != 0) {
-                this.minutes += 5;
+                this.minutes += this.timeToDelay;
                 if (this.minutes >= 60) {
                     this.minutes = 60;
                     this.seconds = 1;
