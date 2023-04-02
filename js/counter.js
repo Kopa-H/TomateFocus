@@ -274,13 +274,24 @@ class Counter {
                 this.minutes += logicHandler.timeToDelay;
                 if (this.minutes >= 60) {
                     this.minutes = 60;
-                    this.seconds = 1;
+                    this.seconds = 0;
                 }
                 this.updateCounter();
             }
         });
 
         this.totalTimeLeft = 0;
+
+        // The toggleMenu buttons for the change of the timeToDelay:
+        this.delayMinus = document.querySelector(".delay-break .minus-button");
+        this.delayPlus = document.querySelector(".delay-break .plus-button");
+
+        this.delayMinus.addEventListener('click', () => {
+            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
+        });
+        this.delayPlus.addEventListener('click', () => {
+            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
+        });
     }
 
     showCurrentTime() {
@@ -290,6 +301,9 @@ class Counter {
     }
 
     updateCounter() {
+        // Se llama al método que muestra el tiempo restante en pantalla:
+        this.showCurrentTime();
+
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
         if (this.seconds == 0 && this.minutes != 0) {
             this.minutes -= 1;
@@ -299,8 +313,6 @@ class Counter {
             this.seconds -= 1;
             this.totalTimeLeft --
         }
-        // Se llama al método que muestra el tiempo restante en pantalla:
-        this.showCurrentTime();
     }
 }
 
