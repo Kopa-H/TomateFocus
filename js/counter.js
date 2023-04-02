@@ -64,6 +64,10 @@ class LogicHandler {
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
         this.longbreakTimeToElapse = 600;
+        this.delaybreakTimeToElapse = 300;
+
+        // Minutos que se aplicarán de Delay:
+        this.timeToDelay = 5;
     }
 
     startCounter() {
@@ -231,16 +235,20 @@ class LogicHandler {
     changeTimeElapse(timerType, time) {
         console.log(`timerType: ${timerType}, time: ${time}`)
         if (timerType === "pomodoro") {
-            console.log("pomo time changed")
-            this.pomodoroTimeToElapse = time
+            console.log("pomo time changed");
+            this.pomodoroTimeToElapse = time;
         }
         else if (timerType === "shortbreak") {
-            console.log("sb time changed")
-            this.shortbreakTimeToElapse = time
+            console.log("sb time changed");
+            this.shortbreakTimeToElapse = time;
+        }
+        else if (timerType === "longbreak") {
+            console.log("lb time changed");
+            this.longbreakTimeToElapse = time;
         }
         else {
-            console.log("lb time changed")
-            this.longbreakTimeToElapse = time
+            console.log("db time changed");
+            this.timeToDelay = time;
         }
     }
 }
@@ -263,16 +271,27 @@ class Counter {
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
             if (this.seconds != 0 && this.minutes != 0) {
-                this.minutes += 5;
+                this.minutes += logicHandler.timeToDelay;
                 if (this.minutes >= 60) {
                     this.minutes = 60;
-                    this.seconds = 1;
+                    this.seconds = 0;
                 }
                 this.updateCounter();
             }
         });
 
         this.totalTimeLeft = 0;
+
+        // The toggleMenu buttons for the change of the timeToDelay:
+        this.delayMinus = document.querySelector(".delay-break .minus-button");
+        this.delayPlus = document.querySelector(".delay-break .plus-button");
+
+        this.delayMinus.addEventListener('click', () => {
+            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
+        });
+        this.delayPlus.addEventListener('click', () => {
+            this.delayCycleChangeDescription.innerHTML = `Add ${logicHandler.timeToDelay+1}' of extra break!`;
+        });
     }
 
     showCurrentTime() {
@@ -282,6 +301,9 @@ class Counter {
     }
 
     updateCounter() {
+        // Se llama al método que muestra el tiempo restante en pantalla:
+        this.showCurrentTime();
+
         // Si los segundos han llegado a 0 se pasa al siguiente minuto, sino solamente se resta un segundo:
         if (this.seconds == 0 && this.minutes != 0) {
             this.minutes -= 1;
@@ -291,8 +313,6 @@ class Counter {
             this.seconds -= 1;
             this.totalTimeLeft --
         }
-        // Se llama al método que muestra el tiempo restante en pantalla:
-        this.showCurrentTime();
     }
 }
 
