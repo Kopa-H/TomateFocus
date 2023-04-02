@@ -66,9 +66,21 @@ class ClimateStates {
     playSoundInLoop(sound, sound2, isSoundBeingPlayed) {
       let soundBeingPlayed = sound;
 
+      // Entrada del efecto suave:
+      soundBeingPlayed.volume = 0;
+      const volumeIncreaseInterval = setInterval(() => {
+        soundBeingPlayed.volume += 0.1;
+        soundBeingPlayed.volume = parseFloat(soundBeingPlayed.volume.toFixed(1)); // Redondea a 1 decimal
+        if (soundBeingPlayed.volume >= 1) {
+          clearInterval(volumeIncreaseInterval);
+        }
+        console.log(soundBeingPlayed.volume)
+      }, 250);
+
       soundBeingPlayed.play();
 
-      setInterval(function() {
+      // Intervalo para intercalar el mismo audio de 5 segundos constantemente:
+      setInterval(() => {
         if (isSoundBeingPlayed == true) {
           // Se va calculando el tiempo restante del sonido que se está reproduciendo:
           const remainingTime = soundBeingPlayed.duration - soundBeingPlayed.currentTime;
