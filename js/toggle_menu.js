@@ -1,5 +1,5 @@
 function toggleMenu() {
-    const element = document.getElementById("toggleMenu");
+    const element = document.querySelector(".toggleMenu-flex");
     const elementStyles = window.getComputedStyle(element);
     const displayType = elementStyles.display;
 
