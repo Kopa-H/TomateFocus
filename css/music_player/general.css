@@ -1,6 +1,6 @@
 .music-player-flex {
     overflow: hidden;
-    display: none;
+    display: flex;
     position: absolute;
     align-items: center;
     justify-content: start;    
@@ -23,6 +23,7 @@
     gap: 6em;
     border-radius: 1em;
     z-index: 1;
+    min-height: 600px;
 }
 
 .music-player-toolbar {
