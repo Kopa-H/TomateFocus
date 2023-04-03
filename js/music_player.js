@@ -1,7 +1,7 @@
 class MusicButton {
   constructor() {
     this.musicPlayerButton = document.querySelector(".music-icon");
-    this.musicPlayerContainer = document.querySelector(".music-player-container");
+    this.musicPlayerContainer = document.querySelector(".music-player-flex");
 
     this.musicPlayerButton.addEventListener('click', () => {
       this.showMusicPlayer();
