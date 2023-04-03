@@ -1,6 +1,6 @@
 .toggleMenu-flex {
     overflow: hidden;
-    display: flex;
+    display: none;
     position:absolute;
     align-items: center;
     justify-content: end;
@@ -10,11 +10,12 @@
     margin: 0 auto 0 auto;
     max-width: 80em;
     padding: 0em 10em;
+    z-index: 1;
 }
 
 .toggleMenu-container {
     text-align: center;
-    display: none;
+    display: flex;
     flex-direction: column;
     background-color: #B46060;
     width: 20em;
@@ -119,10 +120,10 @@
 }
 
 .slideIn {
-    animation: slideIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    animation: slideIn 0.55s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
 .slideOut {
-    animation: slideOut 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    animation: slideOut 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
 
 @keyframes slideIn {
