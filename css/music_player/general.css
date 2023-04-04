@@ -18,23 +18,13 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: #B46060;
     width: 20em;
     color: #FFF4E0;
     gap: 4em;
     border-radius: 1em;
     z-index: 1;
-}
-
-.music-player-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 14%;
-    width: 100%;
-    height: 10%;
-    background-color: rgb(125, 45, 126);
-    border-radius: 10vw;
 }
 
 @media screen and (max-width: 1375px) {
