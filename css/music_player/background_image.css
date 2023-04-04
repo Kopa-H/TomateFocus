@@ -4,9 +4,9 @@
     position: absolute;
     top: 5%;
     left: 3.5%;
-    width: 20em;
-    height: auto;
-    border-radius: 10vw;
+    width: 260px;
+    height: 260px;
+    border-radius: 22px;
 }
 
 .airballon-background-image {
