@@ -1,10 +1,5 @@
 .background-image {
-    align-self: center;
     display: none;
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 230px;
     height: 230px;
     border-radius: 22px;
