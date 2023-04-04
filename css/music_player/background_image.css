@@ -3,7 +3,8 @@
     display: none;
     position: absolute;
     top: 5%;
-    left: 3.5%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 260px;
     height: 260px;
     border-radius: 22px;
