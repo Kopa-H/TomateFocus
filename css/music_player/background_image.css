@@ -1,11 +1,9 @@
 .background-image {
+    margin: 2em 0 0 0;
     display: none;
-    position: absolute;
-    top: 5%;
-    left: 3.5%;
-
-    width: 400px;
-    border-radius: 10vw;
+    width: 230px;
+    height: 230px;
+    border-radius: 22px;
 }
 
 .airballon-background-image {
