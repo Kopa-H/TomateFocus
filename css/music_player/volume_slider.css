@@ -1,14 +1,14 @@
 .slider-container {
   display: flex;
-  flex-direction: column;
-  width: 1.5em;
-  height: 10em;
+  width: 10%;
+  height: 40%;
   border-radius: 50vw;
   position: absolute;
+  right: 10%;
+  top: 6%;
   background-color: rgb(125, 45, 126);
   cursor: pointer;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  align-self: end;
 }
 
 .slider-track {
