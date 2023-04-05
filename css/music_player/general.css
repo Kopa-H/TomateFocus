@@ -1,6 +1,6 @@
 .music-player-flex {
     overflow: hidden;
-    display: flex;
+    display: none;
     position: absolute;
     align-items: center;
     justify-content: start;    
