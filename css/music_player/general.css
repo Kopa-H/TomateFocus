@@ -3,14 +3,13 @@
     display: none;
     position: absolute;
     align-items: center;
-    justify-content: start;    
+    justify-content: start;
     left: 0;
     right: 0;
     top: calc(7% + 1em);
     margin: 0 auto 0 auto;
     max-width: 80em;
     padding: 0em 10em;
-    z-index: 1;
 }
 
 .music-player-container {
