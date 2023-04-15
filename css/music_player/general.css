@@ -12,6 +12,7 @@
     padding: 0em 10em;
 }
 
+
 .music-player-container {
     position: relative;
     text-align: center;
@@ -21,7 +22,7 @@
     background-color: #B46060;
     width: 20em;
     color: #FFF4E0;
-    gap: 4em;
+    gap: 2em;
     border-radius: 1em;
     z-index: 1;
 }
@@ -31,10 +32,36 @@
         justify-content: center;
         padding: 0;
         min-width: 25em;
-        top:  calc(8% + 1.5em);
+        top: calc(8% + 1.5em);
     }
 
     .music-player-container {
+        height: 50em;
         width: 25em;
+    }
+}
+
+.slideIn {
+    animation: slideIn 0.55s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+.slideOut {
+    animation: slideOut 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-125%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-125%);
     }
 }
