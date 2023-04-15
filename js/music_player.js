@@ -20,7 +20,7 @@ class MusicButton {
         // Ejecutar las instrucciones deseadas
         this.cursorHasCrossedRight = true; // Actualizar la bandera para evitar ejecución repetida
       } else if (cursorX <= windowWidth / 2 && this.cursorHasCrossedRight) {
-        this.musicPlayerContainer.style.zIndex = "10";
+        this.musicPlayerContainer.style.zIndex = "1";
         // Reiniciar la bandera si el cursor vuelve a la mitad de la pantalla
         this.cursorHasCrossedRight = false;
       }
