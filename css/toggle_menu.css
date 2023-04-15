@@ -10,8 +10,6 @@
     margin: 0 auto 0 auto;
     max-width: 80em;
     padding: 0em 10em;
-
-    z-index: 0;
 }
 
 .toggleMenu-container {
@@ -22,7 +20,6 @@
     color: #FFF4E0;
     gap: 1em;
     border-radius: 1em;
-    z-index: 1;
 }
 
 .upper-text {
