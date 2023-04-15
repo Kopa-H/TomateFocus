@@ -1,3 +1,7 @@
+.central-zone-wrapper * {
+  z-index: 99;
+}
+
 .central-zone-wrapper {
   width: 100%;
 }

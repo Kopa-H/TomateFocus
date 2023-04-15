@@ -1,7 +1,7 @@
 .toggleMenu-flex {
     overflow: hidden;
     display: none;
-    position:absolute;
+    position: absolute;
     align-items: center;
     justify-content: end;
     left: 0;
@@ -10,11 +10,12 @@
     margin: 0 auto 0 auto;
     max-width: 80em;
     padding: 0em 10em;
+
+    z-index: 0;
 }
 
 .toggleMenu-container {
     text-align: center;
-    display: flex;
     flex-direction: column;
     background-color: #B46060;
     width: 20em;
@@ -115,6 +116,10 @@
         min-width: 25em;
         top: calc(8% + 1.5em);
         z-index: 1;
+    }
+
+    .central-zone-wrapper * {
+        z-index: 0;
     }
 
     .toggleMenu-container {
