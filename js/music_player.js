@@ -59,24 +59,31 @@ class VolumeSlider {
     // Se calcula la altura del slider track a partir de la del contenedor:
     this.trackHeight = event.clientY - this.sliderContainer.getBoundingClientRect().top;
 
-    // Si la altura del track es igual a mayor o igual a cero y es menor o igual a la altura del contenedor:
-    if (this.trackHeight >= 20 && this.trackHeight <= this.sliderContainer.offsetHeight - 25) {
-      // Se establece la altura del track:
-      this.sliderTrack.style.height = this.trackHeight + 'px';
-      // Se establece la posición del thumb:
-      this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
-      this.changeVolume();
+    // Se obtiene el límite superior e inferior del slider container:
+    let containerTop = this.sliderContainer.getBoundingClientRect().top;
+    let containerBottom = this.sliderContainer.getBoundingClientRect().bottom;
+
+    // Se valida que la altura del track esté dentro de los límites del slider container:
+    if (this.trackHeight <= containerBottom - containerTop && this.trackHeight >= 0) {
+        // Se establece la altura del track:
+        this.sliderTrack.style.height = this.trackHeight + 'px';
+        // Se establece la posición del thumb:
+        this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
+        this.changeVolume();
     }
   }
 
   changeVolume() {
     // The thumb position is used in order to calculate the volume of the music player.
     let thumbPosition = parseInt(this.sliderThumb.style.top);
-    let volumePercentage = 1 - (thumbPosition / this.trackHeight);
+    // Calcula el porcentaje de la posición del thumb dentro del rango total de desplazamiento del slider
+    let thumbPercentage = thumbPosition / (this.sliderContainer.offsetHeight - this.sliderThumb.offsetHeight);
+    // Calcula el volumen linealmente del máximo al mínimo
+    let volumePercentage = 1 - thumbPercentage;
+    // Asegúrate de que el valor del volumen esté dentro del rango válido (0 a 1)
     volumePercentage = Math.max(0, Math.min(1, volumePercentage));
-
-    // It's not the best resolution, but it works.
-    musicPlayer.songBeingPlayed.volume = volumePercentage - 0.11105499084538162;
+    // Actualiza el volumen del reproductor de música
+    musicPlayer.songBeingPlayed.volume = volumePercentage;
   }
 }
 
