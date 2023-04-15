@@ -14,6 +14,7 @@
     height: 100%;
     border-radius: 100%;
     cursor: pointer;
+    transition: all 0.3s;
 }
 .music-player-play-and-pause-button:hover {
     background-color: #161616;

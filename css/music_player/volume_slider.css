@@ -1,7 +1,7 @@
 .slider-container {
   display: flex;
   width: 20px;
-  height: 40%;
+  height: 200px;
   border-radius: 12px;
   position: absolute;
   right: 4%;

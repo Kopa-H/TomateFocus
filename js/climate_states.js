@@ -28,8 +28,7 @@ class ClimateStates {
           this.fireplaceButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
           this.fireplaceSoundBeingPlayed = false;
-          this.fireplaceSound.pause();
-          this.fireplaceSound2.pause();
+          this.fadeToSilence(this.fireplaceSound, this.fireplaceSound2);
           this.fireplaceButton.style.backgroundColor = "gray";
         }
       });
@@ -41,8 +40,7 @@ class ClimateStates {
           this.rainButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
           this.rainSoundBeingPlayed = false;
-          this.rainSound.pause();
-          this.rainSound2.pause();
+          this.fadeToSilence(this.rainSound, this.rainSound2);
           this.rainButton.style.backgroundColor = "gray";
         }
       });
@@ -54,12 +52,27 @@ class ClimateStates {
           this.forestButton.style.backgroundColor = "rgb(125, 45, 126)";
         } else {
           this.forestSoundBeingPlayed = false;
-          this.forestSound.pause();
-          this.forestSound2.pause();
+          this.fadeToSilence(this.forestSound, this.forestSound2);
           this.forestButton.style.backgroundColor = "gray";
         }
       });
     };
+
+    // Método para realizar la transición de volumen gradual hasta 0
+    fadeToSilence(audioElement, audioElement2) {
+      const fadeOutInterval = setInterval(() => {
+        const volume = audioElement.volume - 0.05; // Disminuir el volumen en 0.05 cada intervalo
+        // Mientras el volumen sea igual o superior a 0:
+        if (volume >= 0) {
+          audioElement.volume = volume;
+          audioElement2.volume = volume; // Establecer el nuevo volumen
+        } else {
+          // Cuando el volumen llega a 0, detener el intervalo y pausar el audio
+          clearInterval(fadeOutInterval);
+          audioElement.pause();
+        }
+      }, 100); // Intervalo de tiempo para la transición en milisegundos (200ms = 0.2s)
+    }
 
     playFireplaceInLoop() {
       // Entrada del efecto suave:
@@ -68,6 +81,7 @@ class ClimateStates {
         if (this.fireplaceSoundBeingPlayed && this.fireplaceSound.volume <= 0.9) {
           this.fireplaceSound.volume += 0.1;
           this.fireplaceSound.volume = parseFloat(this.fireplaceSound.volume.toFixed(1)); // Redondea a 1 decimal
+          this.fireplaceSound2.volume = this.fireplaceSound.volume;
           if (this.fireplaceSound.volume >= 1) {
             clearInterval(volumeIncreaseInterval);
           }
@@ -99,6 +113,7 @@ class ClimateStates {
         if (this.rainSoundBeingPlayed && this.rainSound.volume <= 0.9) {
           this.rainSound.volume += 0.1;
           this.rainSound.volume = parseFloat(this.rainSound.volume.toFixed(1)); // Redondea a 1 decimal
+          this.rainSound2.volume = this.rainSound.volume;
           if (this.rainSound.volume >= 1) {
             clearInterval(volumeIncreaseInterval);
           }
@@ -130,6 +145,7 @@ class ClimateStates {
         if (this.forestSoundBeingPlayed && this.forestSound.volume <= 0.9) {
           this.forestSound.volume += 0.1;
           this.forestSound.volume = parseFloat(this.forestSound.volume.toFixed(1)); // Redondea a 1 decimal
+          this.forestSound2.volume = this.forestSound.volume;
           if (this.forestSound.volume >= 1) {
             clearInterval(volumeIncreaseInterval);
           }
