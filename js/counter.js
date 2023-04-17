@@ -124,7 +124,6 @@ class LogicHandler {
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
         counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
-
     }
 
     showPlayButton() {
@@ -150,7 +149,6 @@ class LogicHandler {
 
     stopCounter() {
         this.appIsRunning = false;
-        console.log("The counter stops!")
 
         // agregar eventListeners usando las funciones de listener
         this.pauseButton.removeEventListener("click", this.stopCounterListener);
@@ -174,8 +172,6 @@ class LogicHandler {
 
         // Se quita el efecto de mostrar el botón de pausa solo cuando se reactiva el contador. Luego se reintroduce el event en el intervalo.
         this.timeElapsed.removeEventListener("mouseover", this.showPauseButtonListener);
-
-        console.log("The counter starts again!")
     }
 
     runDefaultItinerary() {
@@ -225,7 +221,6 @@ class LogicHandler {
                 if (!(this.timeElapsed && this.timeElapsed.mouseover)) {
                     this.timeElapsed.addEventListener("mouseover", this.showPauseButtonListener);
                 }
-
                 counter.updateCounter();
                 circleAnimation.updateProgress();
             }
@@ -233,21 +228,16 @@ class LogicHandler {
     }
 
     changeTimeElapse(timerType, time) {
-        console.log(`timerType: ${timerType}, time: ${time}`)
         if (timerType === "pomodoro") {
-            console.log("pomo time changed");
             this.pomodoroTimeToElapse = time;
         }
         else if (timerType === "shortbreak") {
-            console.log("sb time changed");
             this.shortbreakTimeToElapse = time;
         }
         else if (timerType === "longbreak") {
-            console.log("lb time changed");
             this.longbreakTimeToElapse = time;
         }
         else {
-            console.log("db time changed");
             this.timeToDelay = time*60;
             // Se muestra el tiempo de delay en la descripción del botón:
             counter.delayCycleChangeDescription.innerHTML = `Add ${this.timeToDelay/60}' of extra break!`;
@@ -282,7 +272,6 @@ class Counter {
                 this.seconds = 0;
                 logicHandler.timeToElapse = this.minutes*60 + this.seconds
                 this.updateCounter();
-                console.log("Se ha reestablecido el tiempo inicial")
             }
         });
 
