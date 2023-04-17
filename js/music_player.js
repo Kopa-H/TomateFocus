@@ -16,11 +16,11 @@ class MusicButton {
       const windowWidth = window.innerWidth;
       // Verificar si el cursor ha cruzado la mitad de la ventana hacia la derecha
       if (cursorX > windowWidth / 2 && !this.cursorHasCrossedRight) {
-        this.musicPlayerContainer.style.zIndex = "0";
+        this.musicPlayerContainer.style.zIndex = "1";
         // Ejecutar las instrucciones deseadas
         this.cursorHasCrossedRight = true; // Actualizar la bandera para evitar ejecución repetida
       } else if (cursorX <= windowWidth / 2 && this.cursorHasCrossedRight) {
-        this.musicPlayerContainer.style.zIndex = "1";
+        this.musicPlayerContainer.style.zIndex = "2";
         // Reiniciar la bandera si el cursor vuelve a la mitad de la pantalla
         this.cursorHasCrossedRight = false;
       }

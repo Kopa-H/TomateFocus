@@ -66,8 +66,8 @@ class LogicHandler {
         this.longbreakTimeToElapse = 600;
         this.delaybreakTimeToElapse = 300;
 
-        // Minutos que se aplicarán de Delay:
-        this.timeToDelay = 5;
+        // Segundos que se aplicarán de Delay:
+        this.timeToDelay = 300;
     }
 
     startCounter() {
@@ -248,9 +248,9 @@ class LogicHandler {
         }
         else {
             console.log("db time changed");
-            this.timeToDelay = time;
+            this.timeToDelay = time*60;
             // Se muestra el tiempo de delay en la descripción del botón:
-            counter.delayCycleChangeDescription.innerHTML = `Add ${this.timeToDelay}' of extra break!`;
+            counter.delayCycleChangeDescription.innerHTML = `Add ${this.timeToDelay/60}' of extra break!`;
         }
     }
 }
@@ -272,13 +272,17 @@ class Counter {
         this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
-            if (this.seconds != 0 && this.minutes != 0) {
-                this.minutes += logicHandler.timeToDelay;
-                if (this.minutes >= 60) {
-                    this.minutes = 60;
-                    this.seconds = 0;
-                }
+            if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
+                this.minutes += logicHandler.timeToDelay/60;
+                logicHandler.timeToElapse = this.minutes*60 + this.seconds
                 this.updateCounter();
+            // Si el tiempo a añadir supera el tiempo original del ciclo:
+            } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
+                this.minutes = logicHandler.initialTimeToElapse/60;
+                this.seconds = 0;
+                logicHandler.timeToElapse = this.minutes*60 + this.seconds
+                this.updateCounter();
+                console.log("Se ha reestablecido el tiempo inicial")
             }
         });
 
@@ -309,7 +313,6 @@ class Counter {
 
 class CircleAnimation {
     constructor() {
-
         // Se extrae el elemento HTML:
         this.circle = document.querySelector(".circle-progress");
 
@@ -335,6 +338,10 @@ class CircleAnimation {
 
         // Resta 1 segundo del tiempo restante del ciclo.
         logicHandler.timeToElapse -= 1;
+    }
+
+    recalibrateAnimationProgress() {
+
     }
 }
 
