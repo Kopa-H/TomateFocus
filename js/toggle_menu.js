@@ -92,7 +92,7 @@ delayMinus.addEventListener("click", function () {
 delayPlus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".delay-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue < 20) {
+    if (textMinutesValue < 5) {
         textMinutes.textContent = `${++textMinutesValue} minutes`
         callChangeDuration("delaybreak", textMinutesValue)
     };
@@ -116,5 +116,5 @@ function resetPreferences() {
     pomodoroMinutes.textContent = `${25} minutes`;
     shortMinutes.textContent = `${5} minutes`;
     longMinutes.textContent = `${15} minutes`;
-    delayMinutes.textContent = `${5} minutes`;
+    delayMinutes.textContent = `${1} minutes`;
 };

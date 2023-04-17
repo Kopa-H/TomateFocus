@@ -41,7 +41,6 @@ class LogicHandler {
             this.hidePauseButton();
         };
 
-        // agregar eventListeners usando las funciones de listener
         this.playButton = document.querySelector('.play-button');
         this.playButton.addEventListener("click", this.startCounterListener);
 
@@ -64,10 +63,10 @@ class LogicHandler {
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
         this.longbreakTimeToElapse = 600;
-        this.delaybreakTimeToElapse = 300;
+        this.delaybreakTimeToElapse = 60;
 
         // Segundos que se aplicarán de Delay:
-        this.timeToDelay = 300;
+        this.timeToDelay = 60;
     }
 
     startCounter() {
@@ -90,7 +89,7 @@ class LogicHandler {
 
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Break";
-        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra work!"
+        counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra work!"
     }
 
     runShortBreak() {
@@ -105,7 +104,7 @@ class LogicHandler {
 
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
+        counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
     }
 
     runLongBreak() {
@@ -120,7 +119,7 @@ class LogicHandler {
 
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleChangeDescription.innerHTML = "Add 5' of extra break!"
+        counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
     }
 
     showPlayButton() {
@@ -174,6 +173,7 @@ class LogicHandler {
     runDefaultItinerary() {
         this.isRunningDefaultItinerary = true;
         this.itineraryList = [
+            this.runShortBreakFunction,
             this.runPomodoroFunction,
             this.runShortBreakFunction,
             this.runPomodoroFunction,
@@ -184,18 +184,25 @@ class LogicHandler {
     }
 
     runNextCycle() {
-        // If the itinerary has not been finished:
         if (this.itineraryListIndex < this.itineraryList.length) {
-            // The following cycle is executed:
             let currentFunction = this.itineraryList[this.itineraryListIndex];
-            currentFunction();
 
-            // The itinerary list index is updated:
-            this.itineraryListIndex ++
+            if (this.itineraryListIndex >= 1) {
+                audioHandler.clockAlarmSound.play();
+                // Se espera X segundos:
+                setTimeout(() => {
+                    currentFunction();
+                    circleAnimation.updateProgress();
+                    this.itineraryListIndex++;
+                }, 3000);
+
+            } else {
+                audioHandler.clockStartSound.play();
+                currentFunction();
+                this.itineraryListIndex++;
+            }
         } else {
-            // Reset count?
-            this.itineraryListIndex = 0
-            this.runNextCycle()
+            console.log("La sesión de estudio ha concluido!");
         }
     }
 
@@ -344,11 +351,22 @@ class ThemeColor {
     }
 }
 
+class AudioHandler {
+    constructor() {
+        this.clockAlarmSound = document.querySelector('.clock-alarm-sound');
+        this.clockAlarmSound.volume = 0.5;
+
+        this.clockStartSound = document.querySelector('.clock-start-sound');
+        this.clockStartSound.volume = 0.5;
+    }
+}
+
 // Se crea un objeto de la clase Counter:
 const logicHandler = new LogicHandler();
 const counter = new Counter();
 const circleAnimation = new CircleAnimation();
 const themeColor = new ThemeColor();
+const audioHandler = new AudioHandler();
 
 logicHandler.runDefaultItinerary();
 logicHandler.runApp();
