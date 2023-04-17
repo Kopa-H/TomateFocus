@@ -10,6 +10,7 @@
     margin: 0 auto 0 auto;
     max-width: 80em;
     padding: 0em 10em;
+    z-index: 1;
 }
 
 .toggleMenu-container {
@@ -112,11 +113,7 @@
         padding: 0;
         min-width: 25em;
         top: calc(8% + 1.5em);
-        z-index: 1;
-    }
-
-    .central-zone-wrapper * {
-        z-index: 0;
+        z-index: 2;
     }
 
     .toggleMenu-container {

@@ -34,10 +34,6 @@
         z-index: 1;
     }
 
-    .central-zone-wrapper * {
-        z-index: 0;
-    }
-
     .music-player-container {
         height: 50em;
         width: 25em;

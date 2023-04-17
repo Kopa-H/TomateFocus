@@ -137,3 +137,9 @@
   opacity: 0;
   transition: opacity 0.2s;
 }
+
+@media screen and (max-width: 1375px) {
+  .central-zone-wrapper * {
+    z-index: 0;
+  }
+}
