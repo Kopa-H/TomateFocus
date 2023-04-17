@@ -173,7 +173,6 @@ class LogicHandler {
     runDefaultItinerary() {
         this.isRunningDefaultItinerary = true;
         this.itineraryList = [
-            this.runShortBreakFunction,
             this.runPomodoroFunction,
             this.runShortBreakFunction,
             this.runPomodoroFunction,
