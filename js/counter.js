@@ -1,6 +1,7 @@
 class LogicHandler {
     constructor() {
         this.initialTimeToElapse = 0;
+        this.timeToElapse = 0;
 
         this.runPomodoroFunction = () => {
             this.runPomodoro();
@@ -12,7 +13,6 @@ class LogicHandler {
             this.runLongBreak();
         };
 
-        // definir funciones de listener por separado
         this.startCounterListener = () => {
             this.startCounter();
         };
@@ -81,11 +81,10 @@ class LogicHandler {
     runPomodoro() {
         this.initialTimeToElapse = this.pomodoroTimeToElapse;
         this.timeToElapse = this.initialTimeToElapse;
-        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
-        counter.minutes = Math.floor(this.timeToElapse / 60);
-        counter.seconds = this.timeToElapse % 60;
+        counter.minutes = Math.floor(this.pomodoroTimeToElapse / 60);
+        counter.seconds = this.pomodoroTimeToElapse % 60;
 
         themeColor.changeToPomodoro();
 
@@ -97,11 +96,10 @@ class LogicHandler {
     runShortBreak() {
         this.initialTimeToElapse = this.shortbreakTimeToElapse;
         this.timeToElapse = this.initialTimeToElapse;
-        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
-        counter.minutes = Math.floor(this.timeToElapse / 60);
-        counter.seconds = this.timeToElapse % 60;
+        counter.minutes = Math.floor(this.shortbreakTimeToElapse / 60);
+        counter.seconds = this.shortbreakTimeToElapse % 60;
 
         themeColor.changeToShortBreak();
 
@@ -113,11 +111,10 @@ class LogicHandler {
     runLongBreak() {
         this.initialTimeToElapse = this.longbreakTimeToElapse;
         this.timeToElapse = this.initialTimeToElapse;
-        counter.totalTimeLeft = this.initialTimeToElapse;
 
         // Se reinicia el contador:
-        counter.minutes = Math.floor(this.timeToElapse / 60);
-        counter.seconds = this.timeToElapse % 60;
+        counter.minutes = Math.floor(this.longbreakTimeToElapse / 60);
+        counter.seconds = this.longbreakTimeToElapse % 60;
 
         themeColor.changeToLongBreak();
 
@@ -207,15 +204,10 @@ class LogicHandler {
         this.showPlayButton()
 
         setInterval(() => {
-
             if (this.appIsRunning == true) {
-                // If the time of the counter ends:
-                if (counter.totalTimeLeft == 0) {
-
-                    // If the default itinerary is running, the next cycle is executed:
-                    if (this.isRunningDefaultItinerary == true) {
-                        this.runNextCycle()
-                    }
+                // If the time of the counter ends and If the default itinerary is running, the next cycle is executed:
+                if (logicHandler.timeToElapse <= 0 && this.isRunningDefaultItinerary == true) {
+                    this.runNextCycle()
                 }
                 // Se reintroduce el eventListener de mostrar el botón de pausa:
                 if (!(this.timeElapsed && this.timeElapsed.mouseover)) {
@@ -274,8 +266,6 @@ class Counter {
                 this.updateCounter();
             }
         });
-
-        this.totalTimeLeft = 0;
     }
 
     showCurrentTime() {
@@ -292,10 +282,10 @@ class Counter {
         if (this.seconds == 0 && this.minutes != 0) {
             this.minutes -= 1;
             this.seconds = 59;
-            this.totalTimeLeft --
+            logicHandler.timeToElapse --
         } else if (this.seconds != 0) {
             this.seconds -= 1;
-            this.totalTimeLeft --
+            logicHandler.timeToElapse --
         }
     }
 }
@@ -324,13 +314,6 @@ class CircleAnimation {
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
         this.circle.style.strokeDashoffset = this.offset;
-
-        // Resta 1 segundo del tiempo restante del ciclo.
-        logicHandler.timeToElapse -= 1;
-    }
-
-    recalibrateAnimationProgress() {
-
     }
 }
 
