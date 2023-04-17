@@ -34,8 +34,6 @@ class MusicButton {
       this.musicPlayerContainer.classList.add("slideIn");
       this.musicPlayerContainer.style.display = "flex";
       this.musicPlayerIsShown = true;
-
-      console.log("El reproductor de música ha sido desplegado!")
     }
     // Verificar si el reproductor SÍ está desplegado (clase slideIn aplicada)
     else {
@@ -44,11 +42,8 @@ class MusicButton {
 
       this.musicPlayerContainer.addEventListener("animationend", () => {
         this.musicPlayerContainer.style.display = "none";
+        this.musicPlayerIsShown = false;
       }, { once: true });
-
-      this.musicPlayerIsShown = false;
-
-      console.log("El reproductor de música ha sido escondido!")
     }
   };
 }
