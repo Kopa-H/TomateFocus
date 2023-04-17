@@ -185,7 +185,7 @@ class LogicHandler {
 
     runNextCycle() {
         // If the itinerary has not been finished:
-        if (this.itineraryListIndex < this.itineraryList.length - 1) {
+        if (this.itineraryListIndex < this.itineraryList.length) {
             // The following cycle is executed:
             let currentFunction = this.itineraryList[this.itineraryListIndex];
             currentFunction();
