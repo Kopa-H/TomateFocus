@@ -260,16 +260,18 @@ class Counter {
         this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
-            if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
-                this.minutes += logicHandler.timeToDelay/60;
-                logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                this.updateCounter();
-            // Si el tiempo a añadir supera el tiempo original del ciclo:
-            } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
-                this.minutes = logicHandler.initialTimeToElapse/60;
-                this.seconds = 0;
-                logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                this.updateCounter();
+            if (logicHandler.timeToElapse >= 1) {
+                if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
+                    this.minutes += logicHandler.timeToDelay/60;
+                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
+                    this.updateCounter();
+                // Si el tiempo a añadir supera el tiempo original del ciclo:
+                } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
+                    this.minutes = logicHandler.initialTimeToElapse/60;
+                    this.seconds = 0;
+                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
+                    this.updateCounter();
+                }
             }
         });
     }
