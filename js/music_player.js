@@ -100,15 +100,15 @@ class VolumeSlider {
 
   changeVolume() {
     // The thumb position is used in order to calculate the volume of the music player.
-    let thumbPosition = parseInt(this.sliderThumb.style.top);
+    this.thumbPosition = parseInt(this.sliderThumb.style.top);
     // Calcula el porcentaje de la posición del thumb dentro del rango total de desplazamiento del slider
-    let thumbPercentage = thumbPosition / (this.sliderContainer.offsetHeight - this.sliderThumb.offsetHeight);
+    this.thumbPercentage = this.thumbPosition / (this.sliderContainer.offsetHeight - this.sliderThumb.offsetHeight);
     // Calcula el volumen linealmente del máximo al mínimo
-    let volumePercentage = 1 - thumbPercentage;
+    this.volumePercentage = 1 - this.thumbPercentage;
     // Asegúrate de que el valor del volumen esté dentro del rango válido (0 a 1)
-    volumePercentage = Math.max(0, Math.min(1, volumePercentage));
+    this.volumePercentage = Math.max(0, Math.min(1, this.volumePercentage));
     // Actualiza el volumen del reproductor de música
-    musicPlayer.songBeingPlayed.volume = volumePercentage;
+    musicPlayer.songBeingPlayed.volume = this.volumePercentage;
   }
 }
 
@@ -189,21 +189,21 @@ class MusicPlayer {
           setTimeout(() => {
             // Viejo
             this.lastImageBeingDisplayed.style.opacity = `${0.5 - i * this.opacityStep}`;
-            this.lastSongBeingPlayed.volume = Math.min(Math.max(0, 0.4 - i * this.volumeStep), 1);
+            this.lastSongBeingPlayed.volume = Math.min(Math.max(0, 0.4 - i * this.volumeStep), volumeSlider.volumePercentage);
 
             // Nuevo
             this.imageBeingDisplayed.style.opacity = `${0.5 + i * this.opacityStep}`;
-            this.songBeingPlayed.volume = Math.min(Math.max(0, 0.5 + i * this.volumeStep), 1);
+            this.songBeingPlayed.volume = Math.min(Math.max(0, 0.5 + i * this.volumeStep), volumeSlider.volumePercentage);
 
             // Si la transición se ha completado o hay transiciones superpuestas:
             if (i === this.steps || this.overlappingTransition) {
               this.lastImageBeingDisplayed.style.opacity = "0";
               this.lastSongBeingPlayed.volume = "0";
               this.imageBeingDisplayed.style.opacity = "1";
-              this.songBeingPlayed.volume = "1";
+              this.songBeingPlayed.volume = volumeSlider.volumePercentage;
 
               // Se detiene la canción que sonaba hasta ahora:
-              this.lastSongBeingPlayed.volume = 1;
+              this.lastSongBeingPlayed.volume = volumeSlider.volumePercentage;
               this.lastSongBeingPlayed.pause();
               this.lastSongBeingPlayed.currentTime = 0;
 
