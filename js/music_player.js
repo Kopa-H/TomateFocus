@@ -114,67 +114,79 @@ class VolumeSlider {
 
 class MusicPlayer {
     constructor() {
-        this.song1 = document.querySelector(".music-player-song-1");
-        this.song2 = document.querySelector(".music-player-song-2");
-        this.song3 = document.querySelector(".music-player-song-3");
-        this.song4 = document.querySelector(".music-player-song-4");
-        this.songsList = [this.song1, this.song2, this.song3, this.song4];
-        this.songBeingPlayed = this.songsList[0];
-        this.songIsPlaying = false;
+      this.song1 = document.querySelector(".music-player-song-1");
+      this.song2 = document.querySelector(".music-player-song-2");
+      this.song3 = document.querySelector(".music-player-song-3");
+      this.song4 = document.querySelector(".music-player-song-4");
+      this.songsList = [this.song1, this.song2, this.song3, this.song4];
+      this.songBeingPlayed = this.songsList[0];
+      this.songIsPlaying = false;
 
-        for (var i = 0; i < this.songsList.length; i++) {
-          this.songsList[i].addEventListener('ended', (event) => {
-            this.changeToNextSong();
-          });
+      for (var i = 0; i < this.songsList.length; i++) {
+        this.songsList[i].addEventListener('ended', (event) => {
+          this.changeToNextSong();
+        });
+      }
+
+      this.image1 = document.querySelector(".airballon-background-image");
+      this.image2 = document.querySelector(".colors-background-image");
+      this.image3 = document.querySelector(".colors2-background-image");
+      this.image4 = document.querySelector(".colors3-background-image");
+      this.image5 = document.querySelector(".dragon-background-image");
+      this.image6 = document.querySelector(".temple-background-image");
+      this.imagesList = [this.image1, this.image2, this.image3, this.image4];
+      this.imageBeingDisplayed = this.imagesList[0];
+
+      this.playButton = document.querySelector(".music-player-play-button");
+      this.pauseButton = document.querySelector(".music-player-pause-button");
+      this.pauseButton.classList.add("hidden");
+      this.pauseButton.style.zIndex = "0";
+      this.nextSongButton = document.querySelector(".music-next-song-button");
+      this.previousSongButton = document.querySelector(".music-previous-song-button");
+
+      // EventListener del playButton y pauseButton
+      this.togglePlayPause = () => {
+        if (!this.songIsPlaying) {
+            this.songBeingPlayed.play();
+            this.songIsPlaying = true;
+            this.pauseButton.classList.remove("hidden");
+            this.pauseButton.style.zIndex = "1";
+            this.playButton.classList.add("hidden");
+        } else {
+            this.songBeingPlayed.pause();
+            this.songIsPlaying = false;
+            this.playButton.classList.remove("hidden");
+            this.pauseButton.classList.add("hidden");
+            this.pauseButton.style.zIndex = "0";
         }
+      };
+      // Asignar el evento al botón de reproducción
+      this.playButton.addEventListener('click', this.togglePlayPause);
+      // Asignar el mismo evento al botón de pausa
+      this.pauseButton.addEventListener('click', this.togglePlayPause);
 
-        this.image1 = document.querySelector(".airballon-background-image");
-        this.image2 = document.querySelector(".colors-background-image");
-        this.image3 = document.querySelector(".colors2-background-image");
-        this.image4 = document.querySelector(".colors3-background-image");
-        this.image5 = document.querySelector(".dragon-background-image");
-        this.image6 = document.querySelector(".temple-background-image");
-        this.imagesList = [this.image1, this.image2, this.image3, this.image4];
-        this.imageBeingDisplayed = this.imagesList[0];
+      // Para que al terminarse una canción suene la siguiente: (habrá que ver si esto se mantiene más allá de la primera)
+      this.songBeingPlayed.addEventListener('ended', () => {
+        this.changeToNextSong();
+      });
 
-        this.playButton = document.querySelector(".music-player-play-and-pause-button");
-        this.nextSongButton = document.querySelector(".music-next-song-button");
-        this.previousSongButton = document.querySelector(".music-previous-song-button");
+      this.nextSongButton.addEventListener('click', () => {
+        this.changeToNextSong();
+      });
 
-        this.playButton.addEventListener('click', () => {
-            if (!this.songIsPlaying) {
-              console.log("The song starts!");
-              this.songBeingPlayed.play();
-              this.songIsPlaying = true;
-            } else {
-              console.log("The song stops!");
-              this.songBeingPlayed.pause();
-              this.songIsPlaying = false;
-            }
-        });
+      this.previousSongButton.addEventListener('click', () => {
+        this.changeToPreviousSong();
+      });
 
-        // Para que al terminarse una canción suene la siguiente: (habrá que ver si esto se mantiene más allá de la primera)
-        this.songBeingPlayed.addEventListener('ended', () => {
-          this.changeToNextSong();
-        });
+      // Para las transiciones entre canciones:
+      this.transitionTime = 5000; // Duración total de la transición en milisegundos
+      this.intervalTime = 50; // Intervalo de tiempo entre cada iteración en milisegundos
+      this.steps = this.transitionTime / this.intervalTime; // Número de iteraciones necesarias para completar la transición
+      this.opacityStep = 0.6 / this.steps; // Cambio en la opacidad en cada iteración
+      this.volumeStep = 0.6 / this.steps; // Cambio en el volumen en cada iteración
 
-        this.nextSongButton.addEventListener('click', () => {
-          this.changeToNextSong();
-        });
-
-        this.previousSongButton.addEventListener('click', () => {
-          this.changeToPreviousSong();
-        });
-
-        // Para las transiciones entre canciones:
-        this.transitionTime = 5000; // Duración total de la transición en milisegundos
-        this.intervalTime = 50; // Intervalo de tiempo entre cada iteración en milisegundos
-        this.steps = this.transitionTime / this.intervalTime; // Número de iteraciones necesarias para completar la transición
-        this.opacityStep = 0.6 / this.steps; // Cambio en la opacidad en cada iteración
-        this.volumeStep = 0.6 / this.steps; // Cambio en el volumen en cada iteración
-
-        this.transitionIsExecuting = false;
-        this.overlappingTransition = false;
+      this.transitionIsExecuting = false;
+      this.overlappingTransition = false;
     }
 
     playSong() {

@@ -290,7 +290,6 @@ class Counter {
         // Se usa la función toString() para convertir los valores numéricos de this.minutes y this.seconds en cadenas de texto.
         // Luego, se utiliza el método padStart() para asegurarse de que cada cadena tenga una longitud de dos caracteres, añadiendo un cero a la izquierda si es necesario.
         this.counter.innerHTML = `${this.minutes.toString().padStart(2, "0")}:${this.seconds.toString().padStart(2, "0")}`;
-
         document.title = `${this.minutes.toString().padStart(2, "0")}:${this.seconds.toString().padStart(2, "0")} left - ${logicHandler.currentCycleRunning}`;
     }
 
