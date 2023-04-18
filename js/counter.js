@@ -59,6 +59,8 @@ class LogicHandler {
         // This variable will control if the counter is running:
         this.appIsRunning = false;
 
+        this.currentCycleRunning = "none";
+
         // Create and pre define time variables for each type of timer
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
@@ -90,6 +92,8 @@ class LogicHandler {
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Break";
         counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra work!"
+
+        this.currentCycleRunning = "Pomodoro";
     }
 
     runShortBreak() {
@@ -105,6 +109,8 @@ class LogicHandler {
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
         counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
+
+        this.currentCycleRunning = "ShortBreak";
     }
 
     runLongBreak() {
@@ -120,6 +126,8 @@ class LogicHandler {
         // The text of the delay cycle button changes:
         counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
         counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
+
+        this.currentCycleRunning = "LongBreak";
     }
 
     showPlayButton() {
@@ -260,16 +268,20 @@ class Counter {
         this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
         this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
         this.delayCycleChangeButton.addEventListener('click', () => {
-            if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
-                this.minutes += logicHandler.timeToDelay/60;
-                logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                this.updateCounter();
-            // Si el tiempo a añadir supera el tiempo original del ciclo:
-            } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
-                this.minutes = logicHandler.initialTimeToElapse/60;
-                this.seconds = 0;
-                logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                this.updateCounter();
+            if (logicHandler.timeToElapse >= 1) {
+                if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
+                    this.minutes += logicHandler.timeToDelay/60;
+                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
+                    this.updateCounter();
+                    circleAnimation.updateProgress();
+                // Si el tiempo a añadir supera el tiempo original del ciclo:
+                } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
+                    this.minutes = logicHandler.initialTimeToElapse/60;
+                    this.seconds = 0;
+                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
+                    this.updateCounter();
+                    circleAnimation.updateProgress();
+                }
             }
         });
     }
@@ -278,6 +290,8 @@ class Counter {
         // Se usa la función toString() para convertir los valores numéricos de this.minutes y this.seconds en cadenas de texto.
         // Luego, se utiliza el método padStart() para asegurarse de que cada cadena tenga una longitud de dos caracteres, añadiendo un cero a la izquierda si es necesario.
         this.counter.innerHTML = `${this.minutes.toString().padStart(2, "0")}:${this.seconds.toString().padStart(2, "0")}`;
+
+        document.title = `${this.minutes.toString().padStart(2, "0")}:${this.seconds.toString().padStart(2, "0")} left - ${logicHandler.currentCycleRunning}`;
     }
 
     updateCounter() {
