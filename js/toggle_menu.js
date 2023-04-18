@@ -36,7 +36,7 @@ pomoMinus.addEventListener('click', function () {
     let textMinutes = document.querySelector(".pomodoro .menu-text")
     // the match(/\d+/g) is a regex. It matches numbers
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 1) {
+    if (textMinutesValue > 10) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
         callChangeDuration("pomodoro", textMinutesValue*60)
     }
@@ -68,7 +68,7 @@ shortPlus.addEventListener("click", function () {
 longMinus.addEventListener("click", function () {
     let textMinutes = document.querySelector(".long-break .menu-text")
     let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 1) {
+    if (textMinutesValue > 5) {
         textMinutes.textContent = `${--textMinutesValue} minutes`
         callChangeDuration("longbreak", textMinutesValue*60)
     };
