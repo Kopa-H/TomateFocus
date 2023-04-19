@@ -131,23 +131,27 @@ class LogicHandler {
     }
 
     showPlayButton() {
+        this.pauseButton.classList.remove("visible");
         this.playButton.classList.add("visible");
         this.playButton.style.display = "block"
     }
 
     hidePlayButton() {
         this.playButton.classList.remove("visible");
+        this.pauseButton.classList.add("visible");
     }
 
     showPauseButton() {
-        if (this.appIsRunning == true) {
+        if (this.appIsRunning) {
             this.pauseButton.classList.add("visible");
+            this.playButton.classList.remove("visible");
         }
     }
 
     hidePauseButton() {
-        if (this.appIsRunning == true) {
+        if (this.appIsRunning) {
             this.pauseButton.classList.remove("visible");
+            this.playButton.classList.add("visible");
         }
     }
 
