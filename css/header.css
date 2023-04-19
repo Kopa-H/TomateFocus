@@ -10,7 +10,7 @@
 }
 
 .line {
-  border-bottom: solid #b46060 5px;
+  border-bottom: solid #b15353 5px;
   width: 100%;
 }
 
@@ -39,8 +39,10 @@
 
 .title {
   margin: 0;
-  color: #FFF4E0;
+  font-family: Georgia, serif;
+  color: #fffffff1;
   font-size: 30px;
+  letter-spacing: 1px;
 
   cursor: pointer;
 }

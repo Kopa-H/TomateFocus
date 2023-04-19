@@ -38,7 +38,7 @@
 
 .circle-progress {
   fill: none;
-  stroke: #B46060;
+  stroke: #b15353;
   stroke-width: 16;
 
   transition: stroke-dashoffset 1s linear;
@@ -99,7 +99,7 @@
 .number-pomos {
   font-size: 20px;
   font-weight: 700;
-  color: #FFF4E0;
+  color: #ffffff;
 }
 
 .delay-cycle-change-button {
@@ -110,17 +110,18 @@
   padding: 10px 30px;
   border-radius: 7px;
   border: 0px;
-  color: #FFF4E0;
-  background-color: #B46060;
+  color: #ffffff;
+  background-color: #b15353;
   cursor: pointer;
 
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 .delay-cycle-change-button:hover {
-  background-color: #bc6161;
+  background-color: #b85c5c;
 }
 .delay-cycle-change-button:active {
-  background-color: #d66f6f;
+  background-color: #ad6464;
+  transform: translate(-0.5px, -0.5px);
 }
 
 .delay-cycle-change-description {
