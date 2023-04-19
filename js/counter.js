@@ -341,25 +341,46 @@ class ThemeColor {
         // Se accede a los diferentes elementos HTML:
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
-        this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
+        this.delayCycleChangeButton = document.querySelector(".delay-cycle-change-button");
+        this.toggleMenuContainer = document.querySelector(".toggleMenu-container");
+        this.musicPlayerContainer = document.querySelector(".music-player-container");
+
+        this.defaultColor = "#B15353";
+        this.pomodoroColor = "#CB3333";
+        this.shortbreakColor = "#337DCB";
+        this.longbreakColor = "#8133CB";
+    }
+
+    changeToDefault() {
+        this.line.style.borderBottomColor = this.defaultColor;
+        this.circle.style.stroke = this.defaultColor;
+        this.delayCycleChangeButton.style.backgroundColor = this.defaultColor;
+        this.toggleMenuContainer.style.backgroundColor = this.defaultColor;
+        this.musicPlayerContainer.style.backgroundColor = this.defaultColor;
     }
 
     changeToPomodoro() {
-        this.line.style.borderBottomColor = "red";
-        this.circle.style.stroke = "red";
-        this.delayCycleChangeButton.style.backgroundColor = "red";
+        this.line.style.borderBottomColor = this.pomodoroColor;
+        this.circle.style.stroke = this.pomodoroColor;
+        this.delayCycleChangeButton.style.backgroundColor = this.pomodoroColor;
+        this.toggleMenuContainer.style.backgroundColor = this.pomodoroColor;
+        this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
     }
 
     changeToShortBreak() {
-        this.line.style.borderBottomColor = "blue";
-        this.circle.style.stroke = "blue";
-        this.delayCycleChangeButton.style.backgroundColor = "blue";
+        this.line.style.borderBottomColor = this.shortbreakColor;
+        this.circle.style.stroke = this.shortbreakColor;
+        this.delayCycleChangeButton.style.backgroundColor = this.shortbreakColor;
+        this.toggleMenuContainer.style.backgroundColor = this.shortbreakColor;
+        this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
     }
 
     changeToLongBreak() {
-        this.line.style.borderBottomColor = "purple";
-        this.circle.style.stroke = "purple";
-        this.delayCycleChangeButton.style.backgroundColor = "purple";
+        this.line.style.borderBottomColor = this.longbreakColor;
+        this.circle.style.stroke = this.longbreakColor;
+        this.delayCycleChangeButton.style.backgroundColor = this.longbreakColor;
+        this.toggleMenuContainer.style.backgroundColor = this.longbreakColor;
+        this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
     }
 }
 
