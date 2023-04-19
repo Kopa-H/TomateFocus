@@ -39,16 +39,14 @@
     font-size: 30px;
     color: #B46060;
     margin-left: 5%;
-    background-color: black;
     font-size: 200%;
-    transform: rotate(180deg);
 }
 .music-previous-song-button:hover {
     background-color: #161616;
 }
 .music-previous-song-button:active {
     background-color: #2a2a2a;
-    transform: rotate(180deg) translate(-0.5px, -0.5px);
+    transform: translate(-0.5px, -0.5px);
 }
 
 .music-next-song-button {
@@ -59,7 +57,6 @@
     font-size: 30px;
     color: #B46060;
     margin-right: 5%;
-    background-color: black;
     font-size: 200%;
     transition: opacity 0.2s ease-in-out;
 }
