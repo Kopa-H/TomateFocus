@@ -32,9 +32,19 @@
 }
 
 .music-icon {
-  width: 35.5px;
+  width: 45.5px;
   cursor: pointer;
   min-width: 40px;
+  border-radius: 100%;
+  padding: 5px;
+  transition: background-color 0.3s;
+}
+.music-icon:hover {
+  background-color: #ffffffb5;
+}
+.music-icon:active {
+  background-color: #ffffff8b;
+  transform: translate(-0.3px, -0.3px);
 }
 
 .title {
@@ -55,6 +65,16 @@
   width:35.5px;
   cursor: pointer;
   min-width: 40px;
+  border-radius: 100%;
+  padding: 5px;
+  transition: background-color 0.3s;
+}
+.settings-icon:hover {
+  background-color: #ffffffb5;
+}
+.settings-icon:active {
+  background-color: #ffffff8b;
+  transform: translate(-0.3px, -0.3px);
 }
 
 @media screen and (max-width: 1375px) {

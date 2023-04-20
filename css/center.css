@@ -66,10 +66,7 @@
   pointer-events: none;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
-}
-.play-button.visible {
-  opacity: 0.4;
-  pointer-events: auto;
+  z-index: 0;
 }
 .play-button:hover {
   opacity: 0.3;
@@ -77,6 +74,11 @@
 .play-button:active {
   opacity: 0.2;
   transform: translate(-0.5px, -0.5px);
+}
+.play-button.visible {
+  opacity: 0.4;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .pause-button {
@@ -86,13 +88,13 @@
   pointer-events: none;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
+  z-index: 0;
 }
-
 .pause-button.visible {
   opacity: 0.3;
   pointer-events: auto;
+  z-index: 1;
 }
-
 .number-pomos {
   font-size: 20px;
   font-weight: 700;
