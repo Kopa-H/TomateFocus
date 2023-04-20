@@ -73,9 +73,7 @@
   position: absolute;
   width: 260px;
   opacity: 0;
-  pointer-events: none;
   border-radius: 100%;
-  cursor: pointer;
   transition: background-color 0.3s, opacity 0.2s;
   z-index: 0;
 }
@@ -93,13 +91,11 @@
 }
 
 .pause-button {
-  width: 200px;
   position: absolute;
+  width: 260px;
   opacity: 0;
   border-radius: 100%;
-  pointer-events: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
+  transition: background-color 0.3s, opacity 0.2s;
   z-index: 0;
 }
 .pause-button:hover {
@@ -110,7 +106,7 @@
   transform: translate(-0.5px, -0.5px);
 }
 .pause-button.visible {
-  opacity: 0.3;
+  opacity: 0.8;
   pointer-events: auto;
   z-index: 1;
 }
