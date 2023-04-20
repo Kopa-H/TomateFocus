@@ -4,20 +4,35 @@ class LogicHandler {
         this.timeToElapse = 0;
 
         this.playButton = document.querySelector('.play-button');
-        this.playButton.addEventListener("click", () => {
-            if (this.timeToElapse != 0) {
-               this.startCounter();
+        this.pauseButton = document.querySelector(".pause-button");
+
+        this.timeElapsed = document.querySelector(".time-zone");
+
+        this.timeElapsed.addEventListener("click", () => {
+            if (this.appIsRunning) {
+                this.stopCounter();
+            } else if (this.timeToElapse != 0) {
+                this.startCounter();
             } else {
                 this.resumeCounter();
             }
         });
-
-        this.pauseButton = document.querySelector(".pause-button");
-        this.pauseButton.addEventListener("click", () => {this.stopCounter()});
-
-        this.timeElapsed = document.querySelector(".time-elapsed");
-        this.timeElapsed.addEventListener("mouseover", () => {this.showPauseButton()});
-        this.timeElapsed.addEventListener("mouseout", () => {this.hidePauseButton()});
+        this.timeElapsed.addEventListener("mouseover", () => {
+            if (this.appIsRunning) {
+                this.showPauseButton();
+            } else if (this.timeToElapse != 0) {
+                this.pauseButton.classList.remove("visible");
+                this.playButton.classList.add("visible");
+            }
+        });
+        this.timeElapsed.addEventListener("mouseout", () => {
+            if (this.appIsRunning) {
+                this.hidePauseButton();
+            } else if (this.timeToElapse != 0) {
+                this.playButton.classList.remove("visible");
+                this.pauseButton.classList.add("visible");
+            }
+        });
 
         this.isRunningDefaultItinerary = false;
 
@@ -118,18 +133,6 @@ class LogicHandler {
 
     stopCounter() {
         this.appIsRunning = false;
-
-        this.playButton.addEventListener("click", () => {this.resumeCounter()});
-
-        this.pauseButton.addEventListener("mouseover", () => {
-            this.hidePauseButton();
-            this.showPlayButton();
-        });
-
-        this.pauseButton.addEventListener("mouseout", () => {
-            this.showPauseButton();
-            this.hidePlayButton();
-        });
     }
 
     resumeCounter() {
@@ -137,16 +140,9 @@ class LogicHandler {
 
         this.hidePauseButton()
         this.hidePlayButton()
-
-        this.pauseButton.removeEventListener("mouseover", () => {this.showPlayButton()});
-        this.pauseButton.removeEventListener("mouseout", () => {this.hidePlayButton()});
-
-        // Se quita el efecto de mostrar el botón de pausa solo cuando se reactiva el contador. Luego se reintroduce el event en el intervalo.
-        this.timeElapsed.removeEventListener("mouseover", () => {this.showPauseButton()});
     }
 
     runDefaultItinerary() {
-
         this.isRunningDefaultItinerary = true;
         this.itineraryList = [
             () => {this.runPomodoro()},
@@ -190,10 +186,6 @@ class LogicHandler {
                 // If the time of the counter ends and If the default itinerary is running, the next cycle is executed:
                 if (logicHandler.timeToElapse <= 0 && this.isRunningDefaultItinerary == true) {
                     this.runNextCycle()
-                }
-                // Se reintroduce el eventListener de mostrar el botón de pausa:
-                if (!(this.timeElapsed && this.timeElapsed.mouseover)) {
-                    this.timeElapsed.addEventListener("mouseover", () => {this.showPauseButton()});
                 }
                 counter.updateCounter();
                 circleAnimation.updateProgress();

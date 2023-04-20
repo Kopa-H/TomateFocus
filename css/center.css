@@ -31,6 +31,16 @@
   box-shadow: 5px 8px 20px -10px black;
 }
 
+.time-zone {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border-radius: 100%;
+
+  cursor: pointer;
+  z-index: 100;
+}
+
 .circle {
   width: 350px;
   height: 350px;
@@ -64,12 +74,13 @@
   width: 260px;
   opacity: 0;
   pointer-events: none;
+  border-radius: 100%;
   cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
+  transition: background-color 0.3s, opacity 0.2s;
   z-index: 0;
 }
 .play-button:hover {
-  opacity: 0.3;
+  background-color: #00000030;
 }
 .play-button:active {
   opacity: 0.2;
@@ -85,10 +96,18 @@
   width: 200px;
   position: absolute;
   opacity: 0;
+  border-radius: 100%;
   pointer-events: none;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
   z-index: 0;
+}
+.pause-button:hover {
+  background-color: #00000030;
+}
+.pause-button:active {
+  opacity: 0.2;
+  transform: translate(-0.5px, -0.5px);
 }
 .pause-button.visible {
   opacity: 0.3;
