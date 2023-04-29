@@ -39,6 +39,8 @@
 
   cursor: pointer;
   z-index: 100;
+
+  border: 1px solid white;
 }
 
 .circle {
@@ -156,5 +158,8 @@
 @media screen and (max-width: 1375px) {
   .central-zone-wrapper * {
     z-index: 0;
+  }
+  .time-zone {
+    z-index: 1000;
   }
 }
