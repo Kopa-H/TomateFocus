@@ -1,17 +1,16 @@
-class DelayCycleChange {
+class ShowDelayCycleInfo {
   constructor() {
-    // Obtenemos el botón y el texto oculto
-    this.delayCycleChangeButton = document.querySelector('.delay-cycle-change-button');
-    this.delayCycleChangeDescription = document.querySelector('.delay-cycle-change-description');
+    this.delayCycleButton = document.querySelector('.delay-cycle-button');
+    this.delayCycleDescription = document.querySelector('.delay-cycle-description');
 
-    this.delayCycleChangeButton.addEventListener('mouseover', () => {
-      this.delayCycleChangeDescription.style.opacity = '0.8';
+    this.delayCycleButton.addEventListener('mouseover', () => {
+      this.delayCycleDescription.style.opacity = '0.8';
     });
 
-    this.delayCycleChangeButton.addEventListener('mouseleave', () => {
-      this.delayCycleChangeDescription.style.opacity = '0';
+    this.delayCycleButton.addEventListener('mouseleave', () => {
+      this.delayCycleDescription.style.opacity = '0';
     });
   }
 }
 
-const delayChangeCycle = new DelayCycleChange();
+const showDelayCycleInfo = new ShowDelayCycleInfo();

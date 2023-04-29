@@ -118,7 +118,7 @@
   color: #ffffff;
 }
 
-.delay-cycle-change-button {
+.delay-cycle-button {
   position: relative;
   bottom: 0%;
 
@@ -132,15 +132,15 @@
 
   transition: background-color 0.2s, transform 0.1s;
 }
-.delay-cycle-change-button:hover {
+.delay-cycle-button:hover {
   background-color: #b85c5c;
 }
-.delay-cycle-change-button:active {
+.delay-cycle-button:active {
   background-color: #ad6464;
   transform: translate(-0.5px, -0.5px);
 }
 
-.delay-cycle-change-description {
+.delay-cycle-description {
   position: relative;
   bottom: 7%;
   left: 20%;
