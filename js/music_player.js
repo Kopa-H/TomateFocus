@@ -202,7 +202,7 @@ class MusicPlayer {
       // Ocultar todas las imágenes:
       this.imagesList.forEach(image => {
         image.style.display = "none";
-        image.style.opacity = "0";
+        image.style.position = "relative"
       });
     }
 
@@ -220,7 +220,6 @@ class MusicPlayer {
           setTimeout(() => {
             // Viejo
             this.lastImageBeingDisplayed.style.opacity = `${0.5 - i * this.opacityStep}`;
-            console.log(volumeSlider.volumePercentage)
             this.lastSongBeingPlayed.volume = Math.min(Math.max(0, 0.4 - i * this.volumeStep), volumeSlider.volumePercentage);
 
             // Nuevo
@@ -229,11 +228,10 @@ class MusicPlayer {
 
             // Si la transición se ha completado o hay transiciones superpuestas:
             if (i === this.steps || this.overlappingTransition) {
+              transitionFinished = true; // se actualiza el valor de la variable booleana para cerrar el bucle for
+
               this.transitionIsExecuting = false;
               this.overlappingTransition = false;
-
-              console.log("Se termina repentinamente la transición")
-              transitionFinished = true; // se actualiza el valor de la variable booleana para cerrar el bucle for
             }
           }, i * this.intervalTime);
         }
@@ -271,17 +269,13 @@ class MusicPlayer {
       // Si SÍ se está ejecutando una transición:
       } else {
         this.overlappingTransition = true;
-
-        // Se quita lo de la canción anterior:
-        this.lastSongBeingPlayed.pause();
-        this.lastSongBeingPlayed.currentTime = 0;
-        this.lastImageBeingDisplayed.style.display = "none";
+        this.restartSongsAndImages();
 
         this.lastImageBeingDisplayed = this.imageBeingDisplayed;
         this.lastSongBeingPlayed = this.songBeingPlayed;
+
         // Se obtiene el índice de la siguiente canción:
         const index = this.songsList.indexOf(this.songBeingPlayed);
-
         // Si la siguiente canción es la última:
         if (index + 1 <= this.songsList.length-1) {
           this.songBeingPlayed = this.songsList[index + 1];
@@ -290,8 +284,6 @@ class MusicPlayer {
           this.songBeingPlayed = this.songsList[0];
           this.imageBeingDisplayed = this.imagesList[0];
         }
-
-        this.restartSongsAndImages();
 
         // Se activa la canción correspondiente y se muestra su imagen:
         this.songBeingPlayed.play();
@@ -326,17 +318,13 @@ class MusicPlayer {
       // Si SÍ se está ejecutando una transición:
       } else {
         this.overlappingTransition = true;
-
-        // Se quita lo de la canción anterior:
-        this.lastSongBeingPlayed.pause();
-        this.lastSongBeingPlayed.currentTime = 0;
-        this.lastImageBeingDisplayed.style.display = "none";
+        this.restartSongsAndImages();
 
         this.lastImageBeingDisplayed = this.imageBeingDisplayed;
         this.lastSongBeingPlayed = this.songBeingPlayed;
+
         // Se obtiene el índice de la siguiente canción:
         const index = this.songsList.indexOf(this.songBeingPlayed);
-
         // Si el índice es igual o menor a 0, se pone en marcha la última:
         if (index <= 0) {
           this.songBeingPlayed = this.songsList[this.songsList.length - 1];
@@ -347,9 +335,10 @@ class MusicPlayer {
         };
 
         // Se muestra la imagen de la nueva canción:
+        this.songBeingPlayed.play();
         this.imageBeingDisplayed.style.display = "block";
         this.imageBeingDisplayed.style.opacity = "1";
-        this.songBeingPlayed.play();
+
         console.log("Se realiza una transición forzada!");
         return;
       }

@@ -74,42 +74,29 @@
   width: 260px;
   opacity: 0;
   border-radius: 100%;
-  transition: background-color 0.3s, opacity 0.2s;
+  transition: opacity 0.2s;
   z-index: 0;
 }
-.play-button:hover {
-  background-color: #00000030;
-}
-.play-button:active {
-  opacity: 0.2;
-  transform: translate(-0.5px, -0.5px);
-}
 .play-button.visible {
-  opacity: 0.4;
+  opacity: 0.5;
   pointer-events: auto;
   z-index: 1;
 }
 
 .pause-button {
   position: absolute;
-  width: 260px;
+  width: 240px;
   opacity: 0;
   border-radius: 100%;
-  transition: background-color 0.3s, opacity 0.2s;
+  transition: opacity 0.2s;
   z-index: 0;
 }
-.pause-button:hover {
-  background-color: #00000030;
-}
-.pause-button:active {
-  opacity: 0.2;
-  transform: translate(-0.5px, -0.5px);
-}
 .pause-button.visible {
-  opacity: 0.8;
+  opacity: 0.5;
   pointer-events: auto;
   z-index: 1;
 }
+
 .number-pomos {
   font-size: 20px;
   font-weight: 700;
