@@ -6,6 +6,9 @@ class ThemeColor {
         this.toggleMenuContainer = document.querySelector(".toggleMenu-container");
         this.musicPlayerContainer = document.querySelector(".music-player-container");
 
+        this.musicPlayerButton = document.querySelector(".music-icon");
+        this.settingsButton = document.querySelector(".settings-icon");
+
         this.defaultColor = "#B15353";
         this.pomodoroColor = "#CB3333";
         this.shortbreakColor = "#337DCB";
@@ -18,6 +21,8 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.defaultColor;
         this.toggleMenuContainer.style.backgroundColor = this.defaultColor;
         this.musicPlayerContainer.style.backgroundColor = this.defaultColor;
+        this.musicPlayerButton.style.backgroundColor = this.defaultColor;
+        this.settingsButton.style.backgroundColor = this.defaultColor;
     }
 
     changeToPomodoro() {
@@ -26,6 +31,9 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.pomodoroColor;
         this.toggleMenuContainer.style.backgroundColor = this.pomodoroColor;
         this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
+
+        this.musicPlayerButton.classList.add("pomodoro");
+        this.settingsButton.classList.add("pomodoro");
     }
 
     changeToShortBreak() {
@@ -34,6 +42,9 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.shortbreakColor;
         this.toggleMenuContainer.style.backgroundColor = this.shortbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
+
+        this.musicPlayerButton.classList.add("shortbreak");
+        this.settingsButton.classList.add("shortbreak");
     }
 
     changeToLongBreak() {
@@ -42,6 +53,11 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.longbreakColor;
         this.toggleMenuContainer.style.backgroundColor = this.longbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
+
+        this.musicPlayerButton.classList.add("longbreak");
+        this.settingsButton.classList.add("longbreak");
+
+        this.musicPlayerButton.style.backgroundColor = this.defaultColor;
     }
 }
 

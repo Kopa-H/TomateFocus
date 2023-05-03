@@ -31,7 +31,7 @@
   box-sizing: border-box;
 }
 
-.music-icon {
+.music-icon, .music-icon.default, .music-icon.pomodoro, .music-icon.shortbreak, .music-icon.longbreak {
   width: 45.5px;
   cursor: pointer;
   min-width: 40px;
@@ -39,12 +39,33 @@
   padding: 5px;
   transition: background-color 0.3s;
 }
-.music-icon:hover {
-  background-color: #ffffffb5;
+.music-icon:hover, .settings-icon:hover {
+  background-color: #b15353df;;
 }
-.music-icon:active {
-  background-color: #ffffff8b;
+.music-icon:active, .settings-icon:active {
+  background-color: #b05555df;
   transform: translate(-0.3px, -0.3px);
+}
+.music-icon.default:hover, .settings-icon.default:hover {
+  background-color: #B15353;
+}
+.music-icon.pomodoro:hover, .settings-icon.pomodoro:hover {
+  background-color: #CB3333;
+}
+.music-icon.shortbreak:hover, .settings-icon.shortbreak:hover {
+  background-color: #337DCB;
+}
+.music-icon.longbreak:hover, .settings-icon.longbreak:hover {
+  background-color: #8133CB;
+}
+
+.settings-icon, .settings-icon.default, .settings-icon.pomodoro, .settings-icon.shortbreak, .settings-icon.longbreak {
+  width:35.5px;
+  cursor: pointer;
+  min-width: 40px;
+  border-radius: 100%;
+  padding: 5px;
+  transition: background-color 0.3s;
 }
 
 .title {
@@ -53,28 +74,11 @@
   color: #fffffff1;
   font-size: 37px;
   letter-spacing: 1px;
-
   cursor: pointer;
 }
 
 .title-anchor {
   text-decoration: none;
-}
-
-.settings-icon {
-  width:35.5px;
-  cursor: pointer;
-  min-width: 40px;
-  border-radius: 100%;
-  padding: 5px;
-  transition: background-color 0.3s;
-}
-.settings-icon:hover {
-  background-color: #ffffffb5;
-}
-.settings-icon:active {
-  background-color: #ffffff8b;
-  transform: translate(-0.3px, -0.3px);
 }
 
 @media screen and (max-width: 1375px) {

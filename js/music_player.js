@@ -152,8 +152,8 @@ class MusicPlayer {
             this.songBeingPlayed.play();
             this.songIsPlaying = true;
             this.pauseButton.classList.remove("hidden");
-            this.pauseButton.style.zIndex = "1";
             this.playButton.classList.add("hidden");
+            this.pauseButton.style.zIndex = "1";
         } else {
             this.songBeingPlayed.pause();
             this.songIsPlaying = false;

@@ -118,10 +118,10 @@
   transition: background-color 0.2s, transform 0.1s;
 }
 .delay-cycle-button:hover {
-  background-color: #b85c5c;
+  background-color: #b55555;
 }
 .delay-cycle-button:active {
-  background-color: #ad6464;
+  background-color: #b55959;
   transform: translate(-0.5px, -0.5px);
 }
 

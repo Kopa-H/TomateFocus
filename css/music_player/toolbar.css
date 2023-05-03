@@ -14,24 +14,22 @@
     height: 100%;
     border-radius: 100%;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
     position: absolute;
     left: 40%;
-    z-index: 1;
+    transition: background-color 0.3s, transform 0.3s, opacity 0.5s;
 }
 .music-player-play-button:hover, .music-player-pause-button:hover {
-    background-color: #161616;
+    background-color: #0000005e;
 }
 .music-player-play-button:active, .music-player-pause-button:active {
-    background-color: #2a2a2a;
+    background-color: #0000002c;
     transform: translate(-0.5px, -0.5px);
 }
 .music-player-play-button.hidden,.music-player-pause-button.hidden {
     opacity: 0;
-    transition: opacity 1s;
 }
 
-.music-previous-song-button {
+.music-previous-song-button, .music-next-song-button {
     width: 13%;
     height: 66%;
     border-radius: 100%;
@@ -40,6 +38,7 @@
     color: #B46060;
     margin-left: 5%;
     font-size: 200%;
+    transition: background-color 1s;
 }
 .music-previous-song-button:hover {
     background-color: #161616;
@@ -58,7 +57,7 @@
     color: #B46060;
     margin-right: 5%;
     font-size: 200%;
-    transition: opacity 0.2s ease-in-out;
+    transition: background-color 0.35s;
 }
 .music-next-song-button:hover {
     background-color: #161616;
