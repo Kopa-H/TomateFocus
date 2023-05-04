@@ -6,6 +6,8 @@
     width: 95%;
     height: 60px;
     background-color: rgb(125, 45, 126);
+
+    border: 2px solid black;
     border-radius: 10vw;
 }
 
@@ -16,7 +18,7 @@
     cursor: pointer;
     position: absolute;
     left: 40%;
-    transition: background-color 0.3s, transform 0.3s, opacity 0.5s;
+    transition: background-color 0.35s, transform 0.3s, opacity 0.5s;
 }
 .music-player-play-button:hover, .music-player-pause-button:hover {
     background-color: #0000005e;
@@ -36,9 +38,9 @@
     cursor: pointer;
     font-size: 30px;
     color: #B46060;
-    margin-left: 5%;
+    margin-left: 15%;
     font-size: 200%;
-    transition: background-color 1s;
+    transition: background-color 0.35s;
 }
 .music-previous-song-button:hover {
     background-color: #161616;
@@ -55,7 +57,7 @@
     cursor: pointer;
     font-size: 30px;
     color: #B46060;
-    margin-right: 5%;
+    margin-right: 15%;
     font-size: 200%;
     transition: background-color 0.35s;
 }

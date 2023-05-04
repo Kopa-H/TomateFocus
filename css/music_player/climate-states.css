@@ -13,12 +13,12 @@
     cursor: pointer;
     padding: 5px;
     border: 10px solid #2a2a2a;
-    background-color: gray;
+    background-color: #4D4D4D;
     border-radius: 100%;
     transition: background-color 0.3s;
 }
 .fireplace-state-button:hover {
-    background-color: #161616;
+    background-color: rgb(104, 38, 105);
 }
 .fireplace-state-button:active {
     background-color: #2a2a2a;
@@ -30,12 +30,12 @@
     cursor: pointer;
     padding: 5px;
     border: 10px solid #2a2a2a;
-    background-color: gray;
+    background-color: #4D4D4D;
     border-radius: 100%;
     transition: background-color 0.3s;
 }
 .rain-state-button:hover {
-    background-color: #161616;
+    background-color: rgb(104, 38, 105);
 }
 .rain-state-button:active {
     background-color: #2a2a2a;
@@ -47,12 +47,12 @@
     cursor: pointer;
     padding: 5px;
     border: 10px solid #2a2a2a;
-    background-color: gray;
+    background-color: #4D4D4D;
     border-radius: 100%;
     transition: background-color 0.3s;
 }
 .forest-state-button:hover {
-    background-color: #161616;
+    background-color: rgb(104, 38, 105);
 }
 .forest-state-button:active {
     background-color: #2a2a2a;

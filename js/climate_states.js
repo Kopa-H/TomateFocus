@@ -21,15 +21,34 @@ class ClimateStates {
       this.firtRainBeingPlayed = true;
       this.firstForestBeingPlayed = true;
 
+      this.defaultButtonColor = "#4D4D4D";
+      this.semiDefaultButtonColor = "#666666"
+      this.hoverButtonColor = "rgb(104, 38, 105)";
+      this.activeButtonColor = "rgb(125, 45, 126)";
+
       this.fireplaceButton.addEventListener('click', () => {
         if (this.fireplaceSoundBeingPlayed == false) {
           this.fireplaceSoundBeingPlayed = true;
           this.playFireplaceInLoop();
-          this.fireplaceButton.style.backgroundColor = "rgb(125, 45, 126)";
+          this.fireplaceButton.style.backgroundColor = this.activeButtonColor;
         } else {
           this.fireplaceSoundBeingPlayed = false;
           this.fadeToSilence(this.fireplaceSound, this.fireplaceSound2);
-          this.fireplaceButton.style.backgroundColor = "gray";
+          this.fireplaceButton.style.backgroundColor = this.defaultButtonColor;
+        }
+      });
+      this.fireplaceButton.addEventListener('mouseover', () => {
+        if (!this.fireplaceSoundBeingPlayed) {
+          this.fireplaceButton.style.backgroundColor = this.hoverButtonColor;
+        } else {
+          this.fireplaceButton.style.backgroundColor = this.semiDefaultButtonColor;
+        }
+      });
+      this.fireplaceButton.addEventListener('mouseleave', () => {
+        if (!this.fireplaceSoundBeingPlayed) {
+          this.fireplaceButton.style.backgroundColor = this.defaultButtonColor;
+        } else {
+          this.fireplaceButton.style.backgroundColor = this.activeButtonColor;
         }
       });
 
@@ -37,11 +56,25 @@ class ClimateStates {
         if (this.rainSoundBeingPlayed == false) {
           this.rainSoundBeingPlayed = true;
           this.playRainInLoop();
-          this.rainButton.style.backgroundColor = "rgb(125, 45, 126)";
+          this.rainButton.style.backgroundColor = this.activeButtonColor;
         } else {
           this.rainSoundBeingPlayed = false;
           this.fadeToSilence(this.rainSound, this.rainSound2);
-          this.rainButton.style.backgroundColor = "gray";
+          this.rainButton.style.backgroundColor = this.defaultButtonColor;
+        }
+      });
+      this.rainButton.addEventListener('mouseover', () => {
+        if (!this.rainSoundBeingPlayed) {
+          this.rainButton.style.backgroundColor = this.hoverButtonColor;
+        } else {
+          this.rainButton.style.backgroundColor = this.semiDefaultButtonColor;
+        }
+      });
+      this.rainButton.addEventListener('mouseleave', () => {
+        if (!this.rainSoundBeingPlayed) {
+          this.rainButton.style.backgroundColor = this.defaultButtonColor;
+        } else {
+          this.rainButton.style.backgroundColor = this.activeButtonColor;
         }
       });
 
@@ -49,11 +82,25 @@ class ClimateStates {
         if (this.forestSoundBeingPlayed == false) {
           this.forestSoundBeingPlayed = true;
           this.playForestInLoop();
-          this.forestButton.style.backgroundColor = "rgb(125, 45, 126)";
+          this.forestButton.style.backgroundColor = this.activeButtonColor;
         } else {
           this.forestSoundBeingPlayed = false;
           this.fadeToSilence(this.forestSound, this.forestSound2);
-          this.forestButton.style.backgroundColor = "gray";
+          this.forestButton.style.backgroundColor = this.defaultButtonColor;
+        }
+      });
+      this.forestButton.addEventListener('mouseover', () => {
+        if (!this.forestSoundBeingPlayed) {
+          this.forestButton.style.backgroundColor = this.hoverButtonColor;
+        } else {
+          this.forestButton.style.backgroundColor = this.semiDefaultButtonColor;
+        }
+      });
+      this.forestButton.addEventListener('mouseleave', () => {
+        if (!this.forestSoundBeingPlayed) {
+          this.forestButton.style.backgroundColor = this.defaultButtonColor;
+        } else {
+          this.forestButton.style.backgroundColor = this.activeButtonColor;
         }
       });
     };
