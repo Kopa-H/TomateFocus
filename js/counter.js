@@ -8,10 +8,6 @@ class Counter {
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
         this.seconds = 0;
 
-        // Se accede a los diferentes elementos HTML:
-        this.line = document.querySelector(".line");
-        this.circle = document.querySelector(".circle-progress");
-
         this.delayCycleButton = document.querySelector('.delay-cycle-button');
         this.delayCycleDescription = document.querySelector('.delay-cycle-description');
         this.delayCycleButton.addEventListener('click', () => {

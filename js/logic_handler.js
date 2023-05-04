@@ -9,6 +9,7 @@ class LogicHandler {
         this.timeElapsed = document.querySelector(".time-zone");
 
         this.timeElapsed.addEventListener("click", () => {
+            // Si el contador está en marcha:
             if (this.appIsRunning) {
                 this.stopCounter();
             } else if (this.timeToElapse != 0) {
@@ -18,6 +19,7 @@ class LogicHandler {
             }
         });
         this.timeElapsed.addEventListener("mouseover", () => {
+            // Si el contador está en marcha:
             if (this.appIsRunning) {
                 this.showPauseButton();
             } else if (this.timeToElapse != 0) {
@@ -26,6 +28,7 @@ class LogicHandler {
             }
         });
         this.timeElapsed.addEventListener("mouseout", () => {
+            // Si el contador está en marcha:
             if (this.appIsRunning) {
                 this.hidePauseButton();
             } else if (this.timeToElapse != 0) {
@@ -147,8 +150,8 @@ class LogicHandler {
     resumeCounter() {
         this.appIsRunning = true;
 
-        this.hidePauseButton()
-        this.hidePlayButton()
+        this.hidePauseButton();
+        this.hidePlayButton();
     }
 
     runDefaultItinerary() {
