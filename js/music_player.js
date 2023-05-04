@@ -183,93 +183,9 @@ class MusicPlayer {
       this.previousSongButton.addEventListener('click', () => {
         this.changeToPreviousSong();
       });
-
-      // Para las transiciones entre canciones:
-      this.transitionTime = 5000; // Duración total de la transición en milisegundos
-      this.intervalTime = 50; // Intervalo de tiempo entre cada iteración en milisegundos
-      this.steps = this.transitionTime / this.intervalTime; // Número de iteraciones necesarias para completar la transición
-      this.opacityStep = 0.6 / this.steps; // Cambio en la opacidad en cada iteración
-      this.volumeStep = 0.6 / this.steps; // Cambio en el volumen en cada iteración
-
-      this.transitionsExecuting = 0;
-
-      this.overlappingTransition = false;
-    }
-
-    restartSongsAndImages() {
-      // Detener todas las canciones y reiniciar el tiempo de reproducción:
-      this.songsList.forEach(song => {
-        song.pause();
-        song.currentTime = 0;
-        song.volume = volumeSlider.volumePercentage;
-      });
-
-      // Ocultar todas las imágenes:
-      this.imagesList.forEach(image => {
-        image.style.display = "none";
-        image.style.position = "relative";
-      });
-    }
-
-      // Función para cancelar la transición
-    finishTransition(timeoutId) {
-      clearTimeout(timeoutId);
-
-      // Si solo hay una transición activa:
-      if (this.transitionsExecuting == 1) {
-        this.transitionsExecuting -= 1;
-        // Si hay más de una transciión activa:
-      } else {
-        console.log("Hay más de una transición activa")
-      }
-
-      this.overlappingTransition = false;
-      console.log(`Se finaliza una transición [${this.transitionsExecuting}]`);
-      }
-
-    playSong(currentSong, currentImage, lastSong, lastImage) {
-      // Se reproduce la nueva canción:
-      if (this.songIsPlaying) {
-
-        // Se muestra la imagen y se activa la nueva canción:
-        currentImage.style.display = "block";
-        currentImage.style.position = "absolute";
-        currentSong.play();
-
-        this.transitionsExecuting += 1;
-        console.log(`Se inicia una transición [${this.transitionsExecuting}]`)
-
-        let timeoutId; // variable para guardar la referencia del setTimeout
-        for (let i = 1; i <= this.steps; i++) { // se verifica el valor de la variable booleana
-          timeoutId = setTimeout(() => {
-            // Viejo
-            lastImage.style.opacity = `${0.5 - i * this.opacityStep}`;
-            lastSong.volume = Math.min(Math.max(0, 0.4 - i * this.volumeStep), volumeSlider.volumePercentage);
-
-            // Nuevo
-            currentImage.style.opacity = `${0.5 + i * this.opacityStep}`;
-            currentSong.volume = Math.min(Math.max(0, 0.5 + i * this.volumeStep), volumeSlider.volumePercentage);
-
-            // Si la transición se ha completado o hay transiciones superpuestas:
-            if (i === this.steps || this.overlappingTransition) {
-              this.finishTransition(timeoutId);
-            }
-          }, i * this.intervalTime);
-        }
-        // Si no se está reproduciendo ninguna canción:
-      } else {
-        lastSong.pause();
-        lastSong.currentTime = 0;
-        // Se muestra la imagen de la nueva canción:
-        lastImage.style.display = "none";
-        currentImage.style.display = "block";
-        currentImage.style.opacity = "1";
-      }
     }
 
     changeToNextSong() {
-      // Si NO se está ejecutando ninguna transición:
-      if (this.transitionsExecuting == 0) {
         // Se obtiene el índice de la anterior canción:
         const index = this.songsList.indexOf(this.songBeingPlayed);
         // Se recoge la imagen y el audio de la anterior canción:
@@ -284,37 +200,16 @@ class MusicPlayer {
           this.imageBeingDisplayed = this.imagesList[0];
         }
 
-        this.playSong(this.songBeingPlayed, this.imageBeingDisplayed, this.lastSongBeingPlayed, this.lastImageBeingDisplayed);
-      // Si SÍ se está ejecutando una transición:
-      } else {
-        this.overlappingTransition = true;
-        this.restartSongsAndImages();
+        this.lastSongBeingPlayed.pause();
+        this.lastSongBeingPlayed.currentTime = 0;
+        this.lastImageBeingDisplayed.style.display = "none";
 
-        // Se obtiene el índice de la siguiente canción:
-        const index = this.songsList.indexOf(this.songBeingPlayed);
-        this.lastImageBeingDisplayed = this.imageBeingDisplayed;
-        this.lastSongBeingPlayed = this.songBeingPlayed;
-
-        // Si la siguiente canción es la última:
-        if (index + 1 <= this.songsList.length-1) {
-          this.songBeingPlayed = this.songsList[index + 1];
-          this.imageBeingDisplayed = this.imagesList[index + 1];
-        } else {
-          this.songBeingPlayed = this.songsList[0];
-          this.imageBeingDisplayed = this.imagesList[0];
-        }
-
-        // Se activa la canción correspondiente y se muestra su imagen:
         this.songBeingPlayed.play();
         this.imageBeingDisplayed.style.display = "block";
         this.imageBeingDisplayed.style.opacity = "1";
-        return;
-      }
     }
 
     changeToPreviousSong() {
-      // Si NO se está ejecutando una transición:
-      if (this.transitionsExecuting == 0) {
         // Se obtiene el índice de la anterior canción:
         const index = this.songsList.indexOf(this.songBeingPlayed);
         // Se recoge la imagen y el audio de la anterior canción:
@@ -330,34 +225,15 @@ class MusicPlayer {
           this.imageBeingDisplayed = this.imagesList[index - 1];
         }
 
-        this.playSong(this.songBeingPlayed, this.imageBeingDisplayed, this.lastSongBeingPlayed, this.lastImageBeingDisplayed);
-      // Si SÍ se está ejecutando una transición:
-      } else {
-        this.overlappingTransition = true;
-        this.restartSongsAndImages();
+        this.lastSongBeingPlayed.pause();
+        this.lastSongBeingPlayed.currentTime = 0;
+        this.lastImageBeingDisplayed.style.display = "none";
 
-        // Se obtiene el índice de la siguiente canción:
-        const index = this.songsList.indexOf(this.songBeingPlayed);
-        this.lastImageBeingDisplayed = this.imageBeingDisplayed;
-        this.lastSongBeingPlayed = this.songBeingPlayed;
-
-        // Si el índice es igual o menor a 0, se pone en marcha la última:
-        if (index <= 0) {
-          this.songBeingPlayed = this.songsList[this.songsList.length - 1];
-          this.imageBeingDisplayed = this.imagesList[this.imagesList.length - 1];
-        } else {
-          this.songBeingPlayed = this.songsList[index - 1];
-          this.imageBeingDisplayed = this.imagesList[index - 1];
-        };
-
-        // Se muestra la imagen de la nueva canción:
         this.songBeingPlayed.play();
         this.imageBeingDisplayed.style.display = "block";
         this.imageBeingDisplayed.style.opacity = "1";
-        return;
       }
     }
-}
 
 const musicButton = new MusicButton()
 const volumeSlider = new VolumeSlider()
