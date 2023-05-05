@@ -186,54 +186,60 @@ class MusicPlayer {
     }
 
     changeToNextSong() {
-        // Se obtiene el índice de la anterior canción:
-        const index = this.songsList.indexOf(this.songBeingPlayed);
-        // Se recoge la imagen y el audio de la anterior canción:
-        this.lastImageBeingDisplayed = this.imageBeingDisplayed;
-        this.lastSongBeingPlayed = this.songBeingPlayed;
-        // Se consigue la siguiente canción junto a la siguiente imagen:
-        if (index + 1 <= this.songsList.length-1) {
-          this.songBeingPlayed = this.songsList[index + 1];
-          this.imageBeingDisplayed = this.imagesList[index + 1];
-        } else {
-          this.songBeingPlayed = this.songsList[0];
-          this.imageBeingDisplayed = this.imagesList[0];
-        }
+      // Se obtiene el índice de la anterior canción:
+      const index = this.songsList.indexOf(this.songBeingPlayed);
+      // Se recoge la imagen y el audio de la anterior canción:
+      this.lastImageBeingDisplayed = this.imageBeingDisplayed;
+      this.lastSongBeingPlayed = this.songBeingPlayed;
+      // Se consigue la siguiente canción junto a la siguiente imagen:
+      if (index + 1 <= this.songsList.length-1) {
+        this.songBeingPlayed = this.songsList[index + 1];
+        this.imageBeingDisplayed = this.imagesList[index + 1];
+      } else {
+        this.songBeingPlayed = this.songsList[0];
+        this.imageBeingDisplayed = this.imagesList[0];
+      }
 
-        this.lastSongBeingPlayed.pause();
-        this.lastSongBeingPlayed.currentTime = 0;
-        this.lastImageBeingDisplayed.style.display = "none";
+      this.lastSongBeingPlayed.pause();
+      this.lastSongBeingPlayed.currentTime = 0;
+      this.lastImageBeingDisplayed.style.display = "none";
 
+      this.imageBeingDisplayed.style.display = "block";
+      this.imageBeingDisplayed.style.opacity = "1";
+
+      if (this.songIsPlaying) {
         this.songBeingPlayed.play();
-        this.imageBeingDisplayed.style.display = "block";
-        this.imageBeingDisplayed.style.opacity = "1";
+      }
     }
 
     changeToPreviousSong() {
-        // Se obtiene el índice de la anterior canción:
-        const index = this.songsList.indexOf(this.songBeingPlayed);
-        // Se recoge la imagen y el audio de la anterior canción:
-        this.lastImageBeingDisplayed = this.imageBeingDisplayed;
-        this.lastSongBeingPlayed = this.songBeingPlayed;
+      // Se obtiene el índice de la anterior canción:
+      const index = this.songsList.indexOf(this.songBeingPlayed);
+      // Se recoge la imagen y el audio de la anterior canción:
+      this.lastImageBeingDisplayed = this.imageBeingDisplayed;
+      this.lastSongBeingPlayed = this.songBeingPlayed;
 
-        // Si el índice es igual o menor a 0, se pone en marcha la última:
-        if (index <= 0) {
-          this.songBeingPlayed = this.songsList[this.songsList.length - 1];
-          this.imageBeingDisplayed = this.imagesList[this.imagesList.length - 1];
-        } else {
-          this.songBeingPlayed = this.songsList[index - 1];
-          this.imageBeingDisplayed = this.imagesList[index - 1];
-        }
+      // Si el índice es igual o menor a 0, se pone en marcha la última:
+      if (index <= 0) {
+        this.songBeingPlayed = this.songsList[this.songsList.length - 1];
+        this.imageBeingDisplayed = this.imagesList[this.imagesList.length - 1];
+      } else {
+        this.songBeingPlayed = this.songsList[index - 1];
+        this.imageBeingDisplayed = this.imagesList[index - 1];
+      }
 
-        this.lastSongBeingPlayed.pause();
-        this.lastSongBeingPlayed.currentTime = 0;
-        this.lastImageBeingDisplayed.style.display = "none";
+      this.lastSongBeingPlayed.pause();
+      this.lastSongBeingPlayed.currentTime = 0;
+      this.lastImageBeingDisplayed.style.display = "none";
 
+      this.imageBeingDisplayed.style.display = "block";
+      this.imageBeingDisplayed.style.opacity = "1";
+
+      if (this.songIsPlaying) {
         this.songBeingPlayed.play();
-        this.imageBeingDisplayed.style.display = "block";
-        this.imageBeingDisplayed.style.opacity = "1";
       }
     }
+  }
 
 const musicButton = new MusicButton()
 const volumeSlider = new VolumeSlider()
