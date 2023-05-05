@@ -11,6 +11,7 @@
     max-width: 80em;
     padding: 0em 10em;
     z-index: 1;
+    border: 1px solid brown;
 }
 
 .toggleMenu-container {
