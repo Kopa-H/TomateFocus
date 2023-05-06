@@ -7,26 +7,6 @@ class Counter {
         this.minutes = 0;
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
         this.seconds = 0;
-
-        this.delayCycleButton = document.querySelector('.delay-cycle-button');
-        this.delayCycleDescription = document.querySelector('.delay-cycle-description');
-        this.delayCycleButton.addEventListener('click', () => {
-            if (logicHandler.timeToElapse >= 1) {
-                if (this.seconds != 0 && this.minutes != 0 && (this.minutes*60 + this.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
-                    this.minutes += logicHandler.timeToDelay/60;
-                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                    this.updateCounter();
-                    circleAnimation.updateProgress();
-                // Si el tiempo a añadir supera el tiempo original del ciclo:
-                } else if ((this.minutes*60 + this.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
-                    this.minutes = logicHandler.initialTimeToElapse/60;
-                    this.seconds = 0;
-                    logicHandler.timeToElapse = this.minutes*60 + this.seconds
-                    this.updateCounter();
-                    circleAnimation.updateProgress();
-                }
-            }
-        });
     }
 
     showCurrentTime() {

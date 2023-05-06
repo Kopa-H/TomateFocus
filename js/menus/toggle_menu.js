@@ -1,120 +1,123 @@
-function toggleMenu() {
-    const element = document.querySelector(".toggleMenu-flex");
-    const elementStyles = window.getComputedStyle(element);
-    const displayType = elementStyles.display;
+class ToggleMenu {
+    constructor() {
+        this.toggleMenuFlex = document.querySelector(".toggle-menu-flex");
+        this.toggleMenuStyles = window.getComputedStyle(this.toggleMenuFlex);
 
-    if (displayType == "none") {
-        element.classList.remove("slideOut");
-        element.classList.add("slideIn");
-        element.style.display = "flex";
+        this.toggleMenuIcon = document.getElementById("settings-icon")
+        this.toggleMenuIcon.addEventListener('click', () => {
+            this.showOrHideToggleMenu();
+        });
 
-    } else {
-        element.classList.remove("slideIn");
-        element.classList.add("slideOut");
-        element.addEventListener("animationend", () => {
-            element.style.display = "none"
-        }, { once: true })
+        this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
+        this.pomodoroPlusButton = document.querySelector(".pomodoro .plus-button");
+        this.shortbreakMinusButton = document.querySelector(".short-break .minus-button");
+        this.shortbreakPlusButton = document.querySelector(".short-break .plus-button");
+        this.longbreakMinusButton = document.querySelector(".long-break .minus-button");
+        this.longbreakPlusButton = document.querySelector(".long-break .plus-button");
+        this.delayCycleMinusButton = document.querySelector(".delay-break .minus-button");
+        this.delayCyclePlusButton = document.querySelector(".delay-break .plus-button");
+
+        this.pomodoroTextMinutes = document.querySelector(".pomodoro .menu-text");
+        this.shortbreakTextMinutes = document.querySelector(".short-break .menu-text");
+        this.longbreakTextMinutes = document.querySelector(".long-break .menu-text");
+        this.delaybreakTextMinutes = document.querySelector(".delay-break .menu-text");
+
+        this.pomodoroPlusButton.addEventListener('click', () => {
+            this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
+            if (this.pomodoroCurrentMinutes < 60) {
+                this.pomodoroTextMinutes.textContent = `${++this.pomodoroCurrentMinutes} minutes`
+                logicHandler.pomodoroTimeToElapse = ++this.pomodoroCurrentMinutes;
+            }
+        });
+        this.pomodoroMinusButton.addEventListener('click', () => {
+            // Se obtiene el número de minutos actuales del elemento HTML:
+            this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
+            if (this.pomodoroCurrentMinutes > 10) {
+                // Se modifica el texto que se verá en el toggle menu:
+                this.pomodoroTextMinutes.textContent = `${--this.pomodoroCurrentMinutes} minutes`
+                // Se modifica el tiempo que usará LogicHandler y Counter:
+                logicHandler.pomodoroTimeToElapse = --this.pomodoroCurrentMinutes;
+            }
+        });
+
+        this.shortbreakPlusButton.addEventListener("click", () => {
+            this.shortbreakCurrentMinutes = +this.shortbreakTextMinutes.textContent.match(/\d+/g)
+            if (this.shortbreakCurrentMinutes < 30) {
+                this.shortbreakTextMinutes.textContent = `${++this.shortbreakCurrentMinutes} minutes`
+                logicHandler.shortbreakTimeToElapse = ++this.shortbreakCurrentMinutes;
+            }
+        });
+        this.shortbreakMinusButton.addEventListener("click", () => {
+            this.shortbreakCurrentMinutes = +this.shortbreakTextMinutes.textContent.match(/\d+/g)
+            if (this.shortbreakCurrentMinutes > 1) {
+                this.shortbreakTextMinutes.textContent = `${--this.shortbreakCurrentMinutes} minutes`
+                logicHandler.shortbreakTimeToElapse = --this.shortbreakCurrentMinutes;
+            }
+        });
+
+        this.longbreakPlusButton.addEventListener("click", () => {
+            this.longbreakCurrentMinutes = +this.longbreakTextMinutes.textContent.match(/\d+/g)
+            if (this.longbreakCurrentMinutes < 60) {
+                this.longbreakTextMinutes.textContent = `${++this.longbreakCurrentMinutes} minutes`
+                logicHandler.longbreakTimeToElapse = ++this.longbreakCurrentMinutes;
+            }
+        });
+        this.longbreakMinusButton.addEventListener("click", () => {
+            this.longbreakCurrentMinutes = +this.longbreakTextMinutes.textContent.match(/\d+/g)
+            if (this.longbreakCurrentMinutes > 5) {
+                this.longbreakTextMinutes.textContent = `${--this.longbreakCurrentMinutes} minutes`
+                logicHandler.longbreakTimeToElapse = --this.longbreakCurrentMinutes;
+            }
+        });
+
+        this.delayCyclePlusButton.addEventListener("click", () => {
+            this.delayCycleCurrentMinutes = +this.delaybreakTextMinutes.textContent.match(/\d+/g)
+            if (this.delayCycleCurrentMinutes < 5) {
+                this.delaybreakTextMinutes.textContent = `${++this.delayCycleCurrentMinutes} minutes`
+
+                logicHandler.timeToDelay = ++this.delayCycleCurrentMinutes*60;
+                delayCycle.delayCycleDescription.innerHTML = `Add ${logicHandler.timeToDelay/60}' of extra break!`;
+            }
+        });
+        this.delayCycleMinusButton.addEventListener("click", () => {
+            this.delayCycleCurrentMinutes = +this.delaybreakTextMinutes.textContent.match(/\d+/g)
+            if (this.delayCycleCurrentMinutes > 1) {
+                this.delaybreakTextMinutes.textContent = `${--this.delayCycleCurrentMinutes} minutes`
+
+                logicHandler.timeToDelay = --this.delayCycleCurrentMinutes*60;
+                delayCycle.delayCycleDescription.innerHTML = `Add ${logicHandler.timeToDelay/60}' of extra break!`;
+            }
+        });
+
+        // Reset Preferences Button
+        this.resetPreferencesButton = document.querySelector(".reset-preferences-button")
+        this.resetPreferencesButton.addEventListener('click', () => {
+            this.resetMinutesPreferences();
+        });
     }
+
+    showOrHideToggleMenu() {
+        if (this.toggleMenuStyles.display == "none") {
+            this.toggleMenuFlex.classList.remove("slideOut");
+            this.toggleMenuFlex.classList.add("slideIn");
+            this.toggleMenuFlex.style.display = "flex";
+        } else {
+            this.toggleMenuFlex.classList.remove("slideIn");
+            this.toggleMenuFlex.classList.add("slideOut");
+
+            this.toggleMenuFlex.addEventListener("animationend", () => {
+                this.toggleMenuFlex.style.display = "none"
+            }, { once: true })
+        }
+    }
+
+    resetMinutesPreferences() {
+        this.pomodoroTextMinutes.textContent = `${25} minutes`;
+        this.shortbreakTextMinutes.textContent = `${5} minutes`;
+        this.longbreakTextMinutes.textContent = `${15} minutes`;
+        this.delaybreakTextMinutes.textContent = `${1} minutes`;
+    };
 }
 
-// This function works perfectly. It's very simple too.
-const gear = document.getElementById("settings-icon")
-gear.onclick = () => {
-    toggleMenu();
-};
-
-const pomoMinus = document.querySelector(".pomodoro .minus-button");
-const pomoPlus = document.querySelector(".pomodoro .plus-button");
-const shortMinus = document.querySelector(".short-break .minus-button");
-const shortPlus = document.querySelector(".short-break .plus-button");
-const longMinus = document.querySelector(".long-break .minus-button");
-const longPlus = document.querySelector(".long-break .plus-button");
-const delayMinus = document.querySelector(".delay-break .minus-button");
-const delayPlus = document.querySelector(".delay-break .plus-button");
-
-pomoMinus.addEventListener('click', function () {
-    let textMinutes = document.querySelector(".pomodoro .menu-text")
-    // the match(/\d+/g) is a regex. It matches numbers
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 10) {
-        textMinutes.textContent = `${--textMinutesValue} minutes`
-        callChangeDuration("pomodoro", textMinutesValue*60)
-    }
-})
-pomoPlus.addEventListener('click', function () {
-    let textMinutes = document.querySelector(".pomodoro .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue < 60) {
-        textMinutes.textContent = `${++textMinutesValue} minutes`
-        callChangeDuration("pomodoro", textMinutesValue*60)
-    };
-})
-shortMinus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".short-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 1) {
-        textMinutes.textContent = `${--textMinutesValue} minutes`
-        callChangeDuration("shortbreak", textMinutesValue*60)
-    }
-})
-shortPlus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".short-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue < 30) {
-        textMinutes.textContent = `${++textMinutesValue} minutes`
-        callChangeDuration("shortbreak", textMinutesValue*60)
-    };
-})
-longMinus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".long-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 5) {
-        textMinutes.textContent = `${--textMinutesValue} minutes`
-        callChangeDuration("longbreak", textMinutesValue*60)
-    };
-})
-longPlus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".long-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue < 60) {
-        textMinutes.textContent = `${++textMinutesValue} minutes`
-        callChangeDuration("longbreak", textMinutesValue*60)
-    };
-})
-delayMinus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".delay-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue > 1) {
-        textMinutes.textContent = `${--textMinutesValue} minutes`
-        callChangeDuration("delaybreak", textMinutesValue)
-    };
-})
-delayPlus.addEventListener("click", function () {
-    let textMinutes = document.querySelector(".delay-break .menu-text")
-    let textMinutesValue = +textMinutes.textContent.match(/\d+/g)
-    if (textMinutesValue < 5) {
-        textMinutes.textContent = `${++textMinutesValue} minutes`
-        callChangeDuration("delaybreak", textMinutesValue)
-    };
-})
-
-function callChangeDuration(timerType, time) {
-    logicHandler.changeTimeElapse(timerType, time)
-}
-
-// Reset Preferences Button
-const resetPreferencesButton = document.querySelector(".reset-preferences-button")
-resetPreferencesButton.addEventListener('click', () => {
-    resetPreferences();
-});
-function resetPreferences() {
-    let pomodoroMinutes = document.querySelector(".pomodoro .menu-text");
-    let shortMinutes = document.querySelector(".short-break .menu-text");
-    let longMinutes = document.querySelector(".long-break .menu-text");
-    let delayMinutes = document.querySelector(".delay-break .menu-text");
-
-    pomodoroMinutes.textContent = `${25} minutes`;
-    shortMinutes.textContent = `${5} minutes`;
-    longMinutes.textContent = `${15} minutes`;
-    delayMinutes.textContent = `${1} minutes`;
-};
+window.ToggleMenu = ToggleMenu;
+const toggleMenu = new ToggleMenu();

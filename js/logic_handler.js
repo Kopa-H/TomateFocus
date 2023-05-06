@@ -3,40 +3,6 @@ class LogicHandler {
         this.initialTimeToElapse = 0;
         this.timeToElapse = 0;
 
-        this.playButton = document.querySelector('.play-button');
-        this.pauseButton = document.querySelector(".pause-button");
-
-        this.timeElapsed = document.querySelector(".time-zone");
-
-        this.timeElapsed.addEventListener("click", () => {
-            // Si el contador está en marcha:
-            if (this.appIsRunning) {
-                this.stopCounter();
-            } else if (this.timeToElapse != 0) {
-                this.startCounter();
-            } else {
-                this.resumeCounter();
-            }
-        });
-        this.timeElapsed.addEventListener("mouseover", () => {
-            // Si el contador está en marcha:
-            if (this.appIsRunning) {
-                this.showPauseButton();
-            } else if (this.timeToElapse != 0) {
-                this.pauseButton.classList.remove("visible");
-                this.playButton.classList.add("visible");
-            }
-        });
-        this.timeElapsed.addEventListener("mouseout", () => {
-            // Si el contador está en marcha:
-            if (this.appIsRunning) {
-                this.hidePauseButton();
-            } else if (this.timeToElapse != 0) {
-                this.playButton.classList.remove("visible");
-                this.pauseButton.classList.add("visible");
-            }
-        });
-
         this.isRunningDefaultItinerary = false;
 
         // This variable will be used to register which is the following cycle to execute:
@@ -59,10 +25,21 @@ class LogicHandler {
 
     startCounter() {
         // Play button image is hidden:
-        this.hidePlayButton();
+        playAndPauseIconsHandler.hidePlayButton();
 
         // The execution of the counter starts:
         this.appIsRunning = true;
+    }
+
+    stopCounter() {
+        this.appIsRunning = false;
+    }
+
+    resumeCounter() {
+        this.appIsRunning = true;
+
+        playAndPauseIconsHandler.hidePauseButton();
+        playAndPauseIconsHandler.hidePlayButton();
     }
 
     runPomodoro() {
@@ -76,8 +53,7 @@ class LogicHandler {
         themeColor.changeToPomodoro();
 
         // The text of the delay cycle button changes:
-        counter.delayCycleButton.innerHTML = "Delay Break";
-        counter.delayCycleDescription.innerHTML = "Add 1' of extra work!"
+        delayCycle.changeToDelayBreak();
 
         this.currentCycleRunning = "Pomodoro";
     }
@@ -93,8 +69,7 @@ class LogicHandler {
         themeColor.changeToShortBreak();
 
         // The text of the delay cycle button changes:
-        counter.delayCycleButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleDescription.innerHTML = "Add 1' of extra break!"
+        delayCycle.changeToDelayPomodoro();
 
         this.currentCycleRunning = "ShortBreak";
     }
@@ -110,39 +85,9 @@ class LogicHandler {
         themeColor.changeToLongBreak();
 
         // The text of the delay cycle button changes:
-        counter.delayCycleButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleDescription.innerHTML = "Add 1' of extra break!"
+        delayCycle.changeToDelayPomodoro();
 
         this.currentCycleRunning = "LongBreak";
-    }
-
-    showPlayButton() {
-        this.playButton.classList.add("visible");
-    }
-
-    hidePlayButton() {
-        this.playButton.classList.remove("visible");
-    }
-
-    showPauseButton() {
-        if (logicHandler.timeToElapse != 0) {
-            this.pauseButton.classList.add("visible");
-        }
-    }
-
-    hidePauseButton() {
-        this.pauseButton.classList.remove("visible");
-    }
-
-    stopCounter() {
-        this.appIsRunning = false;
-    }
-
-    resumeCounter() {
-        this.appIsRunning = true;
-
-        this.hidePauseButton();
-        this.hidePlayButton();
     }
 
     runDefaultItinerary() {
@@ -182,35 +127,18 @@ class LogicHandler {
 
     runApp() {
         // When the web is opened, the playButton is shown.
-        this.showPlayButton()
+        playAndPauseIconsHandler.showPlayButton()
 
         setInterval(() => {
             if (this.appIsRunning == true) {
                 // If the time of the counter ends and If the default itinerary is running, the next cycle is executed:
-                if (logicHandler.timeToElapse <= 0 && this.isRunningDefaultItinerary == true) {
+                if (this.timeToElapse <= 0 && this.isRunningDefaultItinerary == true) {
                     this.runNextCycle()
                 }
                 counter.updateCounter();
                 circleAnimation.updateProgress();
             }
         }, 1000);
-    }
-
-    changeTimeElapse(timerType, time) {
-        if (timerType === "pomodoro") {
-            this.pomodoroTimeToElapse = time;
-        }
-        else if (timerType === "shortbreak") {
-            this.shortbreakTimeToElapse = time;
-        }
-        else if (timerType === "longbreak") {
-            this.longbreakTimeToElapse = time;
-        }
-        else {
-            this.timeToDelay = time*60;
-            // Se muestra el tiempo de delay en la descripción del botón:
-            counter.delayCycleDescription.innerHTML = `Add ${this.timeToDelay/60}' of extra break!`;
-        }
     }
 }
 
