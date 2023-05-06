@@ -1,5 +1,7 @@
 class ParticlesHandler {
     constructor() {
+        this.particlesAreActive = false;
+
         // Almacena la configuración de partículas en una variable
         this.particleSettings = {
             "particles": {
@@ -125,6 +127,44 @@ class ParticlesHandler {
             particlesJS("particles-js", this.particleSettings, () => {
                 let pJS = window.pJSDom[0];
                 pJS.particles.color.value = color;
+                pJS.fn.particlesRefresh();
+                resolve();
+            });
+        });
+    }
+
+    showParticles() {
+        this.particlesAreActive = true;
+
+        // Se actualiza el valor de la variable del js:
+        this.particleSettings.particles.number.value = 0;
+
+        // Se espera a que cargue el json:
+        return new Promise(resolve => {
+
+            // Se modifican los parámetros del archivo json:
+            particlesJS("particles-js", this.particleSettings, () => {
+                let pJS = window.pJSDom[0];
+                pJS.particles.number.value = 0;
+                pJS.fn.particlesRefresh();
+                resolve();
+            });
+        });
+    }
+
+    hideParticles() {
+        this.particlesAreActive = false;
+
+        // Se actualiza el valor de la variable del js:
+        this.particleSettings.particles.number.value = 50;
+
+        // Se espera a que cargue el json:
+        return new Promise(resolve => {
+
+            // Se modifican los parámetros del archivo json:
+            particlesJS("particles-js", this.particleSettings, () => {
+                let pJS = window.pJSDom[0];
+                pJS.particles.number.value = 50;
                 pJS.fn.particlesRefresh();
                 resolve();
             });
