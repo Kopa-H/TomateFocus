@@ -3,7 +3,7 @@ class ThemeColor {
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
         this.delayCycleButton = document.querySelector(".delay-cycle-button");
-        this.toggleMenuContainer = document.querySelector(".toggleMenu-container");
+        this.toggleMenuContainer = document.querySelector(".toggle-menu-container");
         this.musicPlayerContainer = document.querySelector(".music-player-container");
 
         this.musicPlayerButton = document.querySelector(".music-icon");
