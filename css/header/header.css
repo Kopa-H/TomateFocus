@@ -7,6 +7,9 @@
   max-width: 80em;
   margin: 0 auto;
   padding: 0em 10em;
+  background-color: #4D4D4D;
+
+  border: 1px solid white;
 }
 
 .line {
@@ -20,6 +23,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  z-index: 100;
 }
 
 .inner-header {
