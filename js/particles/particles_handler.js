@@ -6,7 +6,7 @@ class ParticlesHandler {
         this.particleSettings = {
             "particles": {
                 "number": {
-                    "value": 80,
+                    "value": 0,
                     "density": {
                         "enable": true,
                         "value_area": 800
@@ -119,6 +119,7 @@ class ParticlesHandler {
     changeParticleColor(color) {
         // Se actualiza el valor de la variable del js:
         this.particleSettings.particles.color.value = color;
+        this.particleSettings.particles.number.value = 50;
 
         // Se espera a que cargue el json:
         return new Promise(resolve => {
@@ -127,6 +128,7 @@ class ParticlesHandler {
             particlesJS("particles-js", this.particleSettings, () => {
                 let pJS = window.pJSDom[0];
                 pJS.particles.color.value = color;
+                pJS.particles.number.value = 50;
                 pJS.fn.particlesRefresh();
                 resolve();
             });
@@ -135,25 +137,6 @@ class ParticlesHandler {
 
     showParticles() {
         this.particlesAreActive = true;
-
-        // Se actualiza el valor de la variable del js:
-        this.particleSettings.particles.number.value = 0;
-
-        // Se espera a que cargue el json:
-        return new Promise(resolve => {
-
-            // Se modifican los parámetros del archivo json:
-            particlesJS("particles-js", this.particleSettings, () => {
-                let pJS = window.pJSDom[0];
-                pJS.particles.number.value = 0;
-                pJS.fn.particlesRefresh();
-                resolve();
-            });
-        });
-    }
-
-    hideParticles() {
-        this.particlesAreActive = false;
 
         // Se actualiza el valor de la variable del js:
         this.particleSettings.particles.number.value = 50;
@@ -165,6 +148,25 @@ class ParticlesHandler {
             particlesJS("particles-js", this.particleSettings, () => {
                 let pJS = window.pJSDom[0];
                 pJS.particles.number.value = 50;
+                pJS.fn.particlesRefresh();
+                resolve();
+            });
+        });
+    }
+
+    hideParticles() {
+        this.particlesAreActive = false;
+
+        // Se actualiza el valor de la variable del js:
+        this.particleSettings.particles.number.value = 0;
+
+        // Se espera a que cargue el json:
+        return new Promise(resolve => {
+
+            // Se modifican los parámetros del archivo json:
+            particlesJS("particles-js", this.particleSettings, () => {
+                let pJS = window.pJSDom[0];
+                pJS.particles.number.value = 0;
                 pJS.fn.particlesRefresh();
                 resolve();
             });
