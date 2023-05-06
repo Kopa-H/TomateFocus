@@ -2,27 +2,26 @@ class HideParticlesButton {
 	constructor() {
 		this.hideParticlesButton = document.querySelector(".hide-particles-button");
 		this.hideParticlesX = document.querySelector(".hide-particles-x");
-		this.hideParticlesX.classList.add("hidden");
 
 		this.hideParticlesButton.addEventListener("click", () => {
 			if (particlesHandler.particlesAreActive) {
 				particlesHandler.hideParticles();
-				this.hideX();
+				this.toggleX();
 			} else {
 				particlesHandler.showParticles();
-				this.showX();
+				this.toggleX();
 			}
 		});
 	}
 
-	showX() {
-		this.hideParticlesX.classList.remove("hidden");
+	toggleX() {
+		if (this.hideParticlesX.classList.contains("hidden")) {
+			this.hideParticlesX.classList.remove("hidden");
+		} else {
+			this.hideParticlesX.classList.add("hidden");
+		}
 	}
-
-	hideX() {
-		this.hideParticlesX.classList.add("hidden");
-	}
-
 }
 
+window.HideParticlesButton = HideParticlesButton;
 const hideParticlesButton = new HideParticlesButton();

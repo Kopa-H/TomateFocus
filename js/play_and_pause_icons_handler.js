@@ -10,7 +10,7 @@ class PlayAndPauseIconsHandler {
         this.timeElapsed.addEventListener("click", () => {
             if (logicHandler.appIsRunning) {
                 logicHandler.stopCounter();
-            } else if (logicHandler.timeToElapse != 0) {
+            } else if (logicHandler.timeToElapse == 0) {
                 logicHandler.startCounter();
             } else {
                 logicHandler.resumeCounter();
