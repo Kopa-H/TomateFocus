@@ -1,13 +1,12 @@
 class ToggleMenu {
     constructor() {
-        this.element = document.querySelector(".toggleMenu-flex");
-        this.elementStyles = window.getComputedStyle(element);
-        this.displayType = elementStyles.display;
+        this.toggleMenuFlex = document.querySelector(".toggle-menu-flex");
+        this.toggleMenuStyles = window.getComputedStyle(this.toggleMenuFlex);
 
         this.toggleMenuIcon = document.getElementById("settings-icon")
-        toggleMenuIcon.onclick = () => {
-            this.displayToggleMenu();
-        };
+        this.toggleMenuIcon.addEventListener('click', () => {
+            this.showOrHideToggleMenu();
+        });
 
         this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
         this.pomodoroPlusButton = document.querySelector(".pomodoro .plus-button");
@@ -30,7 +29,7 @@ class ToggleMenu {
                 logicHandler.pomodoroTimeToElapse = ++this.pomodoroCurrentMinutes;
             }
         });
-        this.pomodoroPlusButton.addEventListener('click', () => {
+        this.pomodoroMinusButton.addEventListener('click', () => {
             // Se obtiene el número de minutos actuales del elemento HTML:
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
             if (this.pomodoroCurrentMinutes > 10) {
@@ -85,7 +84,7 @@ class ToggleMenu {
             if (this.delayCycleCurrentMinutes > 1) {
                 this.delaybreakTextMinutes.textContent = `${--this.delayCycleCurrentMinutes} minutes`
 
-                logicHandler.timeToDelay = --delayCycleCurrentMinutes*60;
+                logicHandler.timeToDelay = --this.delayCycleCurrentMinutes*60;
                 delayCycle.delayCycleDescription.innerHTML = `Add ${logicHandler.timeToDelay/60}' of extra break!`;
             }
         });
@@ -93,31 +92,30 @@ class ToggleMenu {
         // Reset Preferences Button
         this.resetPreferencesButton = document.querySelector(".reset-preferences-button")
         this.resetPreferencesButton.addEventListener('click', () => {
-            resetPreferences();
+            this.resetMinutesPreferences();
         });
     }
 
-    displayToggleMenu() {
-        if (this.displayType == "none") {
-            this.element.classList.remove("slideOut");
-            this.element.classList.add("slideIn");
-            this.element.style.display = "flex";
-
+    showOrHideToggleMenu() {
+        if (this.toggleMenuStyles.display == "none") {
+            this.toggleMenuFlex.classList.remove("slideOut");
+            this.toggleMenuFlex.classList.add("slideIn");
+            this.toggleMenuFlex.style.display = "flex";
         } else {
-            this.element.classList.remove("slideIn");
-            this.element.classList.add("slideOut");
+            this.toggleMenuFlex.classList.remove("slideIn");
+            this.toggleMenuFlex.classList.add("slideOut");
 
-            this.element.addEventListener("animationend", () => {
-                this.element.style.display = "none"
+            this.toggleMenuFlex.addEventListener("animationend", () => {
+                this.toggleMenuFlex.style.display = "none"
             }, { once: true })
         }
     }
 
     resetMinutesPreferences() {
-        this.pomodoroMinutes.textContent = `${25} minutes`;
-        this.shortbreakMinutes.textContent = `${5} minutes`;
-        this.longbreakMinutes.textContent = `${15} minutes`;
-        this.delaybreakMinutes.textContent = `${1} minutes`;
+        this.pomodoroTextMinutes.textContent = `${25} minutes`;
+        this.shortbreakTextMinutes.textContent = `${5} minutes`;
+        this.longbreakTextMinutes.textContent = `${15} minutes`;
+        this.delaybreakTextMinutes.textContent = `${1} minutes`;
     };
 }
 
