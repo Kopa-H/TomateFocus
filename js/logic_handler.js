@@ -102,8 +102,8 @@ class LogicHandler {
         themeColor.changeToShortBreak();
 
         // The text of the delay cycle button changes:
-        counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
+        counter.delayCycleButton.innerHTML = "Delay Pomodoro";
+        counter.delayCycleDescription.innerHTML = "Add 1' of extra break!"
 
         this.currentCycleRunning = "ShortBreak";
     }
@@ -119,8 +119,8 @@ class LogicHandler {
         themeColor.changeToLongBreak();
 
         // The text of the delay cycle button changes:
-        counter.delayCycleChangeButton.innerHTML = "Delay Pomodoro";
-        counter.delayCycleChangeDescription.innerHTML = "Add 1' of extra break!"
+        counter.delayCycleButton.innerHTML = "Delay Pomodoro";
+        counter.delayCycleDescription.innerHTML = "Add 1' of extra break!"
 
         this.currentCycleRunning = "LongBreak";
     }
