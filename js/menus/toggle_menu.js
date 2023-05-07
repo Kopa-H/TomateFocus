@@ -14,13 +14,10 @@ class ToggleMenu {
         this.shortbreakPlusButton = document.querySelector(".short-break .plus-button");
         this.longbreakMinusButton = document.querySelector(".long-break .minus-button");
         this.longbreakPlusButton = document.querySelector(".long-break .plus-button");
-        this.delayCycleMinusButton = document.querySelector(".delay-break .minus-button");
-        this.delayCyclePlusButton = document.querySelector(".delay-break .plus-button");
 
         this.pomodoroTextMinutes = document.querySelector(".pomodoro .menu-text");
         this.shortbreakTextMinutes = document.querySelector(".short-break .menu-text");
         this.longbreakTextMinutes = document.querySelector(".long-break .menu-text");
-        this.delaybreakTextMinutes = document.querySelector(".delay-break .menu-text");
 
         this.pomodoroPlusButton.addEventListener('click', () => {
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
@@ -70,25 +67,6 @@ class ToggleMenu {
             }
         });
 
-        this.delayCyclePlusButton.addEventListener("click", () => {
-            this.delayCycleCurrentMinutes = +this.delaybreakTextMinutes.textContent.match(/\d+/g)
-            if (this.delayCycleCurrentMinutes < 5) {
-                this.delaybreakTextMinutes.textContent = `${++this.delayCycleCurrentMinutes} minutes`
-
-                logicHandler.timeToDelay = ++this.delayCycleCurrentMinutes*60;
-                delayCycle.delayCycleDescription.innerHTML = `Add ${logicHandler.timeToDelay/60}' of extra break!`;
-            }
-        });
-        this.delayCycleMinusButton.addEventListener("click", () => {
-            this.delayCycleCurrentMinutes = +this.delaybreakTextMinutes.textContent.match(/\d+/g)
-            if (this.delayCycleCurrentMinutes > 1) {
-                this.delaybreakTextMinutes.textContent = `${--this.delayCycleCurrentMinutes} minutes`
-
-                logicHandler.timeToDelay = --this.delayCycleCurrentMinutes*60;
-                delayCycle.delayCycleDescription.innerHTML = `Add ${logicHandler.timeToDelay/60}' of extra break!`;
-            }
-        });
-
         // Reset Preferences Button
         this.resetPreferencesButton = document.querySelector(".reset-preferences-button")
         this.resetPreferencesButton.addEventListener('click', () => {
@@ -115,7 +93,6 @@ class ToggleMenu {
         this.pomodoroTextMinutes.textContent = `${25} minutes`;
         this.shortbreakTextMinutes.textContent = `${5} minutes`;
         this.longbreakTextMinutes.textContent = `${15} minutes`;
-        this.delaybreakTextMinutes.textContent = `${1} minutes`;
     };
 }
 
