@@ -8,7 +8,7 @@ class HideParticlesButton {
 				particlesHandler.hideParticles();
 				this.toggleX();
 			} else {
-				particlesHandler.showParticles();
+				particlesHandler.changeParticlesNumberAndColor("none", 50);
 				this.toggleX();
 			}
 		});

@@ -24,7 +24,7 @@ class ThemeColor {
         this.musicPlayerButton.style.backgroundColor = this.defaultColor;
         this.settingsButton.style.backgroundColor = this.defaultColor;
 
-        particlesHandler.changeParticleColor(this.defaultColor);
+        particlesHandler.changeParticlesNumberAndColor(this.defaultColor);
     }
 
     changeToPomodoro() {
@@ -37,7 +37,7 @@ class ThemeColor {
         this.musicPlayerButton.classList.add("pomodoro");
         this.settingsButton.classList.add("pomodoro");
 
-        particlesHandler.changeParticleColor(this.pomodoroColor);
+        particlesHandler.changeParticlesNumberAndColor(this.pomodoroColor);
     }
 
     changeToShortBreak() {
@@ -50,7 +50,7 @@ class ThemeColor {
         this.musicPlayerButton.classList.add("shortbreak");
         this.settingsButton.classList.add("shortbreak");
 
-        particlesHandler.changeParticleColor(this.shortbreakColor);
+        particlesHandler.changeParticlesNumberAndColor(this.shortbreakColor);
     }
 
     changeToLongBreak() {
@@ -65,7 +65,7 @@ class ThemeColor {
 
         this.musicPlayerButton.style.backgroundColor = this.defaultColor;
 
-        particlesHandler.changeParticleColor(this.longbreakColor);
+        particlesHandler.changeParticlesNumberAndColor(this.longbreakColor);
     }
 }
 

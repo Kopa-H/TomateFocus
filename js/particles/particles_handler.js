@@ -116,30 +116,16 @@ class ParticlesHandler {
         particlesJS("particles-js", this.particleSettings);
     }
 
-    changeParticleColor(color) {
-        // Se actualiza el valor de la variable del js:
-        this.particleSettings.particles.color.value = color;
-        this.particleSettings.particles.number.value = 50;
-
-        // Se espera a que cargue el json:
-        return new Promise(resolve => {
-
-            // Se modifican los parámetros del archivo json:
-            particlesJS("particles-js", this.particleSettings, () => {
-                let pJS = window.pJSDom[0];
-                pJS.particles.color.value = color;
-                pJS.particles.number.value = 50;
-                pJS.fn.particlesRefresh();
-                resolve();
-            });
-        });
-    }
-
-    showParticles() {
+    changeParticlesNumberAndColor(particlesColor, particlesNumber) {
         this.particlesAreActive = true;
 
         // Se actualiza el valor de la variable del js:
-        this.particleSettings.particles.number.value = 50;
+        if (typeof particlesNumber !== 'undefined' && particlesNumber !== "none") {
+            this.particleSettings.particles.number.value = particlesNumber;
+        }
+        if (typeof particlesColor !== 'undefined' && particlesColor !== "none") {
+            this.particleSettings.particles.color.value = particlesColor;
+        }
 
         // Se espera a que cargue el json:
         return new Promise(resolve => {
@@ -147,7 +133,12 @@ class ParticlesHandler {
             // Se modifican los parámetros del archivo json:
             particlesJS("particles-js", this.particleSettings, () => {
                 let pJS = window.pJSDom[0];
-                pJS.particles.number.value = 50;
+                if (typeof particlesNumber !== 'undefined' && particlesNumber !== "none") {
+                    pJS.particles.number.value = particlesNumber;
+                }
+                if (typeof particlesColor !== 'undefined' && particlesColor !== "none") {
+                    pJS.particles.color.value = particlesColor;
+                }
                 pJS.fn.particlesRefresh();
                 resolve();
             });
@@ -171,6 +162,11 @@ class ParticlesHandler {
                 resolve();
             });
         });
+    }
+
+    manageFirstParticlesAppearance() {
+        particlesHandler.changeParticlesNumberAndColor(themeColor.pomodoroColor, 50);
+        hideParticlesButton.toggleX();
     }
 }
 
