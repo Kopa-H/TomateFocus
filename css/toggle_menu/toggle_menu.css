@@ -108,7 +108,7 @@
 }
 
 @media screen and (max-width: 1375px) {
-    .toggleMenu-flex {
+    .toggle-menu-flex {
         justify-content: center;
         padding: 0;
         min-width: 25em;
@@ -116,7 +116,7 @@
         z-index: 2;
     }
 
-    .toggleMenu-container {
+    .toggle-menu-container {
         width: 25em;
     }
 }
