@@ -28,8 +28,7 @@ class LogicHandler {
         playAndPauseIconsHandler.hidePlayButton();
 
         // Cambia el estado de hide particles del Toggle Menu:
-        particlesHandler.showParticles();
-        hideParticlesButton.toggleX();
+        particlesHandler.manageFirstParticlesAppearance();
 
         // The execution of the counter starts:
         this.appIsRunning = true;
