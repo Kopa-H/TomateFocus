@@ -57,6 +57,6 @@
     transition: opacity 0.4s;
 }
 
-.hide-enable-god-mode.hidden {
+.enable-god-mode-x.hidden {
     opacity: 0;
 }
