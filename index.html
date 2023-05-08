@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/toggle_menu/enable_god_mode.css">
     <link rel="stylesheet" type="text/css" href="css/particles/particles.css">
     <link rel="stylesheet" type="text/css" href="css/particles/hide_particles_button.css">
+    <link rel="stylesheet" type="text/css" href="css/center/god-mode-change-cycle.css">
 
     <!-- Music Player CSS -->
     <link rel="stylesheet" type="text/css" href="css/music_player/general.css">
@@ -160,6 +161,11 @@
         <snap class="plan-study-description">Plan your Study Session!</snap>
         <button class="delay-cycle-button">Delay Break</button>
         <snap class="delay-cycle-description">Add 1' of extra work!</snap>
+        <div class="god-mode-change-cycle-container">
+          <img class="god-mode-prev-cycle-button" src="images/music_player_icons/general/prev_song_icon.svg">
+          <div class="god-mode-change-cycle-description">Swap cycles!</div>
+          <img class="god-mode-next-cycle-button" src="images/music_player_icons/general/next_song_icon.svg">
+        </div>
         <audio class="clock-alarm-sound"><source src="audio/sound_effects/clock_alarm.mp3" type="audio/mp3"></audio>
         <audio class="clock-start-sound"><source src="audio/sound_effects/clock_start.mp3" type="audio/mp3"></audio>
       </section>
@@ -186,8 +192,10 @@
     <script src="js/particles/hide_particles_button.js"></script>
     <script src="js/particles/particles_handler.js"></script>
 
-    <script src="js/menus/enable_god_mode_button.js"></script>
-    <script src="js/menus/god_mode_handler.js"></script>
+    <script src="js/god_mode/enable_god_mode_button.js"></script>
+    <script src="js/god_mode/god_mode_handler.js"></script>
+    <script src="js/god_mode/change_between_cycles.js"></script>
+
 
   </body>
 </html>
