@@ -1,0 +1,51 @@
+.god-mode-change-cycle-container {
+    display: flex;
+    position: absolute;
+    top: 670px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 3px solid gold;
+    border-radius: 100px;
+
+    opacity: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.2s;
+}
+.god-mode-change-cycle-container.shown {
+    opacity: 1;
+}
+
+.god-mode-prev-cycle-button {
+    cursor: pointer;
+    border-radius: 100%;
+    transition: background-color 0.3s;
+}
+.god-mode-prev-cycle-button:hover {
+    background-color: #161616;
+}
+.god-mode-prev-cycle-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
+
+.god-mode-change-cycle-description {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+.god-mode-next-cycle-button {
+    cursor: pointer;
+    border-radius: 100%;
+    transition: background-color 0.3s;
+}
+.god-mode-next-cycle-button:hover {
+    background-color: #161616;
+}
+.god-mode-next-cycle-button:active {
+    background-color: #2a2a2a;
+    transform: translate(-0.5px, -0.5px);
+}
