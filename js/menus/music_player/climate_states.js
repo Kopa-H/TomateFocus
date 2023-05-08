@@ -13,6 +13,9 @@ class ClimateStates {
       this.forestSound = document.querySelector(".forest-sound");
       this.forestSound2 = document.querySelector(".forest-sound-2");
 
+      // The proportion of volume of all climate sounds:
+      this.maxClimateSoundsVolume = 0.5;
+
       this.fireplaceSoundBeingPlayed = false;
       this.rainSoundBeingPlayed = false;
       this.forestSoundBeingPlayed = false;
@@ -125,11 +128,11 @@ class ClimateStates {
       // Entrada del efecto suave:
       this.fireplaceSound.volume = 0;
       const volumeIncreaseInterval = setInterval(() => {
-        if (this.fireplaceSoundBeingPlayed && this.fireplaceSound.volume <= 0.9) {
+        if (this.fireplaceSoundBeingPlayed && this.fireplaceSound.volume <= this.maxClimateSoundsVolume) {
           this.fireplaceSound.volume += 0.1;
           this.fireplaceSound.volume = parseFloat(this.fireplaceSound.volume.toFixed(1)); // Redondea a 1 decimal
           this.fireplaceSound2.volume = this.fireplaceSound.volume;
-          if (this.fireplaceSound.volume >= 1) {
+          if (this.fireplaceSound.volume >= this.maxClimateSoundsVolume) {
             clearInterval(volumeIncreaseInterval);
           }
         }
@@ -157,11 +160,11 @@ class ClimateStates {
       // Entrada del efecto suave:
       this.rainSound.volume = 0;
       const volumeIncreaseInterval = setInterval(() => {
-        if (this.rainSoundBeingPlayed && this.rainSound.volume <= 0.9) {
+        if (this.rainSoundBeingPlayed && this.rainSound.volume <= this.maxClimateSoundsVolume) {
           this.rainSound.volume += 0.1;
           this.rainSound.volume = parseFloat(this.rainSound.volume.toFixed(1)); // Redondea a 1 decimal
           this.rainSound2.volume = this.rainSound.volume;
-          if (this.rainSound.volume >= 1) {
+          if (this.rainSound.volume >= this.maxClimateSoundsVolume) {
             clearInterval(volumeIncreaseInterval);
           }
         }
@@ -189,11 +192,11 @@ class ClimateStates {
       // Entrada del efecto suave:
       this.forestSound.volume = 0;
       const volumeIncreaseInterval = setInterval(() => {
-        if (this.forestSoundBeingPlayed && this.forestSound.volume <= 0.9) {
+        if (this.forestSoundBeingPlayed && this.forestSound.volume <= this.maxClimateSoundsVolume) {
           this.forestSound.volume += 0.1;
           this.forestSound.volume = parseFloat(this.forestSound.volume.toFixed(1)); // Redondea a 1 decimal
           this.forestSound2.volume = this.forestSound.volume;
-          if (this.forestSound.volume >= 1) {
+          if (this.forestSound.volume >= this.maxClimateSoundsVolume) {
             clearInterval(volumeIncreaseInterval);
           }
         }

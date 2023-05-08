@@ -6,11 +6,10 @@ class HideParticlesButton {
 		this.hideParticlesButton.addEventListener("click", () => {
 			if (particlesHandler.particlesAreActive) {
 				particlesHandler.hideParticles();
-				this.toggleX();
 			} else {
 				particlesHandler.changeParticlesNumberAndColor("none", 50);
-				this.toggleX();
 			}
+			this.toggleX();
 		});
 	}
 
