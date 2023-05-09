@@ -48,13 +48,12 @@ class CircleAnimation {
         const positionOnCircle = this.getPositionOnCircle(event);
         const fractionOfCircleClicked = positionOnCircle / 360;
         const timeElapsed = (1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse;
-        console.log(timeElapsed)
         logicHandler.timeToElapse = timeElapsed;
         counter.updateCounter();
         counter.showCurrentTime();
         this.updateProgress();
 
-        console.log("se actualiza el clock con la pulsación del god-mode")
+        console.log("se actualiza el Counter!")
     }
 }
 window.CircleAnimation = CircleAnimation;
