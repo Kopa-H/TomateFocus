@@ -51,6 +51,16 @@
   stroke-width: 16;
 
   transition: stroke-dashoffset 0.3s linear;
+  pointer-events: none;
+}
+
+.secondary-circle-progress {
+  fill: none;
+  stroke: #2f238c;
+  stroke-width: 20;
+  cursor: pointer;
+
+  transition: stroke-dashoffset 0.3s linear;
 }
 
 .time-elapsed {
