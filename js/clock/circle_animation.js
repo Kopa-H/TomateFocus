@@ -7,12 +7,20 @@ class CircleAnimation {
         // Se calcula el radio y la circumferencia del elemento HTML:
         this.radius = this.secondaryCircle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.radius;
-        this.secondaryCircle.style.strokeDasharray = this.circumference
+        this.circle.style.strokeDasharray = this.circumference
 
         // Agregar listener de eventos al círculo
+        this.circle.addEventListener("click", (event) => {
+            if (godModeHandler.godModeIsActive && logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
+                this.handleCircleClick(event);
+                console.log("Circumference clicked!")
+            }
+        });
+
         this.secondaryCircle.addEventListener("click", (event) => {
             if (godModeHandler.godModeIsActive && logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
                 this.handleCircleClick(event);
+                console.log("Circumference clicked!")
             }
         });
     }
