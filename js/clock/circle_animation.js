@@ -7,6 +7,11 @@ class CircleAnimation {
         this.radius = this.circle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.radius;
         this.circle.style.strokeDasharray = this.circumference
+
+        // Agregar listener de eventos al círculo
+        this.circle.addEventListener("click", (event) => {
+            this.handleCircleClick(event);
+        });
     }
 
     updateProgress() {
@@ -22,6 +27,34 @@ class CircleAnimation {
 
         // Actualiza el valor de la propiedad CSS 'strokeDashoffset' del círculo para mostrar el crecimiento.
         this.circle.style.strokeDashoffset = this.offset;
+    }
+
+    getPositionOnCircle(event) {
+        const clickPosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+        const circleCenter = {
+          x: this.circle.getBoundingClientRect().left + this.radius,
+          y: this.circle.getBoundingClientRect().top + this.radius
+        };
+        const angleInRadians = Math.atan2(clickPosition.y - circleCenter.y, clickPosition.x - circleCenter.x);
+        const angleInDegrees = angleInRadians * 180 / Math.PI;
+        const positionOnCircle = 360 - (angleInDegrees >= 0 ? angleInDegrees : angleInDegrees + 360);
+        return positionOnCircle;
+    }
+
+    handleCircleClick(event) {
+        const positionOnCircle = this.getPositionOnCircle(event);
+        const fractionOfCircleClicked = positionOnCircle / 360;
+        const timeElapsed = (1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse;
+        console.log(timeElapsed)
+        logicHandler.timeToElapse = timeElapsed;
+        counter.updateCounter();
+        counter.showCurrentTime();
+        this.updateProgress();
+
+        console.log("se actualiza el clock con la pulsación del god-mode")
     }
 }
 window.CircleAnimation = CircleAnimation;

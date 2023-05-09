@@ -107,24 +107,27 @@ class LogicHandler {
 
     runNextCycle() {
         if (this.itineraryListIndex < this.itineraryList.length) {
+            this.itineraryListIndex++;
             let currentFunction = this.itineraryList[this.itineraryListIndex];
 
-            if (this.itineraryListIndex >= 1) {
+            // Si ya se había iniciado el contador antes:
+            if (this.itineraryListIndex >= 2) {
                 audioHandler.clockAlarmSound.play();
                 // Se espera X segundos:
                 setTimeout(() => {
                     currentFunction();
                     circleAnimation.updateProgress();
-                    this.itineraryListIndex++;
                 }, 3000);
 
+            // Si se acaba de accionar el contador:
             } else {
+                this.itineraryListIndex--;
+                let currentFunction = this.itineraryList[this.itineraryListIndex];
                 audioHandler.clockStartSound.play();
                 currentFunction();
-                this.itineraryListIndex++;
             }
         } else {
-            console.log("La sesión de estudio ha concluido!");
+            alert("La sesión de estudio ha concluido!");
         }
     }
 

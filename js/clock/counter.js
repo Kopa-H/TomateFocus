@@ -17,6 +17,8 @@ class Counter {
     }
 
     updateCounter() {
+        this.transformTimeElapsedToMinutesAndSeconds();
+
         // Se llama al método que muestra el tiempo restante en pantalla:
         this.showCurrentTime();
 
@@ -30,6 +32,13 @@ class Counter {
             logicHandler.timeToElapse --
         }
     }
+
+    transformTimeElapsedToMinutesAndSeconds() {
+        const totalSeconds = Math.round(logicHandler.timeToElapse);
+
+        this.minutes = Math.floor(totalSeconds / 60);
+        this.seconds = totalSeconds % 60;
+      }
 }
 
 window.Counter = Counter;
