@@ -56,11 +56,9 @@
 
 .secondary-circle-progress {
   fill: none;
-  stroke: #2f238c;
-  stroke-width: 20;
+  stroke: #ff9191;
+  stroke-width: 16;
   cursor: pointer;
-
-  transition: stroke-dashoffset 0.3s linear;
 }
 
 .time-elapsed {
