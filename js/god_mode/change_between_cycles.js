@@ -4,6 +4,14 @@ class ChangeBetweenCyclesContainer {
 
         this.godModeNextCycleButton = document.querySelector(".god-mode-next-cycle-button");
         this.godModePrevCycleButton = document.querySelector(".god-mode-prev-cycle-button");
+
+        this.godModeNextCycleButton.addEventListener("click", () => {
+            godModeHandler.changeToNextCycle();
+        });
+
+        this.godModePrevCycleButton.addEventListener("click", () => {
+            godModeHandler.changeToPrevCycle();
+        });
     }
 
     toggleChangeBetweenCyclesFeature() {
@@ -12,14 +20,6 @@ class ChangeBetweenCyclesContainer {
 		} else {
 			this.godModeChangeCycleContainer.classList.add("shown");
 		}
-    }
-
-    changeToNextCycle() {
-        return;
-    }
-
-    changeToPrevCycle() {
-        return;
     }
 }
 
