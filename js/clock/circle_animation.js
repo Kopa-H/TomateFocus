@@ -2,15 +2,18 @@ class CircleAnimation {
     constructor() {
         // Se extrae el elemento HTML:
         this.circle = document.querySelector(".circle-progress");
+        this.secondaryCircle = document.querySelector(".secondary-circle-progress");
 
         // Se calcula el radio y la circumferencia del elemento HTML:
-        this.radius = this.circle.r.baseVal.value;
+        this.radius = this.secondaryCircle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.radius;
-        this.circle.style.strokeDasharray = this.circumference
+        this.secondaryCircle.style.strokeDasharray = this.circumference
 
         // Agregar listener de eventos al círculo
-        this.circle.addEventListener("click", (event) => {
-            this.handleCircleClick(event);
+        this.secondaryCircle.addEventListener("click", (event) => {
+            if (godModeHandler.godModeIsActive && logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
+                this.handleCircleClick(event);
+            }
         });
     }
 
@@ -35,8 +38,8 @@ class CircleAnimation {
           y: event.clientY
         };
         const circleCenter = {
-          x: this.circle.getBoundingClientRect().left + this.radius,
-          y: this.circle.getBoundingClientRect().top + this.radius
+          x: this.secondaryCircle.getBoundingClientRect().left + this.radius,
+          y: this.secondaryCircle.getBoundingClientRect().top + this.radius
         };
         const angleInRadians = Math.atan2(clickPosition.y - circleCenter.y, clickPosition.x - circleCenter.x);
         const angleInDegrees = angleInRadians * 180 / Math.PI;
