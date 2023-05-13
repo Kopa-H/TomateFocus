@@ -13,6 +13,7 @@ class GodModeHandler {
 
             NextCycleFunction();
             circleAnimation.updateProgress();
+            counter.updateCounter();
             console.log("Se avanza al siguiente cycle!")
         }
     }
@@ -26,6 +27,7 @@ class GodModeHandler {
 
             PrevCycleFunction();
             circleAnimation.updateProgress();
+            counter.updateCounter();
             console.log("Se retrocede al anterior cycle!")
         }
     }
