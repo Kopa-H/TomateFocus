@@ -1,0 +1,30 @@
+.plan-session-container {
+    text-align: center;
+    flex-direction: column;
+    background-color: #b15353;
+    width: 20em;
+    color: #FFF4E0;
+    gap: 1em;
+    border-radius: 1em;
+
+    border: 1px solid brown;
+}
+
+.plan-session-zone {
+    overflow: hidden;
+    position: absolute;
+    align-items: center;
+    justify-content: end;
+    left: 0;
+    right: 0;
+    top: calc(7% + 1em);
+    margin: 0 auto 0 auto;
+    max-width: 80em;
+    padding: 0em 10em;
+    z-index: 1;
+}
+
+.plan-session-title {
+    position: absolute;
+    
+}
