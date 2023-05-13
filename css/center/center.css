@@ -49,15 +49,20 @@
   fill: none;
   stroke: #b15353;
   stroke-width: 16;
-
   transition: stroke-dashoffset 0.3s linear;
-  pointer-events: none;
+  cursor: auto;
+}
+.circle-progress.god-mode-active {
+  cursor: pointer;
 }
 
 .secondary-circle-progress {
   fill: none;
-  stroke: #ff9191;
-  stroke-width: 16;
+  stroke: #ffb7b7;
+  stroke-width: 15;
+  cursor: auto;
+}
+.secondary-circle-progress.god-mode-active {
   cursor: pointer;
 }
 

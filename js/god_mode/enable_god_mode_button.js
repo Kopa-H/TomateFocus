@@ -22,10 +22,13 @@ class EnableGodModeButton {
 	}
 
 	toggleX() {
+		// If god mode is enabled:
 		if (this.enableGodModeX.classList.contains("shown")) {
 			this.enableGodModeX.classList.remove("shown");
+			circleAnimation.toggleCirclesInteractivity();
 		} else {
 			this.enableGodModeX.classList.add("shown");
+			circleAnimation.toggleCirclesInteractivity();
 		}
 	}
 }
