@@ -6,11 +6,15 @@ class ChangeBetweenCyclesContainer {
         this.godModePrevCycleButton = document.querySelector(".god-mode-prev-cycle-button");
 
         this.godModeNextCycleButton.addEventListener("click", () => {
-            godModeHandler.changeToNextCycle();
+            if (logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
+                godModeHandler.changeToNextCycle();
+            }
         });
 
         this.godModePrevCycleButton.addEventListener("click", () => {
-            godModeHandler.changeToPrevCycle();
+            if (logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
+                godModeHandler.changeToPrevCycle();
+            }
         });
     }
 

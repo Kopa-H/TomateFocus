@@ -9,6 +9,7 @@
     border-radius: 100px;
 
     opacity: 0;
+    pointer-events: none;
 
     justify-content: center;
     align-items: center;
@@ -17,6 +18,7 @@
 }
 .god-mode-change-cycle-container.shown {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .god-mode-prev-cycle-button {
