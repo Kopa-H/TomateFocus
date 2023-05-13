@@ -12,15 +12,13 @@ class CircleAnimation {
         // Agregar listener de eventos al círculo
         this.circle.addEventListener("click", (event) => {
             if (godModeHandler.godModeIsActive && logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
-                this.handleCircleClick(event);
-                console.log("Circumference clicked!")
+                godModeHandler.handleCircleClick(event);
             }
         });
 
         this.secondaryCircle.addEventListener("click", (event) => {
             if (godModeHandler.godModeIsActive && logicHandler.timeToElapse < logicHandler.initialTimeToElapse) {
-                this.handleCircleClick(event);
-                console.log("Circumference clicked!")
+                godModeHandler.handleCircleClick(event);
             }
         });
     }
@@ -40,32 +38,16 @@ class CircleAnimation {
         this.circle.style.strokeDashoffset = this.offset;
     }
 
-    getPositionOnCircle(event) {
-        const clickPosition = {
-          x: event.clientX,
-          y: event.clientY
-        };
-        const circleCenter = {
-          x: this.secondaryCircle.getBoundingClientRect().left + this.radius,
-          y: this.secondaryCircle.getBoundingClientRect().top + this.radius
-        };
-        const angleInRadians = Math.atan2(clickPosition.y - circleCenter.y, clickPosition.x - circleCenter.x);
-        const angleInDegrees = angleInRadians * 180 / Math.PI;
-        const positionOnCircle = 360 - (angleInDegrees >= 0 ? angleInDegrees : angleInDegrees + 360);
-        return positionOnCircle;
-    }
-
-    handleCircleClick(event) {
-        const positionOnCircle = this.getPositionOnCircle(event);
-        const fractionOfCircleClicked = positionOnCircle / 360;
-        const timeElapsed = (1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse;
-        logicHandler.timeToElapse = timeElapsed;
-        counter.updateCounter();
-        counter.showCurrentTime();
-        this.updateProgress();
-
-        console.log("se actualiza el Counter!")
-    }
+    toggleCirclesInteractivity() {
+		// If god mode is enabled:
+		if (this.circle.style.cursor == "pointer") {
+			this.circle.style.cursor = "auto";
+			this.secondaryCircle.style.cursor = "auto";
+		} else {
+			this.circle.style.cursor = "pointer";
+			this.secondaryCircle.style.cursor = "pointer";
+		}
+	}
 }
 window.CircleAnimation = CircleAnimation;
 const circleAnimation = new CircleAnimation();

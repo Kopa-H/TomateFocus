@@ -29,6 +29,33 @@ class GodModeHandler {
             console.log("Se retrocede al anterior cycle!")
         }
     }
+
+    getPositionOnCircle(event) {
+        const clickPosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+        const circleCenter = {
+          x: circleAnimation.secondaryCircle.getBoundingClientRect().left + circleAnimation.radius,
+          y: circleAnimation.secondaryCircle.getBoundingClientRect().top + circleAnimation.radius
+        };
+        const angleInRadians = Math.atan2(clickPosition.y - circleCenter.y, clickPosition.x - circleCenter.x);
+        const angleInDegrees = angleInRadians * 180 / Math.PI;
+        const positionOnCircle = 360 - (angleInDegrees >= 0 ? angleInDegrees : angleInDegrees + 360);
+        return positionOnCircle;
+    }
+
+    handleCircleClick(event) {
+        const positionOnCircle = this.getPositionOnCircle(event);
+        const fractionOfCircleClicked = positionOnCircle / 360;
+        const timeElapsed = (1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse;
+        logicHandler.timeToElapse = timeElapsed;
+        counter.updateCounter();
+        counter.showCurrentTime();
+        circleAnimation.updateProgress();
+
+        console.log("se actualiza el Counter!")
+    }
 }
 
 window.GodModeHandler = GodModeHandler;
