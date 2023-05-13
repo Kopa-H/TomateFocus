@@ -23,7 +23,7 @@ class ToggleMenu {
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
             if (this.pomodoroCurrentMinutes < 60) {
                 this.pomodoroTextMinutes.textContent = `${++this.pomodoroCurrentMinutes} minutes`
-                logicHandler.pomodoroTimeToElapse = ++this.pomodoroCurrentMinutes;
+                logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
             }
         });
         this.pomodoroMinusButton.addEventListener('click', () => {
@@ -33,7 +33,7 @@ class ToggleMenu {
                 // Se modifica el texto que se verá en el toggle menu:
                 this.pomodoroTextMinutes.textContent = `${--this.pomodoroCurrentMinutes} minutes`
                 // Se modifica el tiempo que usará LogicHandler y Counter:
-                logicHandler.pomodoroTimeToElapse = --this.pomodoroCurrentMinutes;
+                logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
             }
         });
 
@@ -41,14 +41,14 @@ class ToggleMenu {
             this.shortbreakCurrentMinutes = +this.shortbreakTextMinutes.textContent.match(/\d+/g)
             if (this.shortbreakCurrentMinutes < 30) {
                 this.shortbreakTextMinutes.textContent = `${++this.shortbreakCurrentMinutes} minutes`
-                logicHandler.shortbreakTimeToElapse = ++this.shortbreakCurrentMinutes;
+                logicHandler.shortbreakTimeToElapse = this.shortbreakCurrentMinutes*60;
             }
         });
         this.shortbreakMinusButton.addEventListener("click", () => {
             this.shortbreakCurrentMinutes = +this.shortbreakTextMinutes.textContent.match(/\d+/g)
             if (this.shortbreakCurrentMinutes > 1) {
                 this.shortbreakTextMinutes.textContent = `${--this.shortbreakCurrentMinutes} minutes`
-                logicHandler.shortbreakTimeToElapse = --this.shortbreakCurrentMinutes;
+                logicHandler.shortbreakTimeToElapse = this.shortbreakCurrentMinutes*60;
             }
         });
 
@@ -56,14 +56,14 @@ class ToggleMenu {
             this.longbreakCurrentMinutes = +this.longbreakTextMinutes.textContent.match(/\d+/g)
             if (this.longbreakCurrentMinutes < 60) {
                 this.longbreakTextMinutes.textContent = `${++this.longbreakCurrentMinutes} minutes`
-                logicHandler.longbreakTimeToElapse = ++this.longbreakCurrentMinutes;
+                logicHandler.longbreakTimeToElapse = this.longbreakCurrentMinutes*60;
             }
         });
         this.longbreakMinusButton.addEventListener("click", () => {
             this.longbreakCurrentMinutes = +this.longbreakTextMinutes.textContent.match(/\d+/g)
             if (this.longbreakCurrentMinutes > 5) {
                 this.longbreakTextMinutes.textContent = `${--this.longbreakCurrentMinutes} minutes`
-                logicHandler.longbreakTimeToElapse = --this.longbreakCurrentMinutes;
+                logicHandler.longbreakTimeToElapse = this.longbreakCurrentMinutes*60;
             }
         });
 
