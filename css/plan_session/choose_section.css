@@ -1,9 +1,20 @@
 .plan-session-choose-section-flex {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
+    top: 100px;
+    left: 400px;
+
+    height: 1000px;
+    width: 500px;
+
+    border: 1px solid blue;
 }
 
 .plan-session-choose-section-row {
-
+    display: flex;
+    flex-direction: row;
 }
 
 .plan-session-choose-section-prev-cycle-button {
