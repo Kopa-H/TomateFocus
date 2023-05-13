@@ -1,15 +1,19 @@
-plan-session-estimations-section-flex {
+.plan-session-estimations-section-flex {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
+    margin-top: 30px;
+    row-gap: 7px;
+
+    border: 1px solid blue;
 }
 
-plan-session-estimations-section-study-time {
-
-}
-
-plan-session-estimations-section-break-time {
-
-}
-
-plan-session-estimations-section-total-time {
-
+.plan-session-estimations-section-study-time,
+.plan-session-estimations-section-total-time,
+.plan-session-estimations-section-break-time {
+    font-size: 25px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
 }

@@ -1,4 +1,4 @@
-.plan-study-button {
+.plan-session-button {
     position: relative;
     margin-top: 35px;
 
@@ -13,19 +13,18 @@
     transition: background-color 0.2s, transform 0.1s;
 }
 
-.plan-study-button:hover {
+.plan-session-button:hover {
     background-color: #b55555;
 }
 
-.plan-study-button:active {
+.plan-session-button:active {
     background-color: #b55959;
     transform: translate(-0.5px, -0.5px);
 }
 
-.plan-study-description {
-    position: relative;
-    bottom: 7%;
-    left: 20%;
+.plan-session-description {
+    margin-top: 5px;
+    margin-left: 50px;
     padding: 10px 20px;
 
     background-color: #4D4D4D;
