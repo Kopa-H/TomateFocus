@@ -1,29 +1,29 @@
-.plan-session-container {
-    text-align: center;
-    flex-direction: column;
-    background-color: #b15353;
-    width: 20em;
-    color: #FFF4E0;
-    gap: 1em;
-    border-radius: 1em;
-
-    border: 1px solid brown;
-}
-
 .plan-session-zone {
-    overflow: hidden;
     position: absolute;
-    align-items: center;
-    justify-content: end;
+    display: none;
     left: 0;
     right: 0;
     top: calc(7% + 1em);
+    width: 400px;
+    height: 700px;
     margin: 0 auto 0 auto;
     max-width: 80em;
-    padding: 0em 10em;
+
+    background-color: #b15353;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1em;
+
+    border: 1px solid orange;
+    z-index: 100;
 }
 
 .plan-session-title {
+    margin-top: 30px;
+    text-align: center;
+
     font-size: 2em;
+    color: white;
     font-weight: 500;
+    border: 1px solid salmon;
 }

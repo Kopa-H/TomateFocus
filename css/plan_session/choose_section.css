@@ -1,30 +1,39 @@
 .plan-session-choose-section-flex {
     position: relative;
+
     display: flex;
     flex-direction: column;
-
-    top: 100px;
-    left: 400px;
-
-    height: 1000px;
-    width: 500px;
-
-    border: 1px solid blue;
+    margin: auto;
+    margin-top: 30px;
+    width: 20em;
 }
 
 .plan-session-choose-section-row {
     display: flex;
     flex-direction: row;
+
+    gap: 30px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid purple;
 }
 
-.plan-session-choose-section-prev-cycle-button {
-
+.plan-session-choose-section-next-cycle-button, .plan-session-choose-section-prev-cycle-button {
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.plan-session-choose-section-next-cycle-button:hover, .plan-session-choose-section-prev-cycle-button:hover {
+    background-color: #0000005e;
+}
+.plan-session-choose-section-next-cycle-button:active, .plan-session-choose-section-prev-cycle-button:active {
+    background-color: #0000002c;
+    transform: translate(-0.5px, -0.5px);
 }
 
 .plan-session-choose-section-cycle-name {
-
-}
-
-.plan-session-choose-section-next-cycle-button {
-    
+    color: white;
+    font-size: 25px;
 }
