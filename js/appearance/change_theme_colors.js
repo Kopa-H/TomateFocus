@@ -21,9 +21,6 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.defaultColor;
         this.toggleMenuContainer.style.backgroundColor = this.defaultColor;
         this.musicPlayerContainer.style.backgroundColor = this.defaultColor;
-        this.musicPlayerButton.style.backgroundColor = this.defaultColor;
-        this.settingsButton.style.backgroundColor = this.defaultColor;
-
         particlesHandler.changeParticlesNumberAndColor(this.defaultColor);
     }
 
@@ -33,6 +30,11 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.pomodoroColor;
         this.toggleMenuContainer.style.backgroundColor = this.pomodoroColor;
         this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
+
+        this.musicPlayerButton.classList.remove("shortbreak");
+        this.musicPlayerButton.classList.remove("longbreak");
+        this.settingsButton.classList.remove("shortbreak");
+        this.settingsButton.classList.remove("longbreak");
 
         this.musicPlayerButton.classList.add("pomodoro");
         this.settingsButton.classList.add("pomodoro");
@@ -47,6 +49,11 @@ class ThemeColor {
         this.toggleMenuContainer.style.backgroundColor = this.shortbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
 
+        this.musicPlayerButton.classList.remove("pomodoro");
+        this.musicPlayerButton.classList.remove("longbreak");
+        this.settingsButton.classList.remove("pomodoro");
+        this.settingsButton.classList.remove("longbreak");
+
         this.musicPlayerButton.classList.add("shortbreak");
         this.settingsButton.classList.add("shortbreak");
 
@@ -60,10 +67,13 @@ class ThemeColor {
         this.toggleMenuContainer.style.backgroundColor = this.longbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
 
+        this.musicPlayerButton.classList.remove("pomodoro");
+        this.musicPlayerButton.classList.remove("shortbreak");
+        this.settingsButton.classList.remove("pomodoro");
+        this.settingsButton.classList.remove("shortbreak");
+
         this.musicPlayerButton.classList.add("longbreak");
         this.settingsButton.classList.add("longbreak");
-
-        this.musicPlayerButton.style.backgroundColor = this.defaultColor;
 
         particlesHandler.changeParticlesNumberAndColor(this.longbreakColor);
     }
