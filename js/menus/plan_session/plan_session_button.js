@@ -23,7 +23,7 @@ class PlanSessionButton {
         if (this.planSessionStyles.display == "none") {
             this.planSession.classList.remove("slideOut");
             this.planSession.classList.add("slideIn");
-            this.planSession.style.display = "flex";
+            this.planSession.style.display = "block";
         } else {
             this.planSession.classList.remove("slideIn");
             this.planSession.classList.add("slideOut");
