@@ -3,11 +3,6 @@ class LogicHandler {
         this.initialTimeToElapse = 0;
         this.timeToElapse = 0;
 
-        this.isRunningDefaultItinerary = false;
-
-        // This variable will be used to register which is the following cycle to execute:
-        this.itineraryListIndex = 0;
-
         // This variable will control if the counter is running:
         this.appIsRunning = false;
 
@@ -21,6 +16,16 @@ class LogicHandler {
 
         // Segundos que se aplicarán de Delay:
         this.timeToDelay = 60;
+
+        this.itineraryList = [
+            () => {this.runPomodoro()},
+            () => {this.runShortBreak()},
+            () => {this.runPomodoro()},
+            () => {this.runShortBreak()},
+            () => {this.runPomodoro()},
+            () => {this.runLongBreak()},
+        ];
+        this.itineraryListIndex = 0;
     }
 
     startCounter() {
@@ -93,18 +98,6 @@ class LogicHandler {
         this.currentCycleRunning = "LongBreak";
     }
 
-    runDefaultItinerary() {
-        this.isRunningDefaultItinerary = true;
-        this.itineraryList = [
-            () => {this.runPomodoro()},
-            () => {this.runShortBreak()},
-            () => {this.runPomodoro()},
-            () => {this.runShortBreak()},
-            () => {this.runPomodoro()},
-            () => {this.runLongBreak()},
-        ];
-    }
-
     runNextCycle() {
         if (this.itineraryListIndex < this.itineraryList.length) {
             this.itineraryListIndex++;
@@ -137,19 +130,28 @@ class LogicHandler {
 
         setInterval(() => {
             if (this.appIsRunning == true) {
-                // If the time of the counter ends and If the default itinerary is running, the next cycle is executed:
-                if (this.timeToElapse <= 0 && this.isRunningDefaultItinerary == true) {
+                // If the time of the counter ends, the next cycle is executed:
+                if (this.timeToElapse <= 0) {
                     this.runNextCycle()
                 }
+
                 counter.updateCounter();
                 circleAnimation.updateProgress();
             }
         }, 1000);
     }
+
+        updateItineraryList() {
+            this.itineraryList = [];
+            planSessionEstimationsSection.chooseSections.forEach((element) => {
+                let cycleFunction = eval(`() => {this.run${element.innerHTML}}`);
+                this.itineraryList.push(cycleFunction)
+                console.log(cycleFunction);
+            });
+        }
 }
 
 window.LogicHandler = LogicHandler;
 const logicHandler = new LogicHandler();
 
-logicHandler.runDefaultItinerary();
 logicHandler.runApp();

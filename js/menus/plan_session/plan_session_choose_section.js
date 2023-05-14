@@ -13,6 +13,8 @@ class PlanSessionEstimationsSection {
                 const index = parseInt(button.dataset.index);
                 const chooseSection = this.chooseSections[index - 1];
                 this.changeToNextCycle(chooseSection);
+
+                logicHandler.updateItineraryList();
             });
         });
 
@@ -22,6 +24,8 @@ class PlanSessionEstimationsSection {
                 const index = parseInt(button.dataset.index);
                 const chooseSection = this.chooseSections[index - 1];
                 this.changeToPrevCycle(chooseSection);
+
+                logicHandler.updateItineraryList();
             });
         });
     }
