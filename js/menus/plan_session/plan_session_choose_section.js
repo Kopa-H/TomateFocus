@@ -1,27 +1,40 @@
 class PlanSessionEstimationsSection {
-
     constructor() {
-        this.chooseSection1 = document.querySelector('.plan-session-choose-section-1');
-        this.chooseSection2 = document.querySelector('.plan-session-choose-section-2');
-        this.chooseSection3 = document.querySelector('.plan-session-choose-section-3');
-        this.chooseSection4 = document.querySelector('.plan-session-choose-section-4');
-        this.chooseSection5 = document.querySelector('.plan-session-choose-section-5');
-        this.chooseSection6 = document.querySelector('.plan-session-choose-section-6');
+        this.cycles = ['Pomodoro', 'ShortBreak', 'LongBreak'];
+        this.chooseSections = [];
 
-        this.nextButton1 = document.querySelector('.plan-session-choose-section-next-button-1');
-        this.nextButton2 = document.querySelector('.plan-session-choose-section-next-button-2');
-        this.nextButton3 = document.querySelector('.plan-session-choose-section-next-button-3');
-        this.nextButton4 = document.querySelector('.plan-session-choose-section-next-button-4');
-        this.nextButton5 = document.querySelector('.plan-session-choose-section-next-button-5');
-        this.nextButton6 = document.querySelector('.plan-session-choose-section-next-button-6');
+        for (let i = 1; i <= 6; i++) {
+            this.chooseSections.push(document.querySelector(`.plan-session-choose-section-cycle-name[data-index="${i}"]`));
+        }
 
-        this.prevButton1 = document.querySelector('.plan-session-choose-section-prev-button-1');
-        this.prevButton2 = document.querySelector('.plan-session-choose-section-prev-button-2');
-        this.prevButton3 = document.querySelector('.plan-session-choose-section-prev-button-3');
-        this.prevButton4 = document.querySelector('.plan-session-choose-section-prev-button-4');
-        this.prevButton5 = document.querySelector('.plan-session-choose-section-prev-button-5');
-        this.prevButton6 = document.querySelector('.plan-session-choose-section-prev-button-6');
-	}
+        const nextButtons = document.querySelectorAll('.plan-session-choose-section-next-cycle-button');
+        nextButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const index = parseInt(button.dataset.index);
+                const chooseSection = this.chooseSections[index - 1];
+                this.changeToNextCycle(chooseSection);
+            });
+        });
+
+        const prevButtons = document.querySelectorAll('.plan-session-choose-section-prev-cycle-button');
+        prevButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const index = parseInt(button.dataset.index);
+                const chooseSection = this.chooseSections[index - 1];
+                this.changeToPrevCycle(chooseSection);
+            });
+        });
+    }
+
+    changeToNextCycle(currentCycle) {
+        const currentIndex = this.cycles.indexOf(currentCycle.innerHTML);
+        currentCycle.innerHTML = this.cycles[(currentIndex + 1) % this.cycles.length];
+    }
+
+    changeToPrevCycle(currentCycle) {
+        const currentIndex = this.cycles.indexOf(currentCycle.innerHTML);
+        currentCycle.innerHTML = this.cycles[(currentIndex - 1 + this.cycles.length) % this.cycles.length];
+    }
 }
 
 window.PlanSessionEstimationsSection = PlanSessionEstimationsSection;
