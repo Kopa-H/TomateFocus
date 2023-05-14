@@ -5,7 +5,6 @@ class PlayAndPauseIconsHandler {
 
         this.timeElapsed = document.querySelector(".time-zone");
 
-        // Manejador de eventos del play
         this.timeElapsed = document.querySelector(".time-zone");
         this.timeElapsed.addEventListener("click", () => {
             if (logicHandler.appIsRunning) {

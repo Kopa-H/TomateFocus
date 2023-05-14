@@ -13,22 +13,26 @@ class DelayCycle {
 
         // Añadir minutos extra:
         this.delayCycleButton.addEventListener('click', () => {
-            if (logicHandler.timeToElapse >= 1) {
-                if (counter.seconds != 0 && counter.minutes != 0 && (counter.minutes*60 + counter.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
-                    counter.minutes += logicHandler.timeToDelay/60;
-                    logicHandler.timeToElapse = counter.minutes*60 + counter.seconds
-                    counter.updateCounter();
-                    circleAnimation.updateProgress();
-                // Si el tiempo a añadir supera el tiempo original del ciclo:
-                } else if ((counter.minutes*60 + counter.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
-                    counter.minutes = logicHandler.initialTimeToElapse/60;
-                    counter.seconds = 0;
-                    logicHandler.timeToElapse = counter.minutes*60 + counter.seconds
-                    counter.updateCounter();
-                    circleAnimation.updateProgress();
-                }
-            }
+            this.delayCycleOneMinute();
         });
+    }
+
+    delayCycleOneMinute() {
+        if (logicHandler.timeToElapse >= 1) {
+            if (counter.seconds != 0 && counter.minutes != 0 && (counter.minutes*60 + counter.seconds + logicHandler.timeToDelay) <= logicHandler.initialTimeToElapse) {
+                counter.minutes += logicHandler.timeToDelay/60;
+                logicHandler.timeToElapse = counter.minutes*60 + counter.seconds
+                counter.updateCounter();
+                circleAnimation.updateProgress();
+            // Si el tiempo a añadir supera el tiempo original del ciclo:
+            } else if ((counter.minutes*60 + counter.seconds + logicHandler.timeToDelay) >= logicHandler.initialTimeToElapse) {
+                counter.minutes = logicHandler.initialTimeToElapse/60;
+                counter.seconds = 0;
+                logicHandler.timeToElapse = counter.minutes*60 + counter.seconds
+                counter.updateCounter();
+                circleAnimation.updateProgress();
+            }
+        }
     }
 
     changeToDelayPomodoro() {
