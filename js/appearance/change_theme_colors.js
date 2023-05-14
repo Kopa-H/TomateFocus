@@ -3,7 +3,7 @@ class ThemeColor {
         this.line = document.querySelector(".line");
         this.circle = document.querySelector(".circle-progress");
         this.delayCycleButton = document.querySelector(".delay-cycle-button");
-        this.toggleMenuContainer = document.querySelector(".toggle-menu-container");
+        this.settingsMenuContainer = document.querySelector(".settings-menu-container");
         this.musicPlayerContainer = document.querySelector(".music-player-container");
 
         this.musicPlayerButton = document.querySelector(".music-icon");
@@ -19,7 +19,7 @@ class ThemeColor {
         this.line.style.borderBottomColor = this.defaultColor;
         this.circle.style.stroke = this.defaultColor;
         this.delayCycleButton.style.backgroundColor = this.defaultColor;
-        this.toggleMenuContainer.style.backgroundColor = this.defaultColor;
+        this.settingsMenuContainer.style.backgroundColor = this.defaultColor;
         this.musicPlayerContainer.style.backgroundColor = this.defaultColor;
         particlesHandler.changeParticlesNumberAndColor(this.defaultColor);
     }
@@ -28,7 +28,7 @@ class ThemeColor {
         this.line.style.borderBottomColor = this.pomodoroColor;
         this.circle.style.stroke = this.pomodoroColor;
         this.delayCycleButton.style.backgroundColor = this.pomodoroColor;
-        this.toggleMenuContainer.style.backgroundColor = this.pomodoroColor;
+        this.settingsMenuContainer.style.backgroundColor = this.pomodoroColor;
         this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
 
         this.musicPlayerButton.classList.remove("shortbreak");
@@ -46,7 +46,7 @@ class ThemeColor {
         this.line.style.borderBottomColor = this.shortbreakColor;
         this.circle.style.stroke = this.shortbreakColor;
         this.delayCycleButton.style.backgroundColor = this.shortbreakColor;
-        this.toggleMenuContainer.style.backgroundColor = this.shortbreakColor;
+        this.settingsMenuContainer.style.backgroundColor = this.shortbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");
@@ -64,7 +64,7 @@ class ThemeColor {
         this.line.style.borderBottomColor = this.longbreakColor;
         this.circle.style.stroke = this.longbreakColor;
         this.delayCycleButton.style.backgroundColor = this.longbreakColor;
-        this.toggleMenuContainer.style.backgroundColor = this.longbreakColor;
+        this.settingsMenuContainer.style.backgroundColor = this.longbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");

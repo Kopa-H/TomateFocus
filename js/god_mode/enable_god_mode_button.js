@@ -6,13 +6,11 @@ class EnableGodModeButton {
 		this.enableGodModeButton.addEventListener("click", () => {
 			if (godModeHandler.godModeIsActive) {
 				godModeHandler.godModeIsActive = false;
-				console.log("el botón se desactiva")
 
 				// Se activa la función de cambiar entre Cycles
 				changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
 			} else {
 				godModeHandler.godModeIsActive = true;
-				console.log("el botón se activa")
 
 				// Se activa la función de cambiar entre Cycles:
 				changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();

@@ -21,7 +21,7 @@ document.addEventListener("keydown", (event) => {
 // S Key:
 document.addEventListener("keydown", (event) => {
     if (event.key === "s" || event.key === "S") {
-        toggleMenu.showOrHideToggleMenu();
+        settingsMenu.showOrHideSettingsMenu();
     }
 });
 
