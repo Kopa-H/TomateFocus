@@ -105,19 +105,19 @@ class LogicHandler {
 
             // Si ya se había iniciado el contador antes:
             if (this.itineraryListIndex >= 2) {
-                audioHandler.clockAlarmSound.play();
                 // Se espera X segundos:
                 setTimeout(() => {
                     currentFunction();
                     circleAnimation.updateProgress();
                 }, 3000);
+                audioHandler.clockAlarmSound.play();
 
             // Si se acaba de accionar el contador:
             } else {
                 this.itineraryListIndex--;
                 let currentFunction = this.itineraryList[this.itineraryListIndex];
-                audioHandler.clockStartSound.play();
                 currentFunction();
+                audioHandler.clockStartSound.play();
             }
         } else {
             alert("La sesión de estudio ha concluido!");
@@ -133,6 +133,7 @@ class LogicHandler {
                 // If the time of the counter ends, the next cycle is executed:
                 if (this.timeToElapse <= 0) {
                     this.runNextCycle()
+                    console.log(this.timeToElapse)
                 }
 
                 counter.updateCounter();
@@ -141,14 +142,13 @@ class LogicHandler {
         }, 1000);
     }
 
-        updateItineraryList() {
-            this.itineraryList = [];
-            planSessionEstimationsSection.chooseSections.forEach((element) => {
-                let cycleFunction = eval(`() => {this.run${element.innerHTML}}`);
-                this.itineraryList.push(cycleFunction)
-                console.log(cycleFunction);
-            });
-        }
+    updateItineraryList() {
+        this.itineraryList = [];
+        planSessionEstimationsSection.chooseSections.forEach((element) => {
+            let cycleFunction = eval(`() => {this.run${element.innerHTML}()}`);
+            this.itineraryList.push(cycleFunction)
+        });
+    }
 }
 
 window.LogicHandler = LogicHandler;
