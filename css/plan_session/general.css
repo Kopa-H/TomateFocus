@@ -5,7 +5,7 @@
     right: 0;
     top: calc(7% + 1em);
     width: 400px;
-    height: 700px;
+    height: 750px;
     margin: 0 auto 0 auto;
     max-width: 80em;
 
@@ -26,4 +26,37 @@
     color: white;
     font-weight: 500;
     border: 1px solid salmon;
+}
+
+.plan-session-confirm-button {
+    max-width: 200px;
+    padding: 15px;
+    margin-top: 10px;
+
+    align-self: center;
+
+    text-align: center;
+    border-radius: 1em;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+
+    transition: all 0.4s;
+}
+.plan-session-confirm-button:hover {
+    background-color: #5a5959;
+}
+
+.plan-session-confirm-button:active {
+    background-color: #878787;
+    transform: translate(-0.5px, -0.5px);
+}
+
+.plan-session-reset-settings-button {
+    position: absolute;
+    top: 85%;
+    left: 75%;
+
+    cursor: pointer;
+    border: 1px solid seagreen;
 }
