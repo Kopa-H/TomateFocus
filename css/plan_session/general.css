@@ -54,8 +54,10 @@
 
 .plan-session-reset-settings-button {
     position: absolute;
-    top: 85%;
-    left: 75%;
+    top: 90%;
+    left: 82%;
+
+    width: 80px;
 
     cursor: pointer;
     border: 1px solid seagreen;
