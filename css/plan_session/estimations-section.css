@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     margin-top: 30px;
     row-gap: 7px;
@@ -9,11 +10,23 @@
     border: 1px solid blue;
 }
 
-.plan-session-estimations-section-study-time,
-.plan-session-estimations-section-total-time,
-.plan-session-estimations-section-break-time {
+.plan-session-estimations-section-row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    width: 200px;
+
+    padding: 8px 5px;
+
+    justify-content: space-between;
+
+
+    border: 1px solid black;
+}
+
+.plan-session-estimations-section-row > div {
     font-size: 17px;
     color: white;
     font-weight: 500;
-    text-align: center;
 }
