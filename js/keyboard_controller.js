@@ -1,4 +1,4 @@
-// Space Key:
+// Space Key --> (Stop / Resume / Start) Counter:
 document.addEventListener("keydown", (event) => {
     if (event.key === " ") {
         if (logicHandler.appIsRunning) {
@@ -11,10 +11,22 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// M Key:
+// M Key --> Toggle Music Player:
 document.addEventListener("keydown", (event) => {
     if (event.key === "m" || event.key === "M") {
         musicButton.musicPlayerTrigger();
+    }
+});
+// ArrowUp Key -- > Increase Song Volume:
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+        volumeSlider.changeVolumeViaKeyboard("up");
+    }
+});
+// ArrowDown Key -- > Decrease Song Volume:
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown") {
+        volumeSlider.changeVolumeViaKeyboard("down");
     }
 });
 
@@ -43,5 +55,12 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight" && godModeHandler.godModeIsActive) {
         godModeHandler.changeToNextCycle();
+    }
+});
+
+// G Key:
+document.addEventListener("keydown", (event) => {
+    if (event.key === "g" || event.key === "G") {
+      enableGodModeButton.activateGodMode();
     }
 });

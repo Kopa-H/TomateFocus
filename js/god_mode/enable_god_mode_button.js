@@ -4,19 +4,23 @@ class EnableGodModeButton {
 		this.enableGodModeX = document.querySelector(".enable-god-mode-x");
 
 		this.enableGodModeButton.addEventListener("click", () => {
-			if (godModeHandler.godModeIsActive) {
-				godModeHandler.godModeIsActive = false;
 
-				// Se activa la función de cambiar entre Cycles
-				changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
-			} else {
-				godModeHandler.godModeIsActive = true;
-
-				// Se activa la función de cambiar entre Cycles:
-				changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
-			}
-			this.toggleX();
 		});
+	}
+
+	activateGodMode() {
+		if (godModeHandler.godModeIsActive) {
+			godModeHandler.godModeIsActive = false;
+
+			// Se activa la función de cambiar entre Cycles
+			changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
+		} else {
+			godModeHandler.godModeIsActive = true;
+
+			// Se activa la función de cambiar entre Cycles:
+			changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
+		}
+		this.toggleX();
 	}
 
 	toggleX() {

@@ -53,6 +53,7 @@ class VolumeSlider {
     this.sliderThumb = document.querySelector('.slider-thumb');
     this.sliderTrack = document.querySelector('.slider-track');
     this.sliderContainer = document.querySelector('.slider-container');
+    this.trackHeight = 93;
 
     // Se requiere conocer el volumen inicial del slider para las transiciones, por lo que se calcula al instanciar la clase:
     this.volumePercentage = 0.6;
@@ -112,6 +113,24 @@ class VolumeSlider {
     this.volumePercentage = Math.max(0, Math.min(1, this.volumePercentage));
     // Actualiza el volumen del reproductor de música
     musicPlayer.songBeingPlayed.volume = this.volumePercentage;
+  }
+
+  changeVolumeViaKeyboard(changeValue) {
+    let containerTop = this.sliderContainer.getBoundingClientRect().top;
+    let containerBottom = this.sliderContainer.getBoundingClientRect().bottom;
+
+    this.trackHeight += (changeValue === "up" ? -20 : 20);
+
+    if (this.trackHeight <= 0) {
+      this.trackHeight = 0;
+    } else if (this.trackHeight >= containerBottom - containerTop) {
+      this.trackHeight = 200;
+    }
+
+    this.sliderTrack.style.height = this.trackHeight + 'px';
+    this.sliderThumb.style.top = this.trackHeight - (this.sliderThumb.offsetHeight / 2) + 'px';
+
+    this.changeVolume()
   }
 }
 
