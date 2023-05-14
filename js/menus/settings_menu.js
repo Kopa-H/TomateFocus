@@ -1,11 +1,11 @@
-class ToggleMenu {
+class SettingsMenu {
     constructor() {
-        this.toggleMenuFlex = document.querySelector(".toggle-menu-flex");
-        this.toggleMenuStyles = window.getComputedStyle(this.toggleMenuFlex);
+        this.settingsMenuFlex = document.querySelector(".settings-menu-flex");
+        this.settingsMenuStyles = window.getComputedStyle(this.settingsMenuFlex);
 
-        this.toggleMenuIcon = document.getElementById("settings-icon")
-        this.toggleMenuIcon.addEventListener('click', () => {
-            this.showOrHideToggleMenu();
+        this.settingsMenuIcon = document.getElementById("settings-icon")
+        this.settingsMenuIcon.addEventListener('click', () => {
+            this.showOrHideSettingsMenu();
         });
 
         this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
@@ -30,7 +30,7 @@ class ToggleMenu {
             // Se obtiene el número de minutos actuales del elemento HTML:
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
             if (this.pomodoroCurrentMinutes > 10) {
-                // Se modifica el texto que se verá en el toggle menu:
+                // Se modifica el texto que se verá en el settings menu:
                 this.pomodoroTextMinutes.textContent = `${--this.pomodoroCurrentMinutes} minutes`
                 // Se modifica el tiempo que usará LogicHandler y Counter:
                 logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
@@ -74,17 +74,17 @@ class ToggleMenu {
         });
     }
 
-    showOrHideToggleMenu() {
-        if (this.toggleMenuStyles.display == "none") {
-            this.toggleMenuFlex.classList.remove("slideOut");
-            this.toggleMenuFlex.classList.add("slideIn");
-            this.toggleMenuFlex.style.display = "flex";
+    showOrHideSettingsMenu() {
+        if (this.settingsMenuStyles.display == "none") {
+            this.settingsMenuFlex.classList.remove("slideOut");
+            this.settingsMenuFlex.classList.add("slideIn");
+            this.settingsMenuFlex.style.display = "flex";
         } else {
-            this.toggleMenuFlex.classList.remove("slideIn");
-            this.toggleMenuFlex.classList.add("slideOut");
+            this.settingsMenuFlex.classList.remove("slideIn");
+            this.settingsMenuFlex.classList.add("slideOut");
 
-            this.toggleMenuFlex.addEventListener("animationend", () => {
-                this.toggleMenuFlex.style.display = "none"
+            this.settingsMenuFlex.addEventListener("animationend", () => {
+                this.settingsMenuFlex.style.display = "none"
             }, { once: true })
         }
     }
@@ -96,5 +96,5 @@ class ToggleMenu {
     };
 }
 
-window.ToggleMenu = ToggleMenu;
-const toggleMenu = new ToggleMenu();
+window.SettingsMenu = SettingsMenu;
+const settingsMenu = new SettingsMenu();
