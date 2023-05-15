@@ -4,7 +4,7 @@ class EnableGodModeButton {
 		this.enableGodModeX = document.querySelector(".enable-god-mode-x");
 
 		this.enableGodModeButton.addEventListener("click", () => {
-
+			this.activateGodMode();
 		});
 	}
 
