@@ -21,7 +21,7 @@ class SettingsMenu {
 
         this.pomodoroPlusButton.addEventListener('click', () => {
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
-            if (this.pomodoroCurrentMinutes < 60) {
+            if (this.pomodoroCurrentMinutes < 90) {
                 this.pomodoroTextMinutes.textContent = `${++this.pomodoroCurrentMinutes} minutes`
                 logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
             }
