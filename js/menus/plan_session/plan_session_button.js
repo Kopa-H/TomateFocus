@@ -24,6 +24,10 @@ class PlanSessionButton {
             this.planSession.classList.remove("slideOut");
             this.planSession.classList.add("slideIn");
             this.planSession.style.display = "block";
+
+            settingsMenu.settingsMenuFlex.classList.remove("slideOut");
+            settingsMenu.settingsMenuFlex.classList.add("slideIn");
+            settingsMenu.settingsMenuFlex.style.display = "flex";
         } else {
             this.planSession.classList.remove("slideIn");
             this.planSession.classList.add("slideOut");
@@ -31,7 +35,18 @@ class PlanSessionButton {
             this.planSession.addEventListener("animationend", () => {
                 this.planSession.style.display = "none"
             }, { once: true })
+
+            settingsMenu.settingsMenuFlex.classList.remove("slideIn");
+            settingsMenu.settingsMenuFlex.classList.add("slideOut");
+            settingsMenu.settingsMenuFlex.addEventListener("animationend", () => {
+                settingsMenu.settingsMenuFlex.style.display = "none"
+            }, { once: true })
         }
+    }
+
+    erasePlanSessionButton() {
+        this.planSessionButton.style.display = "none";
+        this.planSessionDescription.style.display = "none";
     }
 }
 

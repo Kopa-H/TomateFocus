@@ -33,11 +33,17 @@ class PlanSessionEstimationsSection {
     changeToNextCycle(currentCycle) {
         const currentIndex = this.cycles.indexOf(currentCycle.innerHTML);
         currentCycle.innerHTML = this.cycles[(currentIndex + 1) % this.cycles.length];
+
+        logicHandler.updateItineraryList();
+        planSessionEstimations.calculateTimeEstimations();
     }
 
     changeToPrevCycle(currentCycle) {
         const currentIndex = this.cycles.indexOf(currentCycle.innerHTML);
         currentCycle.innerHTML = this.cycles[(currentIndex - 1 + this.cycles.length) % this.cycles.length];
+
+        logicHandler.updateItineraryList();
+        planSessionEstimations.calculateTimeEstimations();
     }
 }
 
