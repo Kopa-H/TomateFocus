@@ -29,6 +29,10 @@ class LogicHandler {
     }
 
     startCounter() {
+        // The plan session button disappears:
+        planSessionButton.erasePlanSessionButton();
+        settingsMenu.cleanSettingsMenu();
+
         // Play button image is hidden:
         playAndPauseIconsHandler.hidePlayButton();
 

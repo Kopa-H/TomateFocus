@@ -19,6 +19,10 @@ class SettingsMenu {
         this.shortbreakTextMinutes = document.querySelector(".short-break .menu-text");
         this.longbreakTextMinutes = document.querySelector(".long-break .menu-text");
 
+        this.pomodoroHeader = document.getElementById("pomodoro-settings-header");
+        this.shortbreakHeader = document.getElementById("shortbreak-settings-header");
+        this.longbreakHeader = document.getElementById("longbreak-settings-header");
+
         this.pomodoroPlusButton.addEventListener('click', () => {
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
             if (this.pomodoroCurrentMinutes < 90) {
@@ -103,6 +107,12 @@ class SettingsMenu {
         this.longbreakTextMinutes.textContent = `${15} minutes`;
         logicHandler.longbreakTimeToElapse = 15*60;
     };
+
+    cleanSettingsMenu() {
+        this.pomodoroHeader.style.display = "none";
+        this.shortbreakHeader.style.display = "none";
+        this.longbreakHeader.style.display = "none";
+    }
 }
 
 window.SettingsMenu = SettingsMenu;
