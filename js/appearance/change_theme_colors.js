@@ -13,6 +13,8 @@ class ThemeColor {
         this.pomodoroColor = "#CB3333";
         this.shortbreakColor = "#337DCB";
         this.longbreakColor = "#8133CB";
+
+        this.predefinedChooseSectionColors = ["#CB3333", "#337DCB", "#CB3333", "#337DCB", "#CB3333", "#8133CB"]
     }
 
     changeToDefault() {
@@ -91,6 +93,13 @@ class ThemeColor {
         } else if (chooseSection.innerHTML == "None") {
             const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
             row.style.backgroundColor = "gray";
+        }
+    }
+
+    resetPlanSessionChooseSectionColors() {
+        for (let i = 0; i < 6; i++) {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${i+1}"]`);
+            row.style.backgroundColor = this.predefinedChooseSectionColors[i];
         }
     }
 }
