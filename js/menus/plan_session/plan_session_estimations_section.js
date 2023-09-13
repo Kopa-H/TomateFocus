@@ -5,6 +5,9 @@ class PlanSessionEstimations {
         this.breakTimeEstimation = document.querySelector('.plan-session-estimations-section-break-time');
         this.totalTimeEstimation = document.querySelector('.plan-session-estimations-section-total-time');
 
+        // A function to compare equal functions is created to be used when calculating the time estimations:
+        this.areEqualFunctions = (fn1, fn2) => fn1.toString() === fn2.toString();
+
         this.pomodoroFunction = () => {this.runPomodoro()};
         this.shortBreakFunction = () => {this.runShortBreak()};
         this.longBreakFunction = () => {this.runLongBreak()};
@@ -13,27 +16,19 @@ class PlanSessionEstimations {
         this.numberOfShortBreakCycles = 0;
         this.numberOfLongBreakCycles = 0;
 
-        // Se obtiene el itinerario actual
+        this.calculateTimeEstimations();
+    }
+
+    calculateTimeEstimations() {
         logicHandler.itineraryList.forEach((element, index) => {
-
-            // Define una función personalizada para comparar las funciones
-            const areEqualFunctions = (fn1, fn2) => fn1.toString() === fn2.toString();
-
-            if (areEqualFunctions(element, this.pomodoroFunction)) {
-                console.log("ciclo pomodoro");
+            if (this.areEqualFunctions(element, this.pomodoroFunction)) {
                 this.numberOfPomodoroCycles++
-
-            } else if (areEqualFunctions(element, this.shortBreakFunction)) {
-                console.log("ciclo shortBreak");
+            } else if (this.areEqualFunctions(element, this.shortBreakFunction)) {
                 this.numberOfShortBreakCycles++
-
-            } else if (areEqualFunctions(element, this.longBreakFunction)) {
-                console.log("ciclo longBreak");
+            } else if (this.areEqualFunctions(element, this.longBreakFunction)) {
                 this.numberOfLongBreakCycles++
-
             } else {
                 console.log("Unknown cycle")};
-
         });
 
         this.pomodoroTime = (this.numberOfPomodoroCycles * logicHandler.pomodoroTimeToElapse) / 60;
@@ -42,10 +37,13 @@ class PlanSessionEstimations {
         this.breakTime = ((this.numberOfShortBreakCycles * logicHandler.shortbreakTimeToElapse) / 60) + ((this.numberOfLongBreakCycles * logicHandler.longbreakTimeToElapse) / 60);
         this.breakTimeToHours = `${Math.floor(this.breakTime / 60)}h ${Math.floor(this.breakTime % 60)}min`;
 
+        this.totalTime = this.pomodoroTime + this.breakTime;
+        this.totalTimeToHours = `${Math.floor(this.totalTime / 60)}h ${Math.floor(this.totalTime % 60)}min`;
+
         this.studyTimeEstimation.innerHTML = this.pomodoroTimeToHours;
-        this.breakTimeEstimation.innerHTML = this.shortBreakTimeToHours;
-        this.totalTimeEstimation.innerHTML = this.longBreakTimeToHours;
-	}
+        this.breakTimeEstimation.innerHTML = this.breakTimeToHours;
+        this.totalTimeEstimation.innerHTML = this.totalTimeToHours;
+    }
 }
 
 window.PlanSessionEstimations = PlanSessionEstimations;
