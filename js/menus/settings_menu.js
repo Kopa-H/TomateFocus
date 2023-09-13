@@ -8,6 +8,12 @@ class SettingsMenu {
             this.showOrHideSettingsMenu();
         });
 
+        this.hideParticlesSection = document.querySelector(".hide-particles-section");
+        this.resetPreferencesContainer = document.querySelector(".reset-preferences-container");
+        this.enableGodModeSection = document.querySelector(".enable-god-mode-section");
+        this.enableGodModeButton = document.querySelector(".enable-god-mode-button");
+        this.enableGodModeX = document.querySelector(".enable-god-mode-x");
+
         this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
         this.pomodoroPlusButton = document.querySelector(".pomodoro .plus-button");
         this.shortbreakMinusButton = document.querySelector(".short-break .minus-button");
@@ -112,6 +118,16 @@ class SettingsMenu {
         this.pomodoroHeader.style.display = "none";
         this.shortbreakHeader.style.display = "none";
         this.longbreakHeader.style.display = "none";
+        this.resetPreferencesContainer.style.display = "none";
+
+
+        this.hideParticlesSection.style.border = "none";
+        this.hideParticlesSection.style.marginTop = "30px"
+
+        this.enableGodModeSection.style.border = "none";
+        this.enableGodModeSection.style.margin = "30px"
+        this.enableGodModeButton.style.marginLeft = "10px"
+        this.enableGodModeX.style.marginLeft = "10px"
     }
 }
 

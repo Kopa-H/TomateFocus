@@ -19,11 +19,13 @@ class ChangeBetweenCyclesContainer {
     }
 
     toggleChangeBetweenCyclesFeature() {
-		if (this.godModeChangeCycleContainer.classList.contains("shown")) {
-			this.godModeChangeCycleContainer.classList.remove("shown");
-		} else {
-			this.godModeChangeCycleContainer.classList.add("shown");
-		}
+        if (planSessionButton.planSessionButton.style.display == "none") {
+            if (this.godModeChangeCycleContainer.classList.contains("shown")) {
+                this.godModeChangeCycleContainer.classList.remove("shown");
+            } else {
+                this.godModeChangeCycleContainer.classList.add("shown");
+            }
+        }
     }
 }
 
