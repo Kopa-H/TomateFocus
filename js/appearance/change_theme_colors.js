@@ -5,6 +5,7 @@ class ThemeColor {
         this.delayCycleButton = document.querySelector(".delay-cycle-button");
         this.settingsMenuContainer = document.querySelector(".settings-menu-container");
         this.musicPlayerContainer = document.querySelector(".music-player-container");
+        this.changeBetweenCyclesContainer = document.querySelector(".god-mode-change-cycle-container");
 
         this.musicPlayerButton = document.querySelector(".music-icon");
         this.settingsButton = document.querySelector(".settings-icon");
@@ -13,6 +14,8 @@ class ThemeColor {
         this.pomodoroColor = "#CB3333";
         this.shortbreakColor = "#337DCB";
         this.longbreakColor = "#8133CB";
+
+        this.predefinedChooseSectionColors = ["#CB3333", "#337DCB", "#CB3333", "#337DCB", "#CB3333", "#8133CB"]
     }
 
     changeToDefault() {
@@ -30,6 +33,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.pomodoroColor;
         this.settingsMenuContainer.style.backgroundColor = this.pomodoroColor;
         this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.pomodoroColor;
 
         this.musicPlayerButton.classList.remove("shortbreak");
         this.musicPlayerButton.classList.remove("longbreak");
@@ -48,6 +52,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.shortbreakColor;
         this.settingsMenuContainer.style.backgroundColor = this.shortbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.shortbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");
         this.musicPlayerButton.classList.remove("longbreak");
@@ -66,6 +71,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.longbreakColor;
         this.settingsMenuContainer.style.backgroundColor = this.longbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.longbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");
         this.musicPlayerButton.classList.remove("shortbreak");
@@ -76,6 +82,29 @@ class ThemeColor {
         this.settingsButton.classList.add("longbreak");
 
         particlesHandler.changeParticlesNumberAndColor(this.longbreakColor);
+    }
+
+    updatePlanSessionChooseSectionColors(chooseSection, index) {
+        if (chooseSection.innerHTML == "Pomodoro") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.pomodoroColor;
+        } else if (chooseSection.innerHTML == "ShortBreak") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.shortbreakColor;
+        } else if (chooseSection.innerHTML == "LongBreak") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.longbreakColor;
+        } else if (chooseSection.innerHTML == "None") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = "gray";
+        }
+    }
+
+    resetPlanSessionChooseSectionColors() {
+        for (let i = 0; i < 6; i++) {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${i+1}"]`);
+            row.style.backgroundColor = this.predefinedChooseSectionColors[i];
+        }
     }
 }
 

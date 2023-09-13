@@ -1,12 +1,19 @@
 .god-mode-change-cycle-container {
     display: flex;
     position: absolute;
-    top: 670px;
+    top: 580px;
 
     padding-left: 15px;
     padding-right: 15px;
+
+    background-color: #b15353;
+    font-size: 60px;
+    font-weight: 500;
+    color: #FFF4E0;
+    letter-spacing: 1px;
     border: 3px solid gold;
     border-radius: 100px;
+    font-size: 20px;
 
     opacity: 0;
     pointer-events: none;
@@ -32,11 +39,6 @@
 .god-mode-prev-cycle-button:active {
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
-}
-
-.god-mode-change-cycle-description {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
 }
 
 .god-mode-next-cycle-button {

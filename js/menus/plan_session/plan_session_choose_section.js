@@ -1,6 +1,6 @@
 class PlanSessionEstimationsSection {
     constructor() {
-        this.cycles = ['Pomodoro', 'ShortBreak', 'LongBreak'];
+        this.cycles = ['Pomodoro', 'ShortBreak', 'LongBreak', 'None'];
         this.chooseSections = [];
 
         for (let i = 1; i <= 6; i++) {
@@ -14,6 +14,8 @@ class PlanSessionEstimationsSection {
                 const chooseSection = this.chooseSections[index - 1];
                 this.changeToNextCycle(chooseSection);
 
+                themeColor.updatePlanSessionChooseSectionColors(chooseSection, index);
+
                 logicHandler.updateItineraryList();
             });
         });
@@ -24,6 +26,8 @@ class PlanSessionEstimationsSection {
                 const index = parseInt(button.dataset.index);
                 const chooseSection = this.chooseSections[index - 1];
                 this.changeToPrevCycle(chooseSection);
+
+                themeColor.updatePlanSessionChooseSectionColors(chooseSection, index);
 
                 logicHandler.updateItineraryList();
             });

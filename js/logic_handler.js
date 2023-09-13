@@ -149,8 +149,10 @@ class LogicHandler {
     updateItineraryList() {
         this.itineraryList = [];
         planSessionEstimationsSection.chooseSections.forEach((element) => {
-            let cycleFunction = eval(`() => {this.run${element.innerHTML}()}`);
-            this.itineraryList.push(cycleFunction)
+            if (element.innerHTML != "None") {
+                let cycleFunction = eval(`() => {this.run${element.innerHTML}()}`);
+                this.itineraryList.push(cycleFunction)
+            }
         });
     }
 }
