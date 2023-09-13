@@ -20,8 +20,6 @@ class PlanSessionResetButton {
                 () => {this.runLongBreak()},
             ];
             logicHandler.updateItineraryList();
-
-            console.log("hola")
         });
     }
 }

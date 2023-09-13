@@ -5,6 +5,7 @@ class ThemeColor {
         this.delayCycleButton = document.querySelector(".delay-cycle-button");
         this.settingsMenuContainer = document.querySelector(".settings-menu-container");
         this.musicPlayerContainer = document.querySelector(".music-player-container");
+        this.changeBetweenCyclesContainer = document.querySelector(".god-mode-change-cycle-container");
 
         this.musicPlayerButton = document.querySelector(".music-icon");
         this.settingsButton = document.querySelector(".settings-icon");
@@ -32,6 +33,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.pomodoroColor;
         this.settingsMenuContainer.style.backgroundColor = this.pomodoroColor;
         this.musicPlayerContainer.style.backgroundColor = this.pomodoroColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.pomodoroColor;
 
         this.musicPlayerButton.classList.remove("shortbreak");
         this.musicPlayerButton.classList.remove("longbreak");
@@ -50,6 +52,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.shortbreakColor;
         this.settingsMenuContainer.style.backgroundColor = this.shortbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.shortbreakColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.shortbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");
         this.musicPlayerButton.classList.remove("longbreak");
@@ -68,6 +71,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.longbreakColor;
         this.settingsMenuContainer.style.backgroundColor = this.longbreakColor;
         this.musicPlayerContainer.style.backgroundColor = this.longbreakColor;
+        this.changeBetweenCyclesContainer.style.backgroundColor = this.longbreakColor;
 
         this.musicPlayerButton.classList.remove("pomodoro");
         this.musicPlayerButton.classList.remove("shortbreak");
