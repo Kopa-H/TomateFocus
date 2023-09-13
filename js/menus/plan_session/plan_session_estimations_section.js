@@ -32,8 +32,7 @@ class PlanSessionEstimations {
                 this.numberOfShortBreakCycles++
             } else if (this.areEqualFunctions(element, this.longBreakFunction)) {
                 this.numberOfLongBreakCycles++
-            } else {
-                console.log("Unknown cycle")};
+            }
         });
 
         this.pomodoroTime = (this.numberOfPomodoroCycles * logicHandler.pomodoroTimeToElapse) / 60;

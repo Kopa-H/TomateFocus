@@ -77,6 +77,22 @@ class ThemeColor {
 
         particlesHandler.changeParticlesNumberAndColor(this.longbreakColor);
     }
+
+    updatePlanSessionChooseSectionColors(chooseSection, index) {
+        if (chooseSection.innerHTML == "Pomodoro") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.pomodoroColor;
+        } else if (chooseSection.innerHTML == "ShortBreak") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.shortbreakColor;
+        } else if (chooseSection.innerHTML == "LongBreak") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = themeColor.longbreakColor;
+        } else if (chooseSection.innerHTML == "None") {
+            const row = document.querySelector(`.plan-session-choose-section-row[data-index="${index}"]`);
+            row.style.backgroundColor = "gray";
+        }
+    }
 }
 
 window.ThemeColor = ThemeColor;
