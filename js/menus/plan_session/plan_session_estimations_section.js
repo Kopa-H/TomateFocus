@@ -20,6 +20,11 @@ class PlanSessionEstimations {
     }
 
     calculateTimeEstimations() {
+        // The number of Cycles are reset:
+        this.numberOfPomodoroCycles = 0;
+        this.numberOfShortBreakCycles = 0;
+        this.numberOfLongBreakCycles = 0;
+
         logicHandler.itineraryList.forEach((element, index) => {
             if (this.areEqualFunctions(element, this.pomodoroFunction)) {
                 this.numberOfPomodoroCycles++
@@ -35,6 +40,21 @@ class PlanSessionEstimations {
         this.pomodoroTimeToHours = `${Math.floor(this.pomodoroTime / 60)}h ${Math.floor(this.pomodoroTime % 60)}min`;
 
         this.breakTime = ((this.numberOfShortBreakCycles * logicHandler.shortbreakTimeToElapse) / 60) + ((this.numberOfLongBreakCycles * logicHandler.longbreakTimeToElapse) / 60);
+        this.breakTimeToHours = `${Math.floor(this.breakTime / 60)}h ${Math.floor(this.breakTime % 60)}min`;
+
+        this.totalTime = this.pomodoroTime + this.breakTime;
+        this.totalTimeToHours = `${Math.floor(this.totalTime / 60)}h ${Math.floor(this.totalTime % 60)}min`;
+
+        this.studyTimeEstimation.innerHTML = this.pomodoroTimeToHours;
+        this.breakTimeEstimation.innerHTML = this.breakTimeToHours;
+        this.totalTimeEstimation.innerHTML = this.totalTimeToHours;
+    }
+
+    calculateTimeEstimationsForTimeModifications() {
+        this.pomodoroTime = logicHandler.pomodoroTimeToElapse / 60;
+        this.pomodoroTimeToHours = `${Math.floor(this.pomodoroTime / 60)}h ${Math.floor(this.pomodoroTime % 60)}min`;
+
+        this.breakTime = (logicHandler.shortbreakTimeToElapse / 60) + (logicHandler.longbreakTimeToElapse / 60);
         this.breakTimeToHours = `${Math.floor(this.breakTime / 60)}h ${Math.floor(this.breakTime % 60)}min`;
 
         this.totalTime = this.pomodoroTime + this.breakTime;

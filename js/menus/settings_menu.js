@@ -24,16 +24,15 @@ class SettingsMenu {
             if (this.pomodoroCurrentMinutes < 90) {
                 this.pomodoroTextMinutes.textContent = `${++this.pomodoroCurrentMinutes} minutes`
                 logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
         this.pomodoroMinusButton.addEventListener('click', () => {
-            // Se obtiene el número de minutos actuales del elemento HTML:
             this.pomodoroCurrentMinutes = +this.pomodoroTextMinutes.textContent.match(/\d+/g)
             if (this.pomodoroCurrentMinutes > 10) {
-                // Se modifica el texto que se verá en el settings menu:
                 this.pomodoroTextMinutes.textContent = `${--this.pomodoroCurrentMinutes} minutes`
-                // Se modifica el tiempo que usará LogicHandler y Counter:
                 logicHandler.pomodoroTimeToElapse = this.pomodoroCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
 
@@ -42,6 +41,7 @@ class SettingsMenu {
             if (this.shortbreakCurrentMinutes < 30) {
                 this.shortbreakTextMinutes.textContent = `${++this.shortbreakCurrentMinutes} minutes`
                 logicHandler.shortbreakTimeToElapse = this.shortbreakCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
         this.shortbreakMinusButton.addEventListener("click", () => {
@@ -49,6 +49,7 @@ class SettingsMenu {
             if (this.shortbreakCurrentMinutes > 1) {
                 this.shortbreakTextMinutes.textContent = `${--this.shortbreakCurrentMinutes} minutes`
                 logicHandler.shortbreakTimeToElapse = this.shortbreakCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
 
@@ -57,6 +58,7 @@ class SettingsMenu {
             if (this.longbreakCurrentMinutes < 60) {
                 this.longbreakTextMinutes.textContent = `${++this.longbreakCurrentMinutes} minutes`
                 logicHandler.longbreakTimeToElapse = this.longbreakCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
         this.longbreakMinusButton.addEventListener("click", () => {
@@ -64,6 +66,7 @@ class SettingsMenu {
             if (this.longbreakCurrentMinutes > 5) {
                 this.longbreakTextMinutes.textContent = `${--this.longbreakCurrentMinutes} minutes`
                 logicHandler.longbreakTimeToElapse = this.longbreakCurrentMinutes*60;
+                planSessionEstimations.calculateTimeEstimationsForTimeModifications();
             }
         });
 
@@ -71,6 +74,7 @@ class SettingsMenu {
         this.resetPreferencesButton = document.querySelector(".reset-preferences-button")
         this.resetPreferencesButton.addEventListener('click', () => {
             this.resetMinutesPreferences();
+            planSessionEstimations.calculateTimeEstimationsForTimeModifications();
         });
     }
 
@@ -91,8 +95,13 @@ class SettingsMenu {
 
     resetMinutesPreferences() {
         this.pomodoroTextMinutes.textContent = `${25} minutes`;
+        logicHandler.pomodoroTimeToElapse = 25*60;
+
         this.shortbreakTextMinutes.textContent = `${5} minutes`;
+        logicHandler.shortbreakTimeToElapse = 5*60;
+
         this.longbreakTextMinutes.textContent = `${15} minutes`;
+        logicHandler.longbreakTimeToElapse = 15*60;
     };
 }
 
