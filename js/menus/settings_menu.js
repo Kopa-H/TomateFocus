@@ -10,6 +10,7 @@ class SettingsMenu {
 
         this.settingsMenuContainer = document.getElementById("settings-menu")
         this.hideParticlesSection = document.querySelector(".hide-particles-section");
+        this.hideParticlesDescription = document.querySelector(".hide-particles-description");
         this.resetPreferencesContainer = document.querySelector(".reset-preferences-container");
         this.enableGodModeSection = document.querySelector(".enable-god-mode-section");
         this.enableGodModeButton = document.querySelector(".enable-god-mode-button");
@@ -126,8 +127,7 @@ class SettingsMenu {
         this.hideParticlesSection.style.marginTop = "30px";
 
         this.enableGodModeSection.style.border = "none";
-        this.enableGodModeButton.style.marginLeft = "10px";
-        this.enableGodModeX.style.marginLeft = "10px";
+        this.enableGodModeSection.style.marginTop = "10px"
 
         this.settingsMenuContainer.style.height = "500px";
         this.quoteOfTheDayContainer.style.display = "flex";
