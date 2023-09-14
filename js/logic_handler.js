@@ -11,7 +11,7 @@ class LogicHandler {
         // Create and pre define time variables for each type of timer
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
-        this.longbreakTimeToElapse = 600;
+        this.longbreakTimeToElapse = 900;
         this.delaybreakTimeToElapse = 60;
 
         // Segundos que se aplicarán de Delay:

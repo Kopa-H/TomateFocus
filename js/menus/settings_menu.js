@@ -16,6 +16,8 @@ class SettingsMenu {
         this.enableGodModeButton = document.querySelector(".enable-god-mode-button");
         this.enableGodModeX = document.querySelector(".enable-god-mode-x");
         this.quoteOfTheDayContainer = document.querySelector(".quote-requests-container")
+        this.delayCycleButton = document.querySelector('.delay-cycle-button');
+        this.delayCycleDescription = document.querySelector('.delay-cycle-description');
 
         this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
         this.pomodoroPlusButton = document.querySelector(".pomodoro .plus-button");
@@ -131,6 +133,9 @@ class SettingsMenu {
 
         this.settingsMenuContainer.style.height = "500px";
         this.quoteOfTheDayContainer.style.display = "flex";
+
+        this.delayCycleButton.style.display = "block";
+        this.delayCycleDescription.style.display = "block";
     }
 }
 

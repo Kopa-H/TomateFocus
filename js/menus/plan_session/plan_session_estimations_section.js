@@ -53,7 +53,7 @@ class PlanSessionEstimations {
         this.pomodoroTime = (logicHandler.pomodoroTimeToElapse / 60) * this.numberOfPomodoroCycles;
         this.pomodoroTimeToHours = `${Math.floor(this.pomodoroTime / 60)}h ${Math.floor(this.pomodoroTime % 60)}min`;
 
-        this.breakTime = (logicHandler.shortbreakTimeToElapse / 60) * this.numberOfShortBreakCycles; + (logicHandler.longbreakTimeToElapse / 60) * this.numberOfLongBreakCycles;
+        this.breakTime = ((logicHandler.shortbreakTimeToElapse / 60) * this.numberOfShortBreakCycles) + ((logicHandler.longbreakTimeToElapse / 60) * this.numberOfLongBreakCycles);
         this.breakTimeToHours = `${Math.floor(this.breakTime / 60)}h ${Math.floor(this.breakTime % 60)}min`;
 
         this.totalTime = this.pomodoroTime + this.breakTime;
