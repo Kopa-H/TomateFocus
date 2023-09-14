@@ -21,7 +21,7 @@
     text-align: center;
 
     font-size: 2em;
-    color: white;
+    color: #FFF4E0;
     font-weight: 500;
 }
 
@@ -31,11 +31,14 @@
     margin-top: 10px;
 
     align-self: center;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;;
 
     text-align: center;
+    border: black solid 4px;
     border-radius: 1em;
-    background-color: black;
-    color: white;
+    background-color: green;
+    color: #FFF4E0;
     cursor: pointer;
 
     transition: all 0.4s;

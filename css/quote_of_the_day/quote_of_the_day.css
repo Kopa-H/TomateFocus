@@ -1,0 +1,22 @@
+.quote-requests-container {
+    position: absolute;
+    margin-top: 30px;
+    width: 20em;
+}
+
+.quote-requests-info {
+    font-size: 14px;
+    gap: 30px 30px;
+}
+
+.quote-of-the-day {
+    position: relative;
+    font-size: 14px;
+    gap: 30px 30px;
+    top: 200px
+}
+
+.day-of-the-year {
+    font-size: 14px;
+    gap: 30px 30px;
+}
