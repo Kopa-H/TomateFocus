@@ -34,6 +34,15 @@
     transform: translate(-0.5px, -0.5px);
 }
 
+.plan-session-choose-section-next-cycle-button {
+    position: absolute;
+    right: 6%;
+}
+.plan-session-choose-section-prev-cycle-button {
+    position: absolute;
+    left: 6%;
+}
+
 .plan-session-choose-section-cycle-name {
     color: #FFF4E0;
     font-size: 25px;
