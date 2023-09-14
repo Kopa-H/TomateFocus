@@ -5,6 +5,7 @@ class LogicHandler {
 
         // This variable will control if the counter is running:
         this.appIsRunning = false;
+        this.clockHasBeenStarted = false;
 
         this.currentCycleRunning = "none";
 
@@ -42,6 +43,7 @@ class LogicHandler {
 
         // The execution of the counter starts:
         this.appIsRunning = true;
+        this.clockHasBeenStarted = true;
     }
 
     stopCounter() {

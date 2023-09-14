@@ -64,3 +64,10 @@ document.addEventListener("keydown", (event) => {
       enableGodModeButton.activateGodMode();
     }
 });
+
+// P Key:
+document.addEventListener("keydown", (event) => {
+    if ((event.key === "p" || event.key === "P") && (logicHandler.clockHasBeenStarted == false)) {
+        planSessionButton.togglePlanSession();
+    }
+});
