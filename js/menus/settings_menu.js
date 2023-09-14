@@ -14,6 +14,7 @@ class SettingsMenu {
         this.enableGodModeSection = document.querySelector(".enable-god-mode-section");
         this.enableGodModeButton = document.querySelector(".enable-god-mode-button");
         this.enableGodModeX = document.querySelector(".enable-god-mode-x");
+        this.quoteOfTheDayContainer = document.querySelector(".quote-requests-container")
 
         this.pomodoroMinusButton = document.querySelector(".pomodoro .minus-button");
         this.pomodoroPlusButton = document.querySelector(".pomodoro .plus-button");
@@ -122,13 +123,14 @@ class SettingsMenu {
         this.resetPreferencesContainer.style.display = "none";
 
         this.hideParticlesSection.style.border = "none";
-        this.hideParticlesSection.style.marginTop = "30px"
+        this.hideParticlesSection.style.marginTop = "30px";
 
         this.enableGodModeSection.style.border = "none";
-        this.enableGodModeButton.style.marginLeft = "10px"
-        this.enableGodModeX.style.marginLeft = "10px"
+        this.enableGodModeButton.style.marginLeft = "10px";
+        this.enableGodModeX.style.marginLeft = "10px";
 
-        this.settingsMenuContainer.style.height = "500px"
+        this.settingsMenuContainer.style.height = "500px";
+        this.quoteOfTheDayContainer.style.display = "flex";
     }
 }
 

@@ -1,22 +1,28 @@
 .quote-requests-container {
-    position: absolute;
-    margin-top: 30px;
-    width: 20em;
+    display: none;
+    position: relative;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+
+    max-width: 250px;
+
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    flex-direction: column;
+    font-size: 14px;
 }
 
 .quote-requests-info {
-    font-size: 14px;
-    gap: 30px 30px;
+    margin-top: 50px;
 }
 
 .quote-of-the-day {
-    position: relative;
-    font-size: 14px;
-    gap: 30px 30px;
-    top: 200px
+    margin-top: 50px;
 }
 
 .day-of-the-year {
-    font-size: 14px;
-    gap: 30px 30px;
+    margin-top: 10px;
+    font-size: 12px;
 }
