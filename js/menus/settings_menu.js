@@ -120,22 +120,34 @@ class SettingsMenu {
     };
 
     cleanSettingsMenu() {
-        this.pomodoroHeader.style.display = "none";
-        this.shortbreakHeader.style.display = "none";
-        this.longbreakHeader.style.display = "none";
-        this.resetPreferencesContainer.style.display = "none";
+        if (this.settingsMenuStyles.display != "none") {
+            this.showOrHideSettingsMenu();
 
-        this.hideParticlesSection.style.border = "none";
-        this.hideParticlesSection.style.marginTop = "30px";
+            setTimeout(() => {
+                if (this.settingsMenuStyles.display == "none") {
+                    this.showOrHideSettingsMenu();
+                }
+            }, 750);
+        }
 
-        this.enableGodModeSection.style.border = "none";
-        this.enableGodModeSection.style.marginTop = "10px"
+        setTimeout(() => {
+            this.pomodoroHeader.style.display = "none";
+            this.shortbreakHeader.style.display = "none";
+            this.longbreakHeader.style.display = "none";
+            this.resetPreferencesContainer.style.display = "none";
 
-        this.settingsMenuContainer.style.height = "500px";
-        this.quoteOfTheDayContainer.style.display = "flex";
+            this.hideParticlesSection.style.border = "none";
+            this.hideParticlesSection.style.marginTop = "30px";
 
-        this.delayCycleButton.style.display = "block";
-        this.delayCycleDescription.style.display = "block";
+            this.enableGodModeSection.style.border = "none";
+            this.enableGodModeSection.style.marginTop = "10px"
+
+            this.settingsMenuContainer.style.height = "475px";
+            this.quoteOfTheDayContainer.style.display = "flex";
+
+            this.delayCycleButton.style.display = "block";
+            this.delayCycleDescription.style.display = "block";
+        }, 500);
     }
 }
 
