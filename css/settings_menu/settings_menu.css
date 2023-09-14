@@ -119,6 +119,7 @@
 
     .settings-menu-container {
         width: 25em;
+        min-height: 36em;
     }
 
     .enable-god-mode-description {

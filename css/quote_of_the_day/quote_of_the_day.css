@@ -35,3 +35,18 @@
 .quote-requests-info {
     margin-top: 50px;
 }
+
+@media screen and (max-width: 1375px) {
+    .quotes-info {
+        font-size: 17px;
+    }
+    .quote-of-the-day {
+        font-size: 20px;
+    }
+    .day-of-the-year {
+        font-size: 17px;
+    }
+    .quote-requests-info {
+        font-size: 17px;
+    }
+}
