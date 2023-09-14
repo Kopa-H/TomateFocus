@@ -58,3 +58,9 @@
     background-color: #2a2a2a;
     transform: translate(-0.5px, -0.5px);
 }
+
+@media screen and (max-width: 1375px) {
+    .climate-states-toolbar {
+        margin-top: 25px;
+    }
+}

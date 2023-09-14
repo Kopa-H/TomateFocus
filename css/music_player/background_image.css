@@ -9,3 +9,10 @@
 .song-image-1 {
     display: block;
 }
+
+@media screen and (max-width: 1375px) {
+    .background-image {
+        width: 280px;
+        height: 280px;
+    }
+  }
