@@ -119,6 +119,13 @@
     .settings-menu-container {
         width: 25em;
     }
+
+    .enable-god-mode-description {
+        margin-left: 40px;
+    }
+    .hide-particles-description {
+        margin-left: 40px;
+    }
 }
 
 .slideIn {

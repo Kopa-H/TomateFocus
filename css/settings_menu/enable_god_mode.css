@@ -37,11 +37,9 @@
     border: 3px solid white;
     border-radius: 40%;
 }
-
 .enable-god-mode-button:hover {
     opacity: 0.8;
 }
-
 .enable-god-mode-button:active {
     opacity: 0.5
 }
@@ -49,7 +47,7 @@
 .enable-god-mode-x {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 43%;
     transform: translate(-50%, -50%);
 
     opacity: 0;
