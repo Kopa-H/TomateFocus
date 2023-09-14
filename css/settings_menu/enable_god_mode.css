@@ -47,7 +47,7 @@
 .enable-god-mode-x {
     position: absolute;
     left: 50%;
-    top: 43%;
+    top: 44%;
     transform: translate(-50%, -50%);
 
     opacity: 0;

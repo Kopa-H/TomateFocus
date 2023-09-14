@@ -14,6 +14,7 @@
 }
 
 .settings-menu-container {
+    margin-top: 30px;
     text-align: center;
     flex-direction: column;
     background-color: #b15353;
