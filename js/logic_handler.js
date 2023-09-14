@@ -127,6 +127,7 @@ class LogicHandler {
                 audioHandler.clockStartSound.play();
             }
         } else {
+            sessionEnding.endTheSession();
             alert("La sesión de estudio ha concluido!");
         }
     }
