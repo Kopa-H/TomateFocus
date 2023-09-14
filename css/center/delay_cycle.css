@@ -2,12 +2,14 @@
     display: none;
     position: relative;
     bottom: 0%;
+    margin-top: 25px;
+    margin-bottom: 35px;
 
     font-size: 24px;
     padding: 10px 30px;
     border-radius: 7px;
     border: 0px;
-    color: #ffffff;
+    color: #FFF4E0;
     background-color: #b15353;
     cursor: pointer;
 
@@ -25,7 +27,7 @@
     display: none;
     position: relative;
     bottom: 7%;
-    left: 20%;
+    left: 15%;
     padding: 10px 20px;
 
     background-color: #4D4D4D;

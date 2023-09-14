@@ -11,7 +11,7 @@ class LogicHandler {
         // Create and pre define time variables for each type of timer
         this.pomodoroTimeToElapse = 1500;
         this.shortbreakTimeToElapse = 300;
-        this.longbreakTimeToElapse = 600;
+        this.longbreakTimeToElapse = 900;
         this.delaybreakTimeToElapse = 60;
 
         // Segundos que se aplicarán de Delay:
@@ -32,6 +32,7 @@ class LogicHandler {
         // The plan session button disappears:
         planSessionButton.erasePlanSessionButton();
         settingsMenu.cleanSettingsMenu();
+        quoteOfTheDay.showQuoteAndDayOfTheYear();
 
         // Play button image is hidden:
         playAndPauseIconsHandler.hidePlayButton();
@@ -137,7 +138,6 @@ class LogicHandler {
                 // If the time of the counter ends, the next cycle is executed:
                 if (this.timeToElapse <= 0) {
                     this.runNextCycle()
-                    console.log(this.timeToElapse)
                 }
 
                 counter.updateCounter();

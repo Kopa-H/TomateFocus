@@ -14,15 +14,39 @@
     font-size: 14px;
 }
 
-.quote-requests-info {
-    margin-top: 50px;
+.quotes-info {
+    margin-top: 70px;
 }
 
 .quote-of-the-day {
     margin-top: 50px;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
 }
 
 .day-of-the-year {
-    margin-top: 10px;
+    margin-top: 7px;
     font-size: 12px;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.quote-requests-info {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 1375px) {
+    .quotes-info {
+        font-size: 17px;
+    }
+    .quote-of-the-day {
+        font-size: 20px;
+    }
+    .day-of-the-year {
+        font-size: 17px;
+    }
+    .quote-requests-info {
+        font-size: 17px;
+    }
 }
