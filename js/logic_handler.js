@@ -130,9 +130,18 @@ class LogicHandler {
                 currentFunction();
                 audioHandler.clockStartSound.play();
                 this.itineraryListIndex += 1;
+
+                //if (!sessionEnding.isSessionEnded) {
+                    //sessionEnding.endTheSession();
+                    //sessionEnding.isSessionEnded = true;
+                //}
             }
         } else {
-            sessionEnding.endTheSession();
+            if (!sessionEnding.isSessionEnded) {
+                sessionEnding.endTheSession();
+                sessionEnding.isSessionEnded = true;
+            }
+
         }
     }
 

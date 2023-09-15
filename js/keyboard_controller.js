@@ -71,3 +71,15 @@ document.addEventListener("keydown", (event) => {
         planSessionButton.togglePlanSession();
     }
 });
+
+// H Key:
+document.addEventListener("keydown", (event) => {
+    if (event.key === "h" || event.key === "H") {
+        hideParticlesButton.toggleX();
+        if (particlesHandler.particlesAreActive) {
+            particlesHandler.hideParticles();
+        } else {
+            particlesHandler.changeParticlesNumberAndColor(themeColor.pomodoroColor, 50);
+        }
+    }
+});

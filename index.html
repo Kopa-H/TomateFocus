@@ -32,6 +32,9 @@
     <!-- Quote Of The Day CSS -->
     <link rel="stylesheet" type="text/css" href="css/quote_of_the_day/quote_of_the_day.css">
 
+    <!-- Session Ending-->
+    <link rel="stylesheet" type="text/css" href="css\session_ending.css">
+
   </head>
   <body>
     <!-- Particles Effects -->
@@ -251,6 +254,13 @@
         <audio class="ending-session-sound"><source src="audio/sound_effects/ending_session_sound.mp3" type="audio/mp3"></audio>
         <audio class="ending-session-music"><source src="audio/sound_effects/ending_session_music.mp3" type="audio/mp3"></audio>
       </section>
+    </div>
+
+    <!-- Session Ending -->
+    <canvas id="confetti-canvas"></canvas><script src="js/confetti.min.js"></script><script>var confettiSettings = { target: 'confetti-canvas' };var confetti = new ConfettiGenerator(confettiSettings);confetti.render();</script>
+
+    <div class="session-ending-container">
+      <div class="session-ending-description"></div>
     </div>
 
     <!-- Scripts -->
