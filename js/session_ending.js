@@ -5,8 +5,8 @@ class SessionEnding {
 
     endTheSession() {
         console.log("SESSION END")
-        audioHandler.playEndSessionSound();
-        audioHandler.playEndSessionMusic();
+        audioHandler.sessionEndingSound.play();
+        audioHandler.sessionEndingMusic.play();
         this.cleanInterface();
         this.showSessionStatistics();
     }
@@ -18,8 +18,8 @@ class SessionEnding {
         }
 
         // The music player menu is hidden.
-        if (!musicPlayer.musicPlayerIsShown) {
-            musicPlayer.musicPlayerTrigger();
+        if (musicButton.musicPlayerIsShown) {
+            musicButton.musicPlayerTrigger();
         }
 
         // The music stops
@@ -35,9 +35,12 @@ class SessionEnding {
 
         console.log(`Final Study Time: ${this.finalStudyTime}`);
         console.log(`Final Break Time: ${this.finalBreakTime}`);
-        console.log(`Final Total Time: ${this.finalTotalTime}`)
+        console.log(`Final Total Time: ${this.finalTotalTime}`);
         console.log(`Total Time In Pause: ${counter.totalTimeInPause}`);
         console.log(`Total Times Clock Paused: ${counter.timesClockPaused}`);
+        console.log(`God Mode Usages: ${"placeholder"}`);
+
+        console.log("Congratulations! You just finished your study session. Remebember that a great student is that who can also enjoy life, and if you are currently fighting a deadline do whatever you can, but don't forget to take care of yourself and your anxiety.")
     }
 }
 

@@ -50,7 +50,7 @@ class GodModeHandler {
     handleCircleClick(event) {
         const positionOnCircle = this.getPositionOnCircle(event);
         const fractionOfCircleClicked = positionOnCircle / 360;
-        const timeElapsed = (1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse;
+        const timeElapsed = Math.round((1 - fractionOfCircleClicked) * logicHandler.initialTimeToElapse);
         logicHandler.timeToElapse = timeElapsed;
         counter.updateCounter();
         counter.showCurrentTime();
