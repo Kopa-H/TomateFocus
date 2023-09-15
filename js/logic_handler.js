@@ -48,6 +48,7 @@ class LogicHandler {
 
     stopCounter() {
         this.appIsRunning = false;
+        counter.timesClockPaused++;
     }
 
     resumeCounter() {
@@ -142,9 +143,13 @@ class LogicHandler {
                 if (this.timeToElapse <= 0) {
                     this.runNextCycle()
                 }
-
                 counter.updateCounter();
                 circleAnimation.updateProgress();
+
+            } else if (!this.appIsRunning && this.timeToElapse < this.initialTimeToElapse) {
+                // Se cuentan los segundos en que la app ha estado en pausa:
+                counter.totalTimeInPause++;
+                console.log(counter.totalTimeInPause);
             }
         }, 1000);
     }

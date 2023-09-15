@@ -29,10 +29,15 @@ class SessionEnding {
     }
 
     showSessionStatistics() {
-        Habrá que recoger de alguna forma las veces que se aprieta el delay button y este actúa (es decir, que el tiempo del ciclo no estaba al máximo)
-        Luego sumaremos eso al tiempo total de la sesión.
-        También se mostrará el total de tiempo de inactividad (en que el reloj ha estado parado)
-        También se mostrará el número de veces que se ha usado el botón de pausa
+        this.finalStudyTime = (delayCycle.timeOfDelayPomodoroUsage + planSessionEstimations.pomodoroTime);
+        this.finalBreakTime = (delayCycle.timeOfDelayBreakUsage + planSessionEstimations.breakTime);
+        this.finalTotalTime = (this.finalStudyTime + this.finalBreakTime);
+
+        console.log(`Final Study Time: ${this.finalStudyTime}`);
+        console.log(`Final Break Time: ${this.finalBreakTime}`);
+        console.log(`Final Total Time: ${this.finalTotalTime}`)
+        console.log(`Total Time In Pause: ${counter.totalTimeInPause}`);
+        console.log(`Total Times Clock Paused: ${counter.timesClockPaused}`);
     }
 }
 

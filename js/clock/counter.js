@@ -7,6 +7,9 @@ class Counter {
         this.minutes = 0;
         // Se extrae el número de segundos restantes (de los milisegundos restantes):
         this.seconds = 0;
+
+        this.totalTimeInPause = 0;
+        this.timesClockPaused = 0;
     }
 
     showCurrentTime() {
