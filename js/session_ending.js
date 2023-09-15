@@ -5,8 +5,8 @@ class SessionEnding {
 
     endTheSession() {
         console.log("SESSION END")
-        audioHandler.playEndSessionSound();
-        audioHandler.playEndSessionMusic();
+        audioHandler.sessionEndingSound.play();
+        audioHandler.sessionEndingMusic.play();
         this.cleanInterface();
         this.showSessionStatistics();
     }
@@ -18,8 +18,8 @@ class SessionEnding {
         }
 
         // The music player menu is hidden.
-        if (!musicPlayer.musicPlayerIsShown) {
-            musicPlayer.musicPlayerTrigger();
+        if (musicButton.musicPlayerIsShown) {
+            musicButton.musicPlayerTrigger();
         }
 
         // The music stops
@@ -29,10 +29,18 @@ class SessionEnding {
     }
 
     showSessionStatistics() {
-        Habrá que recoger de alguna forma las veces que se aprieta el delay button y este actúa (es decir, que el tiempo del ciclo no estaba al máximo)
-        Luego sumaremos eso al tiempo total de la sesión.
-        También se mostrará el total de tiempo de inactividad (en que el reloj ha estado parado)
-        También se mostrará el número de veces que se ha usado el botón de pausa
+        this.finalStudyTime = (delayCycle.timeOfDelayPomodoroUsage + planSessionEstimations.pomodoroTime);
+        this.finalBreakTime = (delayCycle.timeOfDelayBreakUsage + planSessionEstimations.breakTime);
+        this.finalTotalTime = (this.finalStudyTime + this.finalBreakTime);
+
+        console.log(`Final Study Time: ${this.finalStudyTime}`);
+        console.log(`Final Break Time: ${this.finalBreakTime}`);
+        console.log(`Final Total Time: ${this.finalTotalTime}`);
+        console.log(`Total Time In Pause: ${counter.totalTimeInPause}`);
+        console.log(`Total Times Clock Paused: ${counter.timesClockPaused}`);
+        console.log(`God Mode Usages: ${"placeholder"}`);
+
+        console.log("Congratulations! You just finished your study session. Remebember that a great student is that who can also enjoy life, and if you are currently fighting a deadline do whatever you can, but don't forget to take care of yourself and your anxiety.")
     }
 }
 

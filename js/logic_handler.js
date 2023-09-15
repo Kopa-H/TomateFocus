@@ -48,6 +48,7 @@ class LogicHandler {
 
     stopCounter() {
         this.appIsRunning = false;
+        counter.timesClockPaused++;
     }
 
     resumeCounter() {
@@ -106,29 +107,32 @@ class LogicHandler {
     }
 
     runNextCycle() {
+        // Si todavía quedan cycles por recorrer:
         if (this.itineraryListIndex < this.itineraryList.length) {
-            this.itineraryListIndex++;
             let currentFunction = this.itineraryList[this.itineraryListIndex];
 
-            // Si ya se había iniciado el contador antes:
-            if (this.itineraryListIndex >= 2) {
-                // Se espera X segundos:
+            // Si ya se ha recorrido el primer cycle:
+            if (this.itineraryListIndex >= 1) {
+                // Suena el timbre y se pasa al siguiente cycle:
                 setTimeout(() => {
                     currentFunction();
                     circleAnimation.updateProgress();
+                    this.appIsRunning = true;
                 }, 3000);
+                this.appIsRunning = false;
                 audioHandler.clockAlarmSound.play();
+                this.itineraryListIndex += 1;
 
             // Si se acaba de accionar el contador:
             } else {
-                this.itineraryListIndex--;
-                let currentFunction = this.itineraryList[this.itineraryListIndex];
+                // Empieza a recorrerse el primer cycle:
+                let currentFunction = this.itineraryList[0];
                 currentFunction();
                 audioHandler.clockStartSound.play();
+                this.itineraryListIndex += 1;
             }
         } else {
             sessionEnding.endTheSession();
-            alert("La sesión de estudio ha concluido!");
         }
     }
 
@@ -142,9 +146,11 @@ class LogicHandler {
                 if (this.timeToElapse <= 0) {
                     this.runNextCycle()
                 }
-
                 counter.updateCounter();
                 circleAnimation.updateProgress();
+            } else if (!this.appIsRunning && this.timeToElapse < this.initialTimeToElapse) {
+                // Se cuentan los segundos en que la app ha estado en pausa:
+                counter.totalTimeInPause++;
             }
         }, 1000);
     }

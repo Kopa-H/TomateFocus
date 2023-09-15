@@ -260,6 +260,9 @@ class MusicPlayer {
     }
   }
 
+window.MusicButton = MusicButton;
 const musicButton = new MusicButton()
+window.VolumeSlider = VolumeSlider;
 const volumeSlider = new VolumeSlider()
+window.MusicPlayer = MusicPlayer;
 const musicPlayer = new MusicPlayer()
