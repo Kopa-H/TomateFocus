@@ -2,6 +2,8 @@ class SessionEnding {
     constructor() {
         this.isSessionEnded = false;
         this.confettiCanvas = document.getElementById("confetti-canvas");
+
+        this.centralZone = document.querySelector(".central-zone-wrapper")
     }
 
     endTheSession() {
@@ -9,9 +11,12 @@ class SessionEnding {
         audioHandler.sessionEndingSound.play();
         audioHandler.sessionEndingMusic.play();
         this.cleanInterface();
+        this.cleanCentralZone();
         this.showSessionStatistics();
 
         this.showConfetti();
+
+        this.isSessionEnded = true;
     }
 
     cleanInterface() {
@@ -28,6 +33,15 @@ class SessionEnding {
         // The music stops
         if (musicPlayer.songIsPlaying) {
             musicPlayer.togglePlayPause();
+        }
+    }
+
+    cleanCentralZone() {
+        this.centralZone.style.display = "none";
+
+        if (particlesHandler.particlesAreActive) {
+            hideParticlesButton.toggleX();
+            particlesHandler.hideParticles();
         }
     }
 

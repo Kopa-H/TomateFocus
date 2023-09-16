@@ -30,49 +30,49 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// S Key:
+// S Key -- > Toggle Settings Menu:
 document.addEventListener("keydown", (event) => {
     if (event.key === "s" || event.key === "S") {
         settingsMenu.showOrHideSettingsMenu();
     }
 });
 
-// + Key:
+// + Key -- > Delay Cycle 1 Minute:
 document.addEventListener("keydown", (event) => {
     if (event.key === "+") {
         delayCycle.delayCycleOneMinute();
     }
 });
 
-// ArrowLeft Key:
+// ArrowLeft Key -- > Change to Prev Cycle:
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft" && godModeHandler.godModeIsActive) {
         godModeHandler.changeToPrevCycle();
     }
 });
 
-// ArrowRight Key:
+// ArrowRight Key -- > Change to Next Cycle:
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight" && godModeHandler.godModeIsActive) {
         godModeHandler.changeToNextCycle();
     }
 });
 
-// G Key:
+// G Key -- > Activate God Mode:
 document.addEventListener("keydown", (event) => {
     if (event.key === "g" || event.key === "G") {
       enableGodModeButton.activateGodMode();
     }
 });
 
-// P Key:
+// P Key -- > Toggle Plan Session Menu:
 document.addEventListener("keydown", (event) => {
     if ((event.key === "p" || event.key === "P") && (logicHandler.clockHasBeenStarted == false)) {
         planSessionButton.togglePlanSession();
     }
 });
 
-// H Key:
+// H Key -- > Toggle Particles:
 document.addEventListener("keydown", (event) => {
     if (event.key === "h" || event.key === "H") {
         hideParticlesButton.toggleX();
@@ -81,5 +81,14 @@ document.addEventListener("keydown", (event) => {
         } else {
             particlesHandler.changeParticlesNumberAndColor(themeColor.pomodoroColor, 50);
         }
+    }
+});
+
+// Shift+Supr Key -- > End Session:
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Delete" && event.shiftKey && !sessionEnding.isSessionEnded && logicHandler.appIsRunning) {
+        console.log("Forced Ending Session")
+        console.log(sessionEnding.isSessionEnded)
+        sessionEnding.endTheSession();
     }
 });
