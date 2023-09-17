@@ -15,21 +15,61 @@
     color: #FFF4E0;
     gap: 2px;
     font-weight: 800;
+
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ending-session-text p:first-child {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 0px;
 }
 
 .statistics-container {
     position: relative;
-    top: 115px;
-    left: 200px;
+    display: flex;
+    flex-direction: column;
+    top: 120px;
+    left: 240px;
     transform: translate(-50%, -50%);
-    padding: 40px;
     text-align: justify;
-    font-size: 17px;
+    font-size: 14px;
     font-family: 'Roboto', sans-serif;
 
     width: 400px;
-    height: 200px;
-    border: 4px solid black;
+    height: 210px;
+}
+
+.statistics-container p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0px;
+    padding: 5px;
+    border: 2px solid black;
+    border-bottom: none;
+    border-radius: 5px;
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.statistics-container p:last-child {
+    border: 2px solid black;
+}
+
+.label {
+    margin-left: 36px;
+}
+
+.value {
+    color: green;
+    margin: 7px;
+    font-size: 18px;
+    font-weight: 500;
+
+    position: absolute;
+    margin-top: -3px;
+    left: 250px;
+
+    border: 1px solid white;
 }
 
 #confetti-canvas {

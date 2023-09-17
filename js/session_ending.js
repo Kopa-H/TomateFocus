@@ -51,29 +51,35 @@ class SessionEnding {
         this.finalBreakTime = (delayCycle.timeOfDelayBreakUsage + planSessionEstimations.breakTime);
         this.finalTotalTime = (this.finalStudyTime + this.finalBreakTime);
 
-        console.log(`Final Study Time: ${this.finalStudyTime}`);
-        console.log(`Final Break Time: ${this.finalBreakTime}`);
-        console.log(`Final Total Time: ${this.finalTotalTime}`);
-        console.log(`Total Time In Pause: ${counter.totalTimeInPause}`);
-        console.log(`Total Times Clock Paused: ${counter.timesClockPaused}`);
-        console.log(`God Mode Usages: ${"placeholder"}`);
+        const data = [
+            { label: "Times Clock Paused  -------->", value: this.finalBreakTime },
+            { label: "Total Time In Pause  -------->", value: this.finalStudyTime },
+            { label: "God Mode Usages  ---------->", value: this.finalBreakTime },
+            { label: "Final Study Time  ------------>", value: this.finalStudyTime },
+            { label: "Final Break Time  ------------>", value: this.finalBreakTime },
+            { label: "Final Total Time  ------------->", value: this.finalStudyTime },
+            // Otros elementos de datos
+          ];
+          for (const item of data) {
+            const paragraph = document.createElement('p');
 
-        console.log("Congratulations! You just finished your study session. Remebember that a great student is that who can also enjoy life, and if you are currently fighting a deadline do whatever you can, but don't forget to take care of yourself and your anxiety.")
+            // Crea un span para la etiqueta (label)
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = item.label;
+            labelSpan.classList.add('label');
 
-        // Crea un nuevo párrafo
-        const newParagraph1 = document.createElement('p');
-        newParagraph1.textContent = 'Este es el primer párrafo generado desde JavaScript.';
+            // Crea un span para el valor
+            const valueSpan = document.createElement('span');
+            valueSpan.textContent = item.value;
+            valueSpan.classList.add('value');
 
-        // Crea otro párrafo
-        const newParagraph2 = document.createElement('p');
-        newParagraph2.textContent = 'Este es el segundo párrafo generado desde JavaScript.';
-
-        // Agrega los párrafos al 'statistics-container'
-        this.statisticsContainer.appendChild(newParagraph1);
-        this.statisticsContainer.appendChild(newParagraph2);
+            // Agrega los spans al párrafo
+            paragraph.appendChild(labelSpan);
+            paragraph.appendChild(valueSpan);
+            this.statisticsContainer.appendChild(paragraph);
+          }
     }
 
-        // Función para mostrar el confeti
         showConfetti() {
             this.confettiCanvas.style.display = "block";
     }
