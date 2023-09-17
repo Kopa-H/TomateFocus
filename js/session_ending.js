@@ -52,12 +52,12 @@ class SessionEnding {
         this.finalTotalTime = (this.finalStudyTime + this.finalBreakTime);
 
         const data = [
-            { label: "Times Clock Paused  -------->", value: this.finalBreakTime },
-            { label: "Total Time In Pause  -------->", value: this.finalStudyTime },
-            { label: "God Mode Usages  ---------->", value: this.finalBreakTime },
-            { label: "Final Study Time  ------------>", value: this.finalStudyTime },
-            { label: "Final Break Time  ------------>", value: this.finalBreakTime },
-            { label: "Final Total Time  ------------->", value: this.finalStudyTime },
+            { label: "Times Clock Paused  -------->", value: this.finalBreakTime + "t" },
+            { label: "Total Time In Pause  -------->", value: this.finalStudyTime + "m" },
+            { label: "God Mode Usages  ---------->", value: this.finalBreakTime + "t" },
+            { label: "Final Study Time  ------------>", value: this.finalStudyTime + "m" },
+            { label: "Final Break Time  ------------>", value: this.finalBreakTime + "m" },
+            { label: "Final Total Time  ------------->", value: this.finalStudyTime + "m" },
             // Otros elementos de datos
           ];
           for (const item of data) {

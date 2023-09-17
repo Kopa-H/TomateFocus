@@ -38,13 +38,15 @@
 
     width: 400px;
     height: 210px;
+
+    margin-top: -12px;
 }
 
 .statistics-container p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0px;
     padding: 5px;
-    border: 2px solid black;
+    border: 5px solid #FFF4E0;
     border-bottom: none;
     border-radius: 5px;
     width: 300px;
@@ -52,7 +54,7 @@
 }
 
 .statistics-container p:last-child {
-    border: 2px solid black;
+    border: 5px solid #FFF4E0;
 }
 
 .label {
@@ -60,16 +62,15 @@
 }
 
 .value {
-    color: green;
+    color: rgb(40, 167, 69);
+    font-family: 'Roboto', sans-serif;
     margin: 7px;
     font-size: 18px;
     font-weight: 500;
 
     position: absolute;
-    margin-top: -3px;
+    margin-top: -2px;
     left: 250px;
-
-    border: 1px solid white;
 }
 
 #confetti-canvas {
