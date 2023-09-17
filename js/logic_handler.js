@@ -130,11 +130,6 @@ class LogicHandler {
                 currentFunction();
                 audioHandler.clockStartSound.play();
                 this.itineraryListIndex += 1;
-
-                //if (!sessionEnding.isSessionEnded) {
-                    //sessionEnding.endTheSession();
-                    //sessionEnding.isSessionEnded = true;
-                //}
             }
         } else {
             if (!sessionEnding.isSessionEnded) {
@@ -172,6 +167,12 @@ class LogicHandler {
                 this.itineraryList.push(cycleFunction)
             }
         });
+    }
+
+    convertMinutesToHoursAndMinutes(timeInMinutes) {
+        const hours = Math.floor(timeInMinutes / 60);
+        const minutes = timeInMinutes % 60;
+        return `${hours}h ${minutes}m`
     }
 }
 

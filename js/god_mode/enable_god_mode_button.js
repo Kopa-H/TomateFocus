@@ -1,5 +1,7 @@
 class EnableGodModeButton {
 	constructor() {
+		this.timesGodModeActivated = 0;
+
 		this.enableGodModeButton = document.querySelector(".enable-god-mode-button");
 		this.enableGodModeX = document.querySelector(".enable-god-mode-x");
 
@@ -12,13 +14,16 @@ class EnableGodModeButton {
 		if (godModeHandler.godModeIsActive) {
 			godModeHandler.godModeIsActive = false;
 
-			// Se activa la función de cambiar entre Cycles
+			// Se desactiva la función de cambiar entre Cycles
 			changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
 		} else {
 			godModeHandler.godModeIsActive = true;
 
 			// Se activa la función de cambiar entre Cycles:
 			changeBetweenCyclesContainer.toggleChangeBetweenCyclesFeature();
+
+			// Se cuentan las veces que se activa el god mode:
+			this.timesGodModeActivated++;
 		}
 		this.toggleX();
 	}
