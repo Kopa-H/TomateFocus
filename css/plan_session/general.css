@@ -44,7 +44,7 @@
     transition: all 0.4s;
 }
 .plan-session-confirm-button:hover {
-    background-color: #5a5959;
+    background-color: rgb(0, 128, 0);;
 }
 
 .plan-session-confirm-button:active {

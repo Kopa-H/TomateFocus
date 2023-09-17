@@ -19,6 +19,7 @@
     gap: 2px;
     font-weight: 800;
 
+    border-radius: 0px 30px 0px 30px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -66,7 +67,7 @@
 }
 
 .value {
-    color: rgb(40, 167, 69);
+    font-style: italic;
     font-family: 'Roboto', sans-serif;
     margin: 7px;
     font-size: 18px;

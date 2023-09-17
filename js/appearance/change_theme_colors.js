@@ -24,6 +24,7 @@ class ThemeColor {
         this.delayCycleButton.style.backgroundColor = this.defaultColor;
         this.settingsMenuContainer.style.backgroundColor = this.defaultColor;
         this.musicPlayerContainer.style.backgroundColor = this.defaultColor;
+        sessionEnding.sessionEndingContainer.style.background = this.defaultColor;
         particlesHandler.changeParticlesNumberAndColor(this.defaultColor);
     }
 
@@ -43,6 +44,7 @@ class ThemeColor {
         this.musicPlayerButton.classList.add("pomodoro");
         this.settingsButton.classList.add("pomodoro");
 
+        sessionEnding.sessionEndingContainer.style.background = this.pomodoroColor;
         particlesHandler.changeParticlesNumberAndColor(this.pomodoroColor);
     }
 
@@ -62,6 +64,7 @@ class ThemeColor {
         this.musicPlayerButton.classList.add("shortbreak");
         this.settingsButton.classList.add("shortbreak");
 
+        sessionEnding.sessionEndingContainer.style.background = this.shortbreakColor;
         particlesHandler.changeParticlesNumberAndColor(this.shortbreakColor);
     }
 
@@ -81,6 +84,7 @@ class ThemeColor {
         this.musicPlayerButton.classList.add("longbreak");
         this.settingsButton.classList.add("longbreak");
 
+        sessionEnding.sessionEndingContainer.style.background = this.longbreakColor;
         particlesHandler.changeParticlesNumberAndColor(this.longbreakColor);
     }
 
