@@ -87,8 +87,6 @@ document.addEventListener("keydown", (event) => {
 // Shift+Supr Key -- > End Session:
 document.addEventListener("keydown", (event) => {
     if (event.key === "Delete" && event.shiftKey && !sessionEnding.isSessionEnded && logicHandler.appIsRunning) {
-        console.log("Forced Ending Session")
-        console.log(sessionEnding.isSessionEnded)
         sessionEnding.endTheSession();
     }
 });

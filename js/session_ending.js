@@ -5,15 +5,15 @@ class SessionEnding {
 
         this.centralZone = document.querySelector(".central-zone-wrapper");
         this.statisticsContainer = document.querySelector('.statistics-container');
+        this.sessionEndingContainer = document.querySelector('.session-ending-container');
     }
 
     endTheSession() {
-        console.log("SESSION END")
         audioHandler.sessionEndingSound.play();
         audioHandler.sessionEndingMusic.play();
         this.cleanInterface();
         this.cleanCentralZone();
-        this.showSessionStatistics();
+        this.showEndingSession();
 
         this.showConfetti();
 
@@ -46,18 +46,26 @@ class SessionEnding {
         }
     }
 
+    showEndingSession() {
+        this.sessionEndingContainer.style.display = "block";
+        this.showSessionStatistics();
+    }
+
     showSessionStatistics() {
         this.finalStudyTime = (delayCycle.timeOfDelayPomodoroUsage + planSessionEstimations.pomodoroTime);
+        this.finalStudyTimeInHours = logicHandler.convertMinutesToHoursAndMinutes(this.finalStudyTime);
         this.finalBreakTime = (delayCycle.timeOfDelayBreakUsage + planSessionEstimations.breakTime);
+        this.finalBreakTimeInHours = logicHandler.convertMinutesToHoursAndMinutes(this.finalBreakTime);
         this.finalTotalTime = (this.finalStudyTime + this.finalBreakTime);
+        this.finalTotalTimeInHours = logicHandler.convertMinutesToHoursAndMinutes(this.finalTotalTime);
 
         const data = [
-            { label: "Times Clock Paused  -------->", value: this.finalBreakTime + "t" },
-            { label: "Total Time In Pause  -------->", value: this.finalStudyTime + "m" },
-            { label: "God Mode Usages  ---------->", value: this.finalBreakTime + "t" },
-            { label: "Final Study Time  ------------>", value: this.finalStudyTime + "m" },
-            { label: "Final Break Time  ------------>", value: this.finalBreakTime + "m" },
-            { label: "Final Total Time  ------------->", value: this.finalStudyTime + "m" },
+            { label: "God Mode Usages  --------->", value: enableGodModeButton.timesGodModeActivated + "x"},
+            { label: "Times Clock Paused  ------->", value: counter.timesClockPaused + "x"},
+            { label: "Total Time In Pause  ------->", value: logicHandler.convertMinutesToHoursAndMinutes(counter.totalTimeInPause)},
+            { label: "Final Study Time  ----------->", value: this.finalStudyTimeInHours},
+            { label: "Final Break Time  ----------->", value: this.finalBreakTimeInHours},
+            { label: "Final Total Time  ------------>", value: this.finalTotalTimeInHours},
             // Otros elementos de datos
           ];
           for (const item of data) {

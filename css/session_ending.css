@@ -1,11 +1,14 @@
 .session-ending-container {
     position: fixed;
+    display: none;
+
     top: 430px;
     left: 50vw;
     transform: translate(-50%, -50%);
+    margin-top: 30px;
 
     width: 400px;
-    height: 500px;
+    height: 600px;
     background-color: brown;
 
     padding: 40px;
@@ -23,6 +26,7 @@
     text-align: center;
     font-size: 30px;
     margin-top: 0px;
+    margin-bottom: 35px;
 }
 
 .statistics-container {
@@ -33,13 +37,13 @@
     left: 240px;
     transform: translate(-50%, -50%);
     text-align: justify;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Roboto', sans-serif;
 
     width: 400px;
     height: 210px;
 
-    margin-top: -12px;
+    margin-top: 30px;
 }
 
 .statistics-container p {
@@ -58,7 +62,7 @@
 }
 
 .label {
-    margin-left: 36px;
+    margin-left: 12px;
 }
 
 .value {
@@ -70,7 +74,7 @@
 
     position: absolute;
     margin-top: -2px;
-    left: 250px;
+    left: 235px;
 }
 
 #confetti-canvas {
