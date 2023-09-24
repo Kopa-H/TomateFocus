@@ -62,7 +62,7 @@ class SessionEnding {
         const data = [
             { label: "God Mode Usages  --------->", value: enableGodModeButton.timesGodModeActivated + "x"},
             { label: "Times Clock Paused  ------->", value: counter.timesClockPaused + "x"},
-            { label: "Total Time In Pause  ------->", value: logicHandler.convertMinutesToHoursAndMinutes(counter.totalTimeInPause)},
+            { label: "Total Time In Pause  ------->", value: logicHandler.convertSecondsToHoursAndMinutes(counter.totalTimeInPause)},
             { label: "Final Study Time  ----------->", value: this.finalStudyTimeInHours},
             { label: "Final Break Time  ----------->", value: this.finalBreakTimeInHours},
             { label: "Final Total Time  ------------>", value: this.finalTotalTimeInHours},
