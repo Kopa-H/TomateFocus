@@ -15,6 +15,8 @@ class GodModeHandler {
             circleAnimation.updateProgress();
             counter.updateCounter();
             console.log("Se avanza al siguiente cycle!")
+
+            itineraryProgressBar.updateProgressBar();
         }
     }
 
@@ -29,6 +31,8 @@ class GodModeHandler {
             circleAnimation.updateProgress();
             counter.updateCounter();
             console.log("Se retrocede al anterior cycle!")
+
+            itineraryProgressBar.updateProgressBar();
         }
     }
 
