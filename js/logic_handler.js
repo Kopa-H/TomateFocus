@@ -111,7 +111,7 @@ class LogicHandler {
 
     runNextCycle() {
         // Si todavía quedan cycles por recorrer:
-        if (this.itineraryListIndex < this.itineraryList.length) {
+        if (this.itineraryListIndex < this.itineraryList.length-1) {
             let currentFunction = this.itineraryList[this.itineraryListIndex];
 
             // Si ya se ha recorrido el primer cycle:
@@ -134,10 +134,8 @@ class LogicHandler {
                 audioHandler.clockStartSound.play();
             }
         } else {
-            if (!sessionEnding.isSessionEnded) {
-                sessionEnding.endTheSession();
-                sessionEnding.isSessionEnded = true;
-            }
+            sessionEnding.endTheSession();
+            sessionEnding.isSessionEnded = true;
         }
     }
 

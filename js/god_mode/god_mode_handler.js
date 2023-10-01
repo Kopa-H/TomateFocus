@@ -15,6 +15,9 @@ class GodModeHandler {
             counter.updateCounter();
 
             itineraryProgressBar.updateProgressBar();
+
+            // Pruebas para depuración de código:
+            console.log("Current itinerary index: " + logicHandler.itineraryListIndex)
         }
     }
 
