@@ -5,7 +5,7 @@ class ItineraryProgressBar {
     }
 
     fillProgressBar() {
-        this.itineraryProgressBarFlex.style.border = "2px solid brown";
+        this.itineraryProgressBarFlex.style.opacity = 1;
 
         if (logicHandler.itineraryList.length == 6) {
             this.numOfCycles = 6;
@@ -33,31 +33,33 @@ class ItineraryProgressBar {
             newCycleDiv.style.width = cycleWidth + "px";
 
             if (logicHandler.itineraryList[i] == "() => {this.runPomodoro()}") {
-                newCycleDiv.style.backgroundColor = "red"
+                newCycleDiv.style.backgroundColor = "#CB3333";
             } else if (logicHandler.itineraryList[i] == "() => {this.runShortBreak()}") {
-                newCycleDiv.style.backgroundColor = "blue"
+                newCycleDiv.style.backgroundColor = "#337DCB";
             } else if (logicHandler.itineraryList[i] == "() => {this.runLongBreak()}") {
-                newCycleDiv.style.backgroundColor = "purple"
+                newCycleDiv.style.backgroundColor = "#8133CB";
             }
         }
     }
 
     updateProgressBar() {
         // Se vuelven a pintar de color los cycles:
-        for (let i = 0; i < this.numOfCycles; i++) {
-            let cycle = document.querySelector(`.itinerary-progress-bar-cycle:nth-child(${i})`);
-            console.log(i)
+        for (let i = 0; i <= this.numOfCycles-1; i++) {
+            const cycle = document.querySelector(`.itinerary-progress-bar-cycle:nth-child(${i+1})`);
 
-            if (i < logicHandler.itineraryListIndex) {
-                if (logicHandler.itineraryList[logicHandler.itineraryListIndex] == "() => {this.runPomodoro()}") {
-                    cycle.style.backgroundColor = "red"
-                } else if (logicHandler.itineraryList[logicHandler.itineraryListIndex] == "() => {this.runShortBreak()}") {
-                    cycle.style.backgroundColor = "blue"
-                } else if (logicHandler.itineraryList[logicHandler.itineraryListIndex] == "() => {this.runLongBreak()}") {
-                    cycle.style.backgroundColor = "purple"
+            if (i >= logicHandler.itineraryListIndex) {
+                if (logicHandler.itineraryList[i] == "() => {this.runPomodoro()}") {
+                    cycle.style.backgroundColor = "#CB3333";
+                    cycle.style.opacity = "1";
+                } else if (logicHandler.itineraryList[i] == "() => {this.runShortBreak()}") {
+                    cycle.style.backgroundColor = "#337DCB";
+                    cycle.style.opacity = "1";
+                } else if (logicHandler.itineraryList[i] == "() => {this.runLongBreak()}") {
+                    cycle.style.backgroundColor = "#8133CB";
+                    cycle.style.opacity = "1";
                 }
-            } else if (i >= logicHandler.itineraryListIndex) {
-                cycle.style.backgroundColor = "black";
+            } else if (i < logicHandler.itineraryListIndex) {
+                cycle.style.opacity = "0.2";
             }
         }
     }

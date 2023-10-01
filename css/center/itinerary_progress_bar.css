@@ -2,17 +2,17 @@
     display: flex;
     width: 300px;
     height: 7px;
+    border: 2px solid #4D4D4D;
+    opacity: 0;
 
     margin-top: 20px;
 
     border-radius: 200px;
-
 }
 
 .itinerary-progress-bar-cycle {
     display: inline-block;
     height: 7px;
-    background-color: blue;
 }
 
 .itinerary-progress-bar-cycle:first-child {

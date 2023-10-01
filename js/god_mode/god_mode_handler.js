@@ -6,7 +6,6 @@ class GodModeHandler {
     changeToNextCycle() {
         // Si ya se ha iniciado el primer ciclo y Si aun queda un ciclo por delante:
         if (logicHandler.itineraryListIndex < logicHandler.itineraryList.length - 1) {
-
             // Se consigue el siguiente índice:
             logicHandler.itineraryListIndex++;
             let NextCycleFunction = logicHandler.itineraryList[logicHandler.itineraryListIndex];
@@ -14,7 +13,6 @@ class GodModeHandler {
             NextCycleFunction();
             circleAnimation.updateProgress();
             counter.updateCounter();
-            console.log("Se avanza al siguiente cycle!")
 
             itineraryProgressBar.updateProgressBar();
         }
@@ -30,7 +28,6 @@ class GodModeHandler {
             PrevCycleFunction();
             circleAnimation.updateProgress();
             counter.updateCounter();
-            console.log("Se retrocede al anterior cycle!")
 
             itineraryProgressBar.updateProgressBar();
         }
