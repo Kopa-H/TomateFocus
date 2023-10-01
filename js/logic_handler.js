@@ -132,10 +132,18 @@ class LogicHandler {
                 let currentFunction = this.itineraryList[0];
                 currentFunction();
                 audioHandler.clockStartSound.play();
+                this.itineraryListIndex += 1;
             }
         } else {
-            sessionEnding.endTheSession();
-            sessionEnding.isSessionEnded = true;
+            if (!sessionEnding.isSessionEnded && this.itineraryListIndex >= 1) {
+                sessionEnding.endTheSession();
+                sessionEnding.isSessionEnded = true;
+            } else {
+                let currentFunction = this.itineraryList[0];
+                currentFunction();
+                audioHandler.clockStartSound.play();
+                this.itineraryListIndex += 1;
+            }
         }
     }
 

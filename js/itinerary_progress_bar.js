@@ -44,7 +44,7 @@ class ItineraryProgressBar {
 
     updateProgressBar() {
         // Se vuelven a pintar de color los cycles:
-        for (let i = 0; i <= this.numOfCycles-1; i++) {
+        for (let i = 0; i <= this.numOfCycles; i++) {
             const cycle = document.querySelector(`.itinerary-progress-bar-cycle:nth-child(${i+1})`);
 
             if (i >= logicHandler.itineraryListIndex) {

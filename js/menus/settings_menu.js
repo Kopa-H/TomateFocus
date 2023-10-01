@@ -99,12 +99,14 @@ class SettingsMenu {
             this.settingsMenuFlex.classList.add("slideIn");
             this.settingsMenuFlex.style.display = "flex";
         } else {
-            this.settingsMenuFlex.classList.remove("slideIn");
-            this.settingsMenuFlex.classList.add("slideOut");
-
-            this.settingsMenuFlex.addEventListener("animationend", () => {
-                this.settingsMenuFlex.style.display = "none"
-            }, { once: true })
+            // It's not possible to close the settings menu while the plan session menu is being shown:
+            if (planSessionButton.planSessionStyles.display == "none") {
+                this.settingsMenuFlex.classList.remove("slideIn");
+                this.settingsMenuFlex.classList.add("slideOut");
+                this.settingsMenuFlex.addEventListener("animationend", () => {
+                    this.settingsMenuFlex.style.display = "none"
+                }, { once: true })
+            }
         }
     }
 
