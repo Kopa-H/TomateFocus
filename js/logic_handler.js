@@ -41,6 +41,9 @@ class LogicHandler {
         // Cambia el estado de hide particles del Settings Menu:
         particlesHandler.manageFirstParticlesAppearance();
 
+        // Se llena
+        itineraryProgressBar.fillProgressBar();
+
         // The execution of the counter starts:
         this.appIsRunning = true;
         this.clockHasBeenStarted = true;
@@ -129,7 +132,6 @@ class LogicHandler {
                 let currentFunction = this.itineraryList[0];
                 currentFunction();
                 audioHandler.clockStartSound.play();
-                this.itineraryListIndex += 1;
             }
         } else {
             if (!sessionEnding.isSessionEnded) {
