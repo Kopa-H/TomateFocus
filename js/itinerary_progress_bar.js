@@ -47,7 +47,9 @@ class ItineraryProgressBar {
         for (let i = 0; i <= this.numOfCycles; i++) {
             const cycle = document.querySelector(`.itinerary-progress-bar-cycle:nth-child(${i+1})`);
 
-            if (i >= logicHandler.itineraryListIndex) {
+            console.log("Itinerary list index = " + logicHandler.itineraryListIndex)
+
+            if (i >= logicHandler.itineraryListIndex-1) {
                 if (logicHandler.itineraryList[i] == "() => {this.runPomodoro()}") {
                     cycle.style.backgroundColor = "#CB3333";
                     cycle.style.opacity = "1";
@@ -58,7 +60,7 @@ class ItineraryProgressBar {
                     cycle.style.backgroundColor = "#8133CB";
                     cycle.style.opacity = "1";
                 }
-            } else if (i < logicHandler.itineraryListIndex) {
+            } else if (i < logicHandler.itineraryListIndex-1) {
                 cycle.style.opacity = "0.2";
             }
         }

@@ -115,7 +115,7 @@ class LogicHandler {
             let currentFunction = this.itineraryList[this.itineraryListIndex];
 
             // Si ya se ha recorrido el primer cycle:
-            if (this.itineraryListIndex >= 1) {
+            if (this.itineraryListIndex > 1) {
                 // Suena el timbre y se pasa al siguiente cycle:
                 setTimeout(() => {
                     currentFunction();
@@ -125,6 +125,7 @@ class LogicHandler {
                 this.appIsRunning = false;
                 audioHandler.clockAlarmSound.play();
                 this.itineraryListIndex += 1;
+                itineraryProgressBar.updateProgressBar();
 
             // Si se acaba de accionar el contador:
             } else {
@@ -139,10 +140,12 @@ class LogicHandler {
                 sessionEnding.endTheSession();
                 sessionEnding.isSessionEnded = true;
             } else {
-                let currentFunction = this.itineraryList[0];
-                currentFunction();
-                audioHandler.clockStartSound.play();
-                this.itineraryListIndex += 1;
+                if (!sessionEnding.isSessionEnded) {
+                    let currentFunction = this.itineraryList[0];
+                    currentFunction();
+                    audioHandler.clockStartSound.play();
+                    this.itineraryListIndex += 1;
+                }
             }
         }
     }
