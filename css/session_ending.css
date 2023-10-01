@@ -1,5 +1,5 @@
 .session-ending-container {
-    position: fixed;
+    position: absolute;
     display: none;
 
     top: 430px;
