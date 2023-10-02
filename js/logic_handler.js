@@ -111,11 +111,11 @@ class LogicHandler {
 
     runNextCycle() {
         // Si todavía quedan cycles por recorrer:
-        if (this.itineraryListIndex < this.itineraryList.length-1) {
+        if (this.itineraryListIndex < this.itineraryList.length) {
             let currentFunction = this.itineraryList[this.itineraryListIndex];
 
             // Si ya se ha recorrido el primer cycle:
-            if (this.itineraryListIndex > 1) {
+            if (this.itineraryListIndex >= 1) {
                 // Suena el timbre y se pasa al siguiente cycle:
                 setTimeout(() => {
                     currentFunction();

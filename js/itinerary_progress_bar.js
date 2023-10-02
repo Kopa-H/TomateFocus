@@ -47,8 +47,6 @@ class ItineraryProgressBar {
         for (let i = 0; i <= this.numOfCycles; i++) {
             const cycle = document.querySelector(`.itinerary-progress-bar-cycle:nth-child(${i+1})`);
 
-            console.log("Itinerary list index = " + logicHandler.itineraryListIndex)
-
             if (i >= logicHandler.itineraryListIndex-1) {
                 if (logicHandler.itineraryList[i] == "() => {this.runPomodoro()}") {
                     cycle.style.backgroundColor = "#CB3333";
